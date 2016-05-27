@@ -11,7 +11,7 @@ module.exports = function (grunt) {
       build: [
         'js/*.js'
       ],
-      options: {jshintrc: '.jshintrc', ignores:[]}
+      options: {jshintrc: '.jshintrc', ignores:['js/CSVService.js','js/RecordParser.js']}
     },
     watch: {
       scripts: {

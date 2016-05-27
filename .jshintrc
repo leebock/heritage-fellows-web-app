@@ -91,6 +91,9 @@
     "globals"       : {
         "jquery": false,
         "$": false, 
-        "Social": false
+        "Social": false,
+        "RecordParser": false,
+        "CSVService": false, 
+        "Record": false
 	}        // additional predefined global variables
 }
