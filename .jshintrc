@@ -90,6 +90,7 @@
     // Custom Globals
     "globals"       : {
         "jquery": false,
-        "$": false
+        "$": false, 
+        "Social": false
 	}        // additional predefined global variables
 }

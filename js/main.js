@@ -4,6 +4,7 @@
 
 	$(document).ready(function(){
 		$("body").append($("<h1>").html("Hello World!"));
+		new Social().addClickEvents();
 	});
 
 })();
