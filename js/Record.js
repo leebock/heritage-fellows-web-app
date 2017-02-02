@@ -2,4 +2,4 @@ function Record()
 {
 }
 
-Record.FIELDNAME_LOCATION = "location";
+Record.FIELDNAME_LOCATION = "Location";

@@ -92,8 +92,7 @@
         "jquery": false,
         "$": false, 
         "Social": false,
-        "RecordParser": false,
-        "CSVService": false, 
+        "Papa": false,        
         "Record": false
 	}        // additional predefined global variables
 }

@@ -10,25 +10,24 @@
 		new Social().addClickEvents();
 		$("body").append($("<h1>").html("Hello World!"));
 
-		$.ajax({
-			type: 'GET',
-			url: SPREADSHEET_URL,
-			cache: true,
-			success: function(text) {
-
-				var csv = new CSVService();
-				csv.process(text);
-
-				var recs = new RecordParser().getRecs(csv.getLines());
-				$.each(
-					recs, 
-					function(index, value) {
-						$("body").append($("<p>").html(value[Record.FIELDNAME_LOCATION]));
-					}
-				);
-
+		Papa.parse(
+			SPREADSHEET_URL, 
+			{
+				header: true,
+				download: true,
+				complete: function(data){finish(data.data);}
 			}
-		});
+		);		
+
+		function finish(data)
+		{
+			$.each(
+				data, 
+				function(index, value) {
+					$("body").append($("<p>").html(value[Record.FIELDNAME_LOCATION]));
+				}
+			);			
+		}
 
 	});
 
