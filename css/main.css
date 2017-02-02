@@ -55,15 +55,22 @@ a {
   cursor: pointer; }
 
 .social-button-bar {
+  position: absolute;
+  right: 0px;
   display: inline-block;
   vertical-align: top;
   padding-top: 10px;
   float: right;
-  margin-right: 20px; }
+  margin-right: 20px;
+  z-index: 1000; }
 
 .story-map-link {
   color: #989898;
   font-size: 1em;
   font-weight: bold; }
+
+#map {
+  width: 100%;
+  height: 100%; }
 
 /*# sourceMappingURL=main.css.map */
