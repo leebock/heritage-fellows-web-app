@@ -19,6 +19,13 @@
 			.addLayer(L.esri.basemapLayer("DarkGray"))
 			.addLayer(L.esri.basemapLayer("DarkGrayLabels"));
 
+		if (!L.Browser.mobile) {
+			L.easyButton(
+				"<img src='resources/images/Home.png'/ class='home'>", 
+				function(btn, map){_map.fitBounds(_layerDots.getBounds().pad(0.1));}
+			).addTo(_map);
+		}
+
 		_layerDots = L.featureGroup()
 			.addTo(_map)
 			.on("click", onMarkerClick);
