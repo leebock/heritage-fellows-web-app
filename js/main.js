@@ -4,6 +4,10 @@
 
 	var SPREADSHEET_URL =  "/proxy/proxy.ashx?https://docs.google.com/spreadsheets/d/11r5aptFYMdGrTzWdTGJ-vVk14LfQPnncADAfrrtKGRc/pub?gid=1543494610&single=true&output=csv";
 
+	var FIELDNAME$X = "X";
+	var FIELDNAME$Y = "Y";
+	var FIELDNAME$STANDARDIZED_LOCATION = "Country";
+
 	var _map;
 	var _layerDots;							
 
@@ -11,8 +15,7 @@
 
 		new Social().addClickEvents();
 
-		_map = L.map("map")			
-		.setView([30, 0], 2)
+		_map = L.map("map")
 		.addLayer(L.esri.basemapLayer("DarkGray"))
 		.addLayer(L.esri.basemapLayer("DarkGrayLabels"));
 
@@ -32,16 +35,16 @@
 			$.each(
 				data, 
 				function(index, value) {
-					L.marker([value[Record.FIELDNAME$Y], value[Record.FIELDNAME$X]])
-					.bindTooltip(value[Record.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0])
+					L.marker([value[FIELDNAME$Y], value[FIELDNAME$X]])
+					.bindTooltip(value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0])
 					.bindPopup(
-						value[Record.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
+						value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
 						{closeButton: false}
 					)
 					.addTo(_layerDots);
 				}
 			);
-			_map.fitBounds(_layerDots.getBounds());			
+			_map.fitBounds(_layerDots.getBounds().pad(0.1));			
 		}
 
 	});
