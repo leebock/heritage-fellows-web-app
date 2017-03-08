@@ -21,7 +21,7 @@
 
 		if (!L.Browser.mobile) {
 			L.easyButton(
-				"<img src='resources/images/Home.png'/ class='home'>", 
+				"fa fa-home", 
 				function(btn, map){_map.fitBounds(_layerDots.getBounds().pad(0.1));}
 			).addTo(_map);
 		}
