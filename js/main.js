@@ -15,9 +15,9 @@
 
 		new Social().addClickEvents();
 
-		_map = L.map("map")
-		.addLayer(L.esri.basemapLayer("DarkGray"))
-		.addLayer(L.esri.basemapLayer("DarkGrayLabels"));
+		_map = L.map("map", {zoomControl: !L.Browser.mobile})
+			.addLayer(L.esri.basemapLayer("DarkGray"))
+			.addLayer(L.esri.basemapLayer("DarkGrayLabels"));
 
 		_layerDots = L.featureGroup().addTo(_map);
 
@@ -32,16 +32,19 @@
 
 		function finish(data)
 		{
+			var marker;
 			$.each(
 				data, 
 				function(index, value) {
-					L.marker([value[FIELDNAME$Y], value[FIELDNAME$X]])
-					.bindTooltip(value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0])
-					.bindPopup(
-						value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
-						{closeButton: false}
-					)
-					.addTo(_layerDots);
+					marker = L.marker([value[FIELDNAME$Y], value[FIELDNAME$X]])
+						.bindPopup(
+							value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
+							{closeButton: false}
+						)
+						.addTo(_layerDots);
+					if (!L.Browser.mobile) {
+						marker.bindTooltip(value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0])
+					}
 				}
 			);
 			_map.fitBounds(_layerDots.getBounds().pad(0.1));			
