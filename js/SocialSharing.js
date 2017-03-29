@@ -32,7 +32,7 @@ function Social(){
   function addClickEvents(){
 
   	$('.social-icon').click(function(){
-  		if ($(this).hasClass('icon-facebook')) {
+  		if ($(this).hasClass('fa-facebook')) {
   			var facebookOptions = '&p[title]=' + 
         _shareOptions.title + '&p[summary]=' + 
         _shareOptions.summary + '&p[url]=' + 
@@ -45,7 +45,7 @@ function Social(){
   				'toolbar=0,status=0,width=626,height=436'
   			);
   		}
-  		else if($(this).hasClass('icon-twitter')) {
+  		else if($(this).hasClass('fa-twitter')) {
   			var twitterOptions = 'text=' + _shareOptions.twitterText + 
         '&url=' + _shareOptions.url	+ 
         '&via=' + _shareOptions.twitterHandle + 
