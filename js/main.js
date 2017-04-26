@@ -45,7 +45,7 @@
 			$.each(
 				data, 
 				function(index, value) {
-					marker = L.marker([value[FIELDNAME$Y], value[FIELDNAME$X]])
+					marker = L.marker([value[FIELDNAME$Y], value[FIELDNAME$X]],{riseOnHover: true})
 						.bindPopup(
 							value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
 							{closeButton: false}
