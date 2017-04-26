@@ -13,7 +13,7 @@
 
 	$(document).ready(function(){
 
-		new Social().addClickEvents();
+		new SocialButtonBar();
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile})
 			.addLayer(L.esri.basemapLayer("DarkGray"))

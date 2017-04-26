@@ -92,7 +92,7 @@
         "jquery": false,
         "$": false, 
         "L": false,
-        "Social": false,
+        "SocialButtonBar": false,
         "Papa": false,        
         "Record": false
 	}        // additional predefined global variables
