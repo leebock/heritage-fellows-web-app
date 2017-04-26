@@ -10,7 +10,13 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; }
+  overflow: hidden;
+  /* keeps things from getting wiggy on touch */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0; }
 
 body {
   background-color: #FFF; }
