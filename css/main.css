@@ -39,4 +39,7 @@ a {
     font-size: 18px;
     cursor: pointer; }
 
+.leaflet-popup-content {
+  text-align: center; }
+
 /*# sourceMappingURL=main.css.map */
