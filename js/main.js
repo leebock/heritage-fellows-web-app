@@ -64,7 +64,7 @@
 	function onMarkerClick(e)
 	{
 
-		// so this doesn't further tricker map::click
+		// so this doesn't further trigger map::click
 
     	L.DomEvent.stop(e);
 
