@@ -11,11 +11,11 @@ module.exports = function (grunt) {
       build: [
         'js/*.js'
       ],
-      options: {jshintrc: '.jshintrc', ignores:['js/CSVService.js','js/RecordParser.js']}
+      options: {jshintrc: '.jshintrc', ignores:[]}
     },
     watch: {
       scripts: {
-        files: ['index.html','js/*.js','css/*.css'],
+        files: ['index.html','js/*.js','css/*.css','lib/**/*.js','lib/**/*.css'],
         tasks: ['jshint'],
         options: {
           debounceDelay: 250,
