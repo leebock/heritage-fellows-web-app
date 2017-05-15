@@ -93,6 +93,7 @@
         "$": false, 
         "L": false,
         "SocialButtonBar": false,
+        "Banner": false,
         "Papa": false
 	}        // additional predefined global variables
 }

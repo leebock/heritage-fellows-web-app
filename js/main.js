@@ -13,6 +13,7 @@
 
 	$(document).ready(function(){
 
+		new Banner($("#banner").eq(0)).setTitle("Some Places to Eat in San Diego, California").setLogoURL("resources/esri-logo.png");
 		new SocialButtonBar();
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile})
