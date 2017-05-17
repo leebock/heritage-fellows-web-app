@@ -30,7 +30,6 @@ a {
   background-color: #404040;
   padding: 10px;
   display: flex;
-  flex-shrink: 0;
   align-items: center;
   justify-content: space-between; }
   .banner a#logo {
