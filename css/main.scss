@@ -34,7 +34,9 @@ a {
   cursor: pointer;
 }
 
-#banner {
+@import "../lib/banner/Banner";
+
+.banner {
   flex-shrink: 0;
 }
 

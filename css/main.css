@@ -26,7 +26,52 @@ body {
 a {
   cursor: pointer; }
 
-#banner {
+.banner {
+  background-color: #404040;
+  padding: 10px;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between; }
+  .banner a#logo {
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-top: 7px; }
+    .banner a#logo img {
+      max-height: 50px; }
+  .banner a#title {
+    /* to do: this should be an h3 or something, shouldn't it? */
+    color: white;
+    flex-grow: 1;
+    margin-top: -2;
+    margin-right: 10px;
+    font-size: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
+    .intro .banner a#title {
+      left: 0px;
+      visibility: hidden; }
+    @media (max-width: 500px) {
+      .banner a#title {
+        display: none; } }
+  .banner .social-button-bar {
+    display: flex;
+    align-items: center;
+    color: #b3a7a9;
+    cursor: pointer; }
+    .banner .social-button-bar * {
+      margin-right: 10px; }
+    .banner .social-button-bar .story-map-link {
+      margin-right: 15px; }
+  .banner .social-button-bar {
+    flex-shrink: 0;
+    color: white; }
+    .banner .social-button-bar a.story-map-link {
+      color: white;
+      text-decoration: none; }
+
+.banner {
   flex-shrink: 0; }
 
 #map {
