@@ -23,6 +23,10 @@ body {
   display: flex;
   flex-direction: column; }
 
+/* hides adobe analytics white stripe */
+div.adsbox {
+  display: none; }
+
 a {
   cursor: pointer; }
 
