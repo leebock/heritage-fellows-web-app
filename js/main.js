@@ -13,12 +13,16 @@
 
 	$(document).ready(function(){
 
-		new Banner($("#banner").eq(0)).setTitle("Some Places to Eat in San Diego, California").setLogoURL("resources/esri-logo.png");
+		new Banner($(".banner").eq(0));
 		new SocialButtonBar();
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile})
 			.addLayer(L.esri.basemapLayer("DarkGray"))
 			.addLayer(L.esri.basemapLayer("DarkGrayLabels"));
+
+		L.esri.tiledMapLayer({
+		  url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/Pope_Leighey_House_large_dark/MapServer'
+		}).addTo(_map);
 
 		if (!L.Browser.mobile) {
 			L.easyButton(

@@ -32,6 +32,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between; }
+  @media (max-width: 500px) {
+    .banner {
+      padding: 5px; } }
   .banner a#logo {
     margin-left: 10px;
     margin-right: 15px;
