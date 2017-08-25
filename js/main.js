@@ -20,10 +20,6 @@
 			.addLayer(L.esri.basemapLayer("DarkGray"))
 			.addLayer(L.esri.basemapLayer("DarkGrayLabels"));
 
-		L.esri.tiledMapLayer({
-		  url: 'http://tiles.arcgis.com/tiles/nzS0F0zdNLvs7nc8/arcgis/rest/services/Pope_Leighey_House_large_dark/MapServer'
-		}).addTo(_map);
-
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
