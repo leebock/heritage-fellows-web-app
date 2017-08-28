@@ -42,21 +42,37 @@
 
 		function finish(data)
 		{
+			var sumTable = new SummaryTable().createSummaryTable(
+				data, FIELDNAME$X, FIELDNAME$Y, FIELDNAME$STANDARDIZED_LOCATION
+			);
+
 			var marker;
 			$.each(
-				data, 
-				function(index, value) {
-					marker = L.marker([value[FIELDNAME$Y], value[FIELDNAME$X]],{riseOnHover: true})
+				sumTable, 
+				function(index, rec) {
+					var frequency = rec[SummaryTable.FIELDNAME$FREQUENCY];
+					marker = L.circleMarker(
+						[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
+						{
+							weight: 1,
+							radius: 4+frequency*2,
+							fillOpacity: 0.7
+						}
+					)						
 						.bindPopup(
-							value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
+							rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
 							{closeButton: false}
 						)
 						.addTo(_layerDots);
+
 					if (!L.Browser.mobile) {
-						marker.bindTooltip(value[FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]);
+						marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]);
 					}
+					marker.properties = rec;
+					marker.on("click", onMarkerClick);
 				}
 			);
+
 			_map.fitBounds(_layerDots.getBounds().pad(0.1));			
 		}
 
@@ -90,7 +106,7 @@
 
 		*/
 
-		_map.panTo(e.layer.getLatLng());
+		//_map.panTo(e.layer.getLatLng());
 
 		/* 	final note: 
 
