@@ -2,11 +2,11 @@
 
 	"use strict";
 
-	var SPREADSHEET_URL =  "/proxy/proxy.ashx?https://docs.google.com/spreadsheets/d/11r5aptFYMdGrTzWdTGJ-vVk14LfQPnncADAfrrtKGRc/pub?gid=1543494610&single=true&output=csv";
+	var SPREADSHEET_URL =  "resources/data/artists_geocoded.csv";
 
-	var FIELDNAME$X = "X";
-	var FIELDNAME$Y = "Y";
-	var FIELDNAME$STANDARDIZED_LOCATION = "Country";
+	var FIELDNAME$X = "x";
+	var FIELDNAME$Y = "y";
+	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
 
 	var _map;
 	var _layerDots;							
