@@ -114,7 +114,7 @@
 		_map.openPopup(
 			createContent(),
 			e.layer.getLatLng(),
-			{closeButton: false}
+			{closeButton: false, autoPanPaddingTopLeft: L.Browser.mobile ? L.point(10,10) : L.point(50,10)}
 		);			
 
 		function createContent()
