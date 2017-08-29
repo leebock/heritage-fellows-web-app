@@ -2,6 +2,11 @@
 
 	"use strict";
 
+	var GLOBAL_CLASS_MOBILE = "mobile";	
+
+	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
+	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
+
 	var SPREADSHEET_URL =  "resources/data/artists_geocoded.csv";
 
 	var FIELDNAME$FIRSTNAME = "first_middle_name";
@@ -11,9 +16,14 @@
 	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
 	var FIELDNAME$DISPLAY_NAME = "Display-Name";
 
+	var _filterLocation;
+	var _filterDisplayName;
+
 	var _map;
-	var _layerDots;			
+	var _layerDots;
+
 	var _records;				
+	var _selection;
 
 	$(document).ready(function(){
 
@@ -22,7 +32,8 @@
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile})
 			.addLayer(L.esri.basemapLayer("DarkGray"))
-			.addLayer(L.esri.basemapLayer("DarkGrayLabels"));
+			.addLayer(L.esri.basemapLayer("DarkGrayLabels"))
+			.on("click", onMapClick);
 
 		if (!L.Browser.mobile) {
 			L.easyButton(
@@ -30,6 +41,11 @@
 				function(btn, map){_map.fitBounds(_layerDots.getBounds().pad(0.1));}
 			).addTo(_map);
 		}
+
+
+		$("#search input").on("keyup", onInputKeyUp);	
+		$(".filter-display-location .clear-filter").click(clearLocationFilter);
+		$("#search .clear-filter").click(clearTextFilter);			
 
 		_layerDots = L.featureGroup()
 			.addTo(_map)
@@ -44,43 +60,38 @@
 			}
 		);		
 
+		$(window).resize(handleWindowResize);
+		handleWindowResize();
+
 		function finish(data)
 		{
 
 			_records = data;
-
-			var sumTable = new SummaryTable().createSummaryTable(
-				data, FIELDNAME$X, FIELDNAME$Y, FIELDNAME$STANDARDIZED_LOCATION, FIELDNAME$DISPLAY_NAME
-			);
-
-			var marker;
-			$.each(
-				sumTable, 
-				function(index, rec) {
-					var frequency = rec[SummaryTable.FIELDNAME$FREQUENCY];
-					marker = L.circleMarker(
-						[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
-						{
-							weight: 1,
-							radius: 7+(frequency-1)*4,
-							color: "#c0c4c8",
-							fillColor: "#5ea7e6",
-							fillOpacity: 0.7
-						}
-					).addTo(_layerDots);
-
-					if (!L.Browser.mobile) {
-						marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]+": "+frequency);
-					}
-					marker.properties = rec;
-				}
-			);
-
 			_map.fitBounds([[15, -160],[64, -59]]);
+			updateFilter();
 
 		}
 
 	});
+
+	function handleWindowResize() {
+		if ($(window).width() <= 700) {
+			$("html body").addClass(GLOBAL_CLASS_MOBILE);
+		} else {
+			$("html body").removeClass(GLOBAL_CLASS_MOBILE);
+		}
+	}
+
+	function onInputKeyUp(e)
+	{
+		updateFilter();
+	}
+
+	function onMapClick(e)
+	{
+		_filterLocation = null;
+		updateFilter();
+	}
 
 	function onMarkerClick(e)
 	{
@@ -112,38 +123,15 @@
 
 		//_map.panTo(e.layer.getLatLng());
 
+		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
+		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
+		updateFilter();
+
 		_map.openPopup(
-			createContent(),
+			_filterDisplayName,
 			e.layer.getLatLng(),
 			{closeButton: false, autoPanPaddingTopLeft: L.Browser.mobile ? L.point(10,10) : L.point(50,10)}
 		);			
-
-		function createContent()
-		{
-
-			var rec = e.layer.properties;
-
-			return $("<div>")
-				.append($("<h3>").text(rec[SummaryTable.FIELDNAME$DISPLAY_NAME]))
-				.append($("<ul>").append(createNamesList()))
-				.html();
-
-			function createNamesList()
-			{
-				return $.map(
-					$.grep(
-						_records,
-						function(value) {
-							return value[FIELDNAME$STANDARDIZED_LOCATION] === rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
-						}
-					),
-					function(value) {
-						return $("<li>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]);
-					}
-				);
-			}
-
-		}
 
 		/* 	final note: 
 
@@ -163,6 +151,110 @@
 
 		*/
 
+	}
+
+	function createMarkers()
+	{
+
+		_layerDots.clearLayers();
+
+		var sumTable = new SummaryTable().createSummaryTable(
+			_selection, FIELDNAME$X, FIELDNAME$Y, FIELDNAME$STANDARDIZED_LOCATION, FIELDNAME$DISPLAY_NAME
+		);
+
+		var marker, frequency;
+		$.each(
+			sumTable, 
+			function(index, rec) {
+				frequency = rec[SummaryTable.FIELDNAME$FREQUENCY];
+				marker = L.circleMarker(
+					[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
+					{
+						weight: 1,
+						radius: 7+(frequency-1)*4,
+						color: "#c0c4c8",
+						fillColor: "#5ea7e6",
+						fillOpacity: 0.7
+					}
+				).addTo(_layerDots);
+
+				if (!L.Browser.mobile) {
+					marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]+": "+frequency);
+				}
+				marker.properties = rec;
+			}
+		);
+
+	}
+
+
+	function clearLocationFilter()
+	{
+		_filterLocation = null;
+    	updateFilter();
+		_map.closePopup();
+	}
+
+
+	function clearTextFilter()
+	{
+		$("#search input").val("");
+		updateFilter();	
+		if (!_filterLocation) {
+			_map.closePopup();	
+		}
+	}	
+
+	function updateFilter()
+	{
+
+		_selection = _records;
+
+		if ($.trim($("#search input").val()).length > 0) {
+			$("html body").addClass(GLOBAL_CLASS_FILTER$TEXT);
+			_selection = $.grep(
+				_selection, 
+				function(value) {
+					return value[FIELDNAME$FIRSTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
+							value[FIELDNAME$LASTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
+				}
+			);
+		} else {
+			$("html body").removeClass(GLOBAL_CLASS_FILTER$TEXT);
+		}
+
+		createMarkers();
+
+		if (_filterLocation) {
+			_selection = $.grep(
+				_selection, 
+				function(value, index) {
+					return value[FIELDNAME$STANDARDIZED_LOCATION] === _filterLocation;
+				}
+			);
+			$("html body").addClass(GLOBAL_CLASS_FILTER$LOCATION);	
+			$(".filter-display-location .filter-text").text(_filterDisplayName);		
+		} else {
+			$("html body").removeClass(GLOBAL_CLASS_FILTER$LOCATION);
+			$(".filter-display-location .filter-text").text("Showing All Locations");					
+		}		
+
+		loadList();
+		$("#list").scrollTop(0);
+
+	}
+
+	function loadList()
+	{
+		$("#list").empty();
+		$.each(
+			_selection, 
+			function(index, value) {
+				$("#list").append(
+					$("<li>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME])
+				);
+			}
+		);
 	}
 
 })();

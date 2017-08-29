@@ -94,6 +94,7 @@
 </head>
 
 <body>
+
 	<div class="banner">
 		<a id="logo" href="//www.esri.com" target="_blank">
 			<img src="resources/esri-logo.png">
@@ -101,8 +102,24 @@
 		<a id="title">NEA National Heritage Fellows</a>
 		<div class="social-button-bar"></div>
 	</div>    
-    <div id="map"></div>
 
+	<div id="container">
+	    <div id="map"></div>
+	    <div id="list-container">
+	    	<div id="top-stuff">
+		    	<div class="filter-display-location">
+		    		<div class="filter-text"></div>
+		    		<a class="clear-filter"></a>
+		    	</div>
+		    	<div id="search">
+		    		<input type="text" placeholder="Search by recipient name"></input>
+		    		<a class="clear-filter"></a>
+		    	</div>
+	    	</div>
+		    <ul id="list"></ul>
+	    	
+	    </div>
+	</div>
 
 	<!-- Adobe Analytics Start -->
 	<script type="text/javascript" src="//go.pardot.com/dcjs/82202/1182/dc.js"></script>
