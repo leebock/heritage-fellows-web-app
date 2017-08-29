@@ -4,12 +4,15 @@
 
 	var SPREADSHEET_URL =  "resources/data/artists_geocoded.csv";
 
+	var FIELDNAME$FIRSTNAME = "first_middle_name";
+	var FIELDNAME$LASTNAME	= "last_name";
 	var FIELDNAME$X = "x";
 	var FIELDNAME$Y = "y";
 	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
 
 	var _map;
-	var _layerDots;							
+	var _layerDots;			
+	var _records;				
 
 	$(document).ready(function(){
 
@@ -42,6 +45,9 @@
 
 		function finish(data)
 		{
+
+			_records = data;
+
 			var sumTable = new SummaryTable().createSummaryTable(
 				data, FIELDNAME$X, FIELDNAME$Y, FIELDNAME$STANDARDIZED_LOCATION
 			);
@@ -55,25 +61,22 @@
 						[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
 						{
 							weight: 1,
-							radius: 4+frequency*2,
+							radius: 7+(frequency-1)*4,
+							color: "#c0c4c8",
+							fillColor: "#5ea7e6",
 							fillOpacity: 0.7
 						}
-					)						
-						.bindPopup(
-							rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0],
-							{closeButton: false}
-						)
-						.addTo(_layerDots);
+					).addTo(_layerDots);
 
 					if (!L.Browser.mobile) {
-						marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]);
+						marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]+": "+frequency);
 					}
 					marker.properties = rec;
-					marker.on("click", onMarkerClick);
 				}
 			);
 
-			_map.fitBounds(_layerDots.getBounds().pad(0.1));			
+			_map.fitBounds([[15, -160],[64, -59]]);
+
 		}
 
 	});
@@ -107,6 +110,35 @@
 		*/
 
 		//_map.panTo(e.layer.getLatLng());
+
+		_map.openPopup(
+			createContent(),
+			e.layer.getLatLng(),
+			{closeButton: false}
+		);			
+
+		function createContent()
+		{
+
+			var rec = e.layer.properties;
+			var names = $.map(
+				$.grep(
+					_records,
+					function(value) {
+						return value[FIELDNAME$STANDARDIZED_LOCATION] === rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
+					}
+				),
+				function(value) {
+					return $("<li>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]);
+				}
+			);
+
+			return $("<div>")
+				.append($("<h3>").text(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION]))
+				.append($("<ul>").append(names))
+				.html();
+
+		}
 
 		/* 	final note: 
 

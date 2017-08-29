@@ -94,6 +94,8 @@
         "L": false,
         "SocialButtonBar": false,
         "Banner": false,
-        "Papa": false
+        "Papa": false,
+        "Helper": false,
+        "SummaryTable": false
 	}        // additional predefined global variables
 }
