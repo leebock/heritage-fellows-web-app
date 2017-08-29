@@ -9,6 +9,7 @@
 	var FIELDNAME$X = "x";
 	var FIELDNAME$Y = "y";
 	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
+	var FIELDNAME$DISPLAY_NAME = "Display-Name";
 
 	var _map;
 	var _layerDots;			
@@ -49,7 +50,7 @@
 			_records = data;
 
 			var sumTable = new SummaryTable().createSummaryTable(
-				data, FIELDNAME$X, FIELDNAME$Y, FIELDNAME$STANDARDIZED_LOCATION
+				data, FIELDNAME$X, FIELDNAME$Y, FIELDNAME$STANDARDIZED_LOCATION, FIELDNAME$DISPLAY_NAME
 			);
 
 			var marker;
@@ -123,7 +124,7 @@
 			var rec = e.layer.properties;
 
 			return $("<div>")
-				.append($("<h3>").text(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION]))
+				.append($("<h3>").text(rec[SummaryTable.FIELDNAME$DISPLAY_NAME]))
 				.append($("<ul>").append(createNamesList()))
 				.html();
 
