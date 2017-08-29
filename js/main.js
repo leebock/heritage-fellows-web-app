@@ -121,22 +121,26 @@
 		{
 
 			var rec = e.layer.properties;
-			var names = $.map(
-				$.grep(
-					_records,
-					function(value) {
-						return value[FIELDNAME$STANDARDIZED_LOCATION] === rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
-					}
-				),
-				function(value) {
-					return $("<li>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]);
-				}
-			);
 
 			return $("<div>")
 				.append($("<h3>").text(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION]))
-				.append($("<ul>").append(names))
+				.append($("<ul>").append(createNamesList()))
 				.html();
+
+			function createNamesList()
+			{
+				return $.map(
+					$.grep(
+						_records,
+						function(value) {
+							return value[FIELDNAME$STANDARDIZED_LOCATION] === rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
+						}
+					),
+					function(value) {
+						return $("<li>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]);
+					}
+				);
+			}
 
 		}
 
