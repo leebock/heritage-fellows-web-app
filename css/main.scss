@@ -8,7 +8,6 @@ $COLOR-PANEL-GRAY: "#505050";
 $COLOR-LIGHT-GRAY: "#bbbbbb";
 $COLOR-GRAY-MOUSEOVER: "#656565";
 $COLOR-GRAY-CLICK: "#7f7f7f";
-$COLOR-GRAY: "#404040";
 
 html {
 	box-sizing: border-box;
@@ -239,12 +238,15 @@ a {
 
       }
 
+      li:hover {
+        background-color: #{$COLOR-GRAY-MOUSEOVER};
+        &.active {
+          background-color: #{$COLOR-GRAY-CLICK};
+        }
+      }
+
     }
 
   }
 
-}
-
-
-.leaflet-popup-content {
 }

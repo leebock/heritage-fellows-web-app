@@ -205,5 +205,9 @@ a {
         cursor: pointer; }
         #container #list-container #list li.active {
           background-color: #7f7f7f; }
+      #container #list-container #list li:hover {
+        background-color: #656565; }
+        #container #list-container #list li:hover.active {
+          background-color: #7f7f7f; }
 
 /*# sourceMappingURL=main.css.map */
