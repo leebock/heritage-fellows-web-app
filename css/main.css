@@ -118,7 +118,8 @@ a {
       width: 100%;
       max-width: none;
       min-width: initial;
-      max-height: 40%; }
+      height: 40%;
+      max-height: 300px; }
     #container #list-container a.clear-filter {
       font-size: 30px; }
     #container #list-container a.clear-filter:before {

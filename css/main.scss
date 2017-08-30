@@ -110,7 +110,8 @@ a {
       width: 100%;
       max-width: none;
       min-width: initial;
-      max-height: 40%;
+      height: 40%;
+      max-height: 300px;
     }
 
     a.clear-filter {
@@ -221,7 +222,6 @@ a {
       #{$GLOBAL-CLASS-MOBILE} & {
         -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
         transition: height 1s;
-
       }
 
       li {
