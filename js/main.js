@@ -327,7 +327,8 @@
 			function(index, value) {
 				$("#list").append(
 					$("<li>")
-						.text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME])
+						.append($("<div>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]))
+						.append($("<div>").text(value[FIELDNAME$DISPLAY_NAME]))
 						.attr("storymaps-id", value[FIELDNAME$ID])
 				);
 			}
