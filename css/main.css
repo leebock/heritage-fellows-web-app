@@ -117,41 +117,18 @@ a {
       border-bottom-left-radius: 0px;
       width: 100%;
       max-width: none;
-      min-width: initial; }
+      min-width: initial;
+      max-height: 40%; }
     #container #list-container a.clear-filter {
       font-size: 30px; }
     #container #list-container a.clear-filter:before {
       content: "\00d7"; }
-    #container #list-container .filter-display-location {
-      /* note: for some reason, toggling the display
-         causes flexbox to behave all wonky, so I'm 
-         having to use a combination of padding and visibility
-         to get the effect */
-      font-size: 22px;
-      font-weight: bold;
-      display: flex;
-      padding: 5px;
-      padding-right: 10px; }
-      .mobile #container #list-container .filter-display-location {
-        font-size: 16px; }
-      #container #list-container .filter-display-location div.filter-text {
-        width: 100%;
-        padding-left: 10px;
-        padding-top: 8px;
-        color: #bbbbbb; }
-        .state-filter-location #container #list-container .filter-display-location div.filter-text {
-          color: #5ea7e6; }
-      #container #list-container .filter-display-location a.clear-filter {
-        margin-left: -30px;
-        margin-top: 3px;
-        visibility: hidden;
-        color: #5ea7e6; }
-        .state-filter-location #container #list-container .filter-display-location a.clear-filter {
-          visibility: visible; }
     #container #list-container #search {
       padding: 10px;
       height: 60px;
       display: flex; }
+      .state-filter-location #container #list-container #search {
+        display: none; }
       #container #list-container #search input {
         background-color: #505050;
         font-weight: bold;
@@ -170,9 +147,39 @@ a {
         visibility: hidden; }
         .state-filter-text #container #list-container #search a.clear-filter {
           visibility: visible; }
+    #container #list-container .filter-display-location {
+      /* note: for some reason, toggling the display
+         causes flexbox to behave all wonky, so I'm 
+         having to use a combination of padding and visibility
+         to get the effect */
+      font-size: 18px;
+      font-weight: bold;
+      display: none;
+      padding: 5px;
+      padding-right: 10px; }
+      .mobile #container #list-container .filter-display-location {
+        font-size: 16px; }
+      .state-filter-location #container #list-container .filter-display-location {
+        display: flex;
+        color: #5ea7e6; }
+      #container #list-container .filter-display-location div.filter-text {
+        width: 100%;
+        padding-left: 10px;
+        padding-top: 8px;
+        color: #bbbbbb; }
+        .state-filter-location #container #list-container .filter-display-location div.filter-text {
+          color: #5ea7e6; }
+      #container #list-container .filter-display-location a.clear-filter {
+        margin-left: -30px;
+        margin-top: 3px;
+        visibility: hidden;
+        color: #5ea7e6; }
+        .state-filter-location #container #list-container .filter-display-location a.clear-filter {
+          visibility: visible; }
     #container #list-container #list {
       flex-grow: 1;
       overflow-y: auto;
+      overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
       list-style-type: none;
       -webkit-margin-before: 0px;
@@ -185,7 +192,6 @@ a {
       -moz-padding-start: 0px;
       -moz-padding-end: 0px; }
       .mobile #container #list-container #list {
-        height: 0px;
         -webkit-transition: height 1s;
         /* For Safari 3.1 to 6.0 */
         transition: height 1s; }

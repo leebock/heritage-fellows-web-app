@@ -110,6 +110,7 @@ a {
       width: 100%;
       max-width: none;
       min-width: initial;
+      max-height: 40%;
     }
 
     a.clear-filter {
@@ -120,50 +121,15 @@ a {
       content: "\00d7";
     }
 
-    .filter-display-location {
-
-      /* note: for some reason, toggling the display
-         causes flexbox to behave all wonky, so I'm 
-         having to use a combination of padding and visibility
-         to get the effect */
-
-      font-size: 22px;
-      font-weight: bold;
-      display: flex;
-      padding: 5px;
-      padding-right: 10px;
-
-      #{$GLOBAL-CLASS-MOBILE} & {
-        font-size: 16px;
-      }
-
-      div.filter-text {
-        width: 100%;
-        padding-left: 10px;
-        padding-top: 8px;
-        color: #{$COLOR-LIGHT-GRAY};
-        #{$GLOBAL-CLASS-FILTER_LOCATION} & {
-          color: #{$COLOR-GOLD};
-        }
-      }
-
-      a.clear-filter {
-        margin-left: -30px;
-        margin-top: 3px;
-        visibility: hidden;
-        color: #{$COLOR-GOLD};
-        #{$GLOBAL-CLASS-FILTER_LOCATION} & {
-          visibility: visible;
-        }
-      }
-
-    }    
-
     #search {
 
       padding: 10px;
       height: 60px;
       display: flex;
+
+      #{$GLOBAL-CLASS-FILTER_LOCATION} & {
+        display: none;
+      }
 
       input {
         background-color: #{$COLOR-PANEL-GRAY};
@@ -190,10 +156,55 @@ a {
 
     }
 
+    .filter-display-location {
+
+      /* note: for some reason, toggling the display
+         causes flexbox to behave all wonky, so I'm 
+         having to use a combination of padding and visibility
+         to get the effect */
+
+      font-size: 18px;
+      font-weight: bold;
+      display: none;
+      padding: 5px;
+      padding-right: 10px;
+
+      #{$GLOBAL-CLASS-MOBILE} & {
+        font-size: 16px;
+      }
+
+      #{$GLOBAL-CLASS-FILTER_LOCATION} & {
+        display: flex;
+        color: #{$COLOR-GOLD};
+      }
+
+      div.filter-text {
+        width: 100%;
+        padding-left: 10px;
+        padding-top: 8px;
+        color: #{$COLOR-LIGHT-GRAY};
+        #{$GLOBAL-CLASS-FILTER_LOCATION} & {
+          color: #{$COLOR-GOLD};
+        }
+      }
+
+      a.clear-filter {
+        margin-left: -30px;
+        margin-top: 3px;
+        visibility: hidden;
+        color: #{$COLOR-GOLD};
+        #{$GLOBAL-CLASS-FILTER_LOCATION} & {
+          visibility: visible;
+        }
+      }
+
+    }    
+
     #list {
 
       flex-grow: 1;
       overflow-y: auto;
+      overflow-x: hidden;
      -webkit-overflow-scrolling: touch;    
 
       list-style-type: none;   
@@ -208,7 +219,6 @@ a {
       -moz-padding-end: 0px;
 
       #{$GLOBAL-CLASS-MOBILE} & {
-        height: 0px;
         -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
         transition: height 1s;
       }
@@ -222,10 +232,7 @@ a {
         cursor: pointer;
       }
 
-
     }
-
-
 
   }
 
