@@ -106,6 +106,8 @@
 		)[0];
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
+		$("#bio #fellow-name").text(rec[FIELDNAME$FIRSTNAME]+" "+rec[FIELDNAME$LASTNAME]);
+		$("#bio #bio-placename").text(rec[FIELDNAME$DISPLAY_NAME]);
 		$("#bio #textarea").text(rec[FIELDNAME$SHORT_BIO]);
 		if ($("#bio #textarea").text().trim() === "") {
 			$("#bio #textarea").text("Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.");

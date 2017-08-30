@@ -239,13 +239,17 @@ a {
           background-color: #{$COLOR-GRAY-CLICK};
         }
 
+        div:nth-child(2) {
+          font-style: italic;
+        }
+
       }
 
       li:hover {
-        background-color: #{$COLOR-GRAY-MOUSEOVER};
-        &.active {
-          background-color: #{$COLOR-GRAY-CLICK};
-        }
+          background-color: #{$COLOR-GRAY-MOUSEOVER};
+          &.active {
+            background-color: #{$COLOR-GRAY-CLICK};
+          }
       }
 
     }
@@ -272,9 +276,24 @@ a {
         top: 10px;
       }
 
-      a.clear-filter {
-        align-self: flex-end;
-        flex: 0;
+      div#bio-header {
+
+        display: flex;
+
+        h3#fellow-name {
+          flex: 1;
+          margin-bottom: 10px;
+        }
+
+        a.clear-filter {
+          margin-top: 10px;
+        }
+
+      }
+
+      #bio-placename {
+        margin-bottom: 10px;
+        font-style: italic;
       }
 
       #textarea {

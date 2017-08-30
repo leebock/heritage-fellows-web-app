@@ -207,6 +207,8 @@ a {
         cursor: pointer; }
         #container #list-container #list li.active {
           background-color: #7f7f7f; }
+        #container #list-container #list li div:nth-child(2) {
+          font-style: italic; }
       #container #list-container #list li:hover {
         background-color: #656565; }
         #container #list-container #list li:hover.active {
@@ -226,9 +228,16 @@ a {
       transition: top 1s; }
       .state-bio #container #list-container #bio {
         top: 10px; }
-      #container #list-container #bio a.clear-filter {
-        align-self: flex-end;
-        flex: 0; }
+      #container #list-container #bio div#bio-header {
+        display: flex; }
+        #container #list-container #bio div#bio-header h3#fellow-name {
+          flex: 1;
+          margin-bottom: 10px; }
+        #container #list-container #bio div#bio-header a.clear-filter {
+          margin-top: 10px; }
+      #container #list-container #bio #bio-placename {
+        margin-bottom: 10px;
+        font-style: italic; }
       #container #list-container #bio #textarea {
         flex: 1;
         overflow-y: auto;
