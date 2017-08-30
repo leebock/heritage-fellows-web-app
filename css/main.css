@@ -202,5 +202,7 @@ a {
         border-width: 0px;
         border-bottom-width: 2px;
         cursor: pointer; }
+        #container #list-container #list li.active {
+          background-color: #7f7f7f; }
 
 /*# sourceMappingURL=main.css.map */

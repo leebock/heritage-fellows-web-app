@@ -221,15 +221,22 @@ a {
       #{$GLOBAL-CLASS-MOBILE} & {
         -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
         transition: height 1s;
+        
       }
 
       li {
+
         padding: 3px;
         border-style: solid;
         border-color: #777777;
         border-width: 0px;
         border-bottom-width: 2px;
         cursor: pointer;
+
+        &.active {
+          background-color: #{$COLOR-GRAY-CLICK};
+        }
+
       }
 
     }
