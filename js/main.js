@@ -7,11 +7,14 @@
 	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
 	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
 
+	var GLOBAL_CLASS_BIO = "state-bio";
+
 	var SPREADSHEET_URL =  "resources/data/artists_geocoded.csv";
 
 	var FIELDNAME$ID = "artist_id";
 	var FIELDNAME$FIRSTNAME = "first_middle_name";
 	var FIELDNAME$LASTNAME	= "last_name";
+	var FIELDNAME$SHORT_BIO = "short_bio";
 	var FIELDNAME$X = "x";
 	var FIELDNAME$Y = "y";
 	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
@@ -39,7 +42,7 @@
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
-				function(btn, map){_map.fitBounds(_layerDots.getBounds().pad(0.1));}
+				function(btn, map){fitBounds(_layerDots.getBounds().pad(0.1));}
 			).addTo(_map);
 		}
 
@@ -47,6 +50,7 @@
 		$("#search input").on("keyup", onInputKeyUp);	
 		$(".filter-display-location .clear-filter").click(clearLocationFilter);
 		$("#search .clear-filter").click(clearTextFilter);			
+		$("#bio .clear-filter").click(clearBio);
 
 		_layerDots = L.featureGroup()
 			.addTo(_map)
@@ -100,6 +104,12 @@
 				return value[FIELDNAME$ID] === $(e.currentTarget).attr("storymaps-id");
 			}
 		)[0];
+
+		$("html body").addClass(GLOBAL_CLASS_BIO);
+		$("#bio #textarea").text(rec[FIELDNAME$SHORT_BIO]);
+		if ($("#bio #textarea").text().trim() === "") {
+			$("#bio #textarea").text("Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.");
+		}
 
 		var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
 		panTo(ll);
@@ -226,6 +236,11 @@
 		}
 	}
 
+	function clearBio()
+	{
+		$("html body").removeClass(GLOBAL_CLASS_BIO);
+	}
+
 	function clearLocationFilter()
 	{
 		_filterLocation = null;
@@ -283,6 +298,7 @@
 	function updateFilter()
 	{
 
+		clearBio();
 		_selection = _records;
 
 		if ($.trim($("#search input").val()).length > 0) {

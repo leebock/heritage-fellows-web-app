@@ -99,7 +99,7 @@ a {
     width: 40%;
     max-width: 500px;
     min-width: 450px;
-    max-height: calc(100% - 60px);
+    height: calc(100% - 60px);
     right: 20px;
     top: 20px;
     z-index: 1000;
@@ -108,7 +108,8 @@ a {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    border-radius: 10px; }
+    border-radius: 10px;
+    overflow: hidden; }
     .mobile #container #list-container {
       top: initial;
       bottom: 0px;
@@ -119,7 +120,8 @@ a {
       max-width: none;
       min-width: initial;
       height: 40%;
-      max-height: 300px; }
+      max-height: 300px;
+      min-height: inherit; }
     #container #list-container a.clear-filter {
       font-size: 30px; }
     #container #list-container a.clear-filter:before {
@@ -209,5 +211,27 @@ a {
         background-color: #656565; }
         #container #list-container #list li:hover.active {
           background-color: #7f7f7f; }
+    #container #list-container #bio {
+      position: absolute;
+      z-index: 2000;
+      top: 100%;
+      width: calc(100% - 20px);
+      height: calc(100% - 10px);
+      padding: 10px;
+      background-color: #505050;
+      display: flex;
+      flex-direction: column;
+      -webkit-transition: top 1s;
+      /* For Safari 3.1 to 6.0 */
+      transition: top 1s; }
+      .state-bio #container #list-container #bio {
+        top: 10px; }
+      #container #list-container #bio a.clear-filter {
+        align-self: flex-end;
+        flex: 0; }
+      #container #list-container #bio #textarea {
+        flex: 1;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch; }
 
 /*# sourceMappingURL=main.css.map */
