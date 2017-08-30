@@ -9,6 +9,7 @@
 
 	var SPREADSHEET_URL =  "resources/data/artists_geocoded.csv";
 
+	var FIELDNAME$ID = "artist_id";
 	var FIELDNAME$FIRSTNAME = "first_middle_name";
 	var FIELDNAME$LASTNAME	= "last_name";
 	var FIELDNAME$X = "x";
@@ -67,7 +68,7 @@
 		{
 
 			_records = data;
-			_map.fitBounds([[15, -160],[64, -59]]);
+			fitBounds([[15, -160],[64, -59]]);
 			updateFilter();
 
 		}
@@ -85,6 +86,35 @@
 	function onInputKeyUp(e)
 	{
 		updateFilter();
+	}
+
+
+	function onListEntryClick(e)
+	{
+
+		clearActive();
+
+		var rec = $.grep(
+			_records,
+			function(value) {
+				return value[FIELDNAME$ID] === $(e.currentTarget).attr("storymaps-id");
+			}
+		)[0];
+
+		var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
+		panTo(ll);
+
+		_map.openPopup(
+			rec[FIELDNAME$DISPLAY_NAME],
+			ll,
+			{closeButton: false}
+		);			
+
+		$(e.currentTarget).addClass("active");
+
+		var index = $.inArray(e.currentTarget, $("#list li"));
+		$("#list").animate({scrollTop: index*$("#list li").outerHeight()}, 'slow');
+		
 	}
 
 	function onMapClick(e)
@@ -188,6 +218,14 @@
 	}
 
 
+	function clearActive()
+	{
+		$("#list li").removeClass("active");	 	
+		if (!_filterLocation) {
+			_map.closePopup();	
+		}
+	}
+
 	function clearLocationFilter()
 	{
 		_filterLocation = null;
@@ -205,6 +243,29 @@
 		}
 	}	
 
+
+	function fitBounds(bnds)
+	{
+		if (!bnds) {
+			bnds = _layerDots.getBounds().pad(0.1);
+		}
+		if ($("html body").hasClass(GLOBAL_CLASS_MOBILE)) {
+			_map.fitBounds(
+				bnds,
+				{
+					paddingBottomRight:[0, $("#list-container").outerHeight()],
+					paddingTopLeft: [0, $(".banner").outerHeight()]
+				}
+			);
+		} else {
+			_map.fitBounds(
+				bnds,
+				{
+					paddingBottomRight:[$("#list-container").outerWidth()+20, 0]
+				}
+			);
+		}		
+	}
 
 	function panTo(latLng)
 	{
@@ -265,10 +326,15 @@
 			_selection, 
 			function(index, value) {
 				$("#list").append(
-					$("<li>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME])
+					$("<li>")
+						.text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME])
+						.attr("storymaps-id", value[FIELDNAME$ID])
 				);
 			}
 		);
+
+		$("#list li").click(onListEntryClick);
+
 	}
 
 })();
