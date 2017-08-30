@@ -126,7 +126,7 @@
 		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
 		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
 		updateFilter();
-
+		panTo(e.layer.getLatLng());
 		_map.openPopup(
 			_filterDisplayName,
 			e.layer.getLatLng(),
@@ -203,6 +203,20 @@
 		if (!_filterLocation) {
 			_map.closePopup();	
 		}
+	}	
+
+
+	function panTo(latLng)
+	{
+		var pixels = _map.latLngToContainerPoint(latLng);
+
+		if ($("html body").hasClass(GLOBAL_CLASS_MOBILE)) {
+			pixels = pixels.add([0, ($("#list-container").outerHeight()-$(".banner").outerHeight())/2]);  // vertical offset
+			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});					
+		} else {
+			pixels = pixels.add([$("#list-container").outerWidth()/2, 0]);  // vertical offset
+			_map.panTo(_map.containerPointToLatLng(pixels),{animate: true, duration: 1});
+		}	
 	}	
 
 	function updateFilter()
