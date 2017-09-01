@@ -3,6 +3,7 @@
 	"use strict";
 
 	var GLOBAL_CLASS_MOBILE = "mobile";	
+	var GLOBAL_CLASS_HOVER = "hover-capable";
 
 	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
 	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
@@ -29,7 +30,22 @@
 	var _records;				
 	var _selection;
 
-	$(document).ready(function(){
+	$(document).ready(function() {
+
+		if (!L.Browser.mobile) {
+			$("html body").addClass(GLOBAL_CLASS_HOVER);
+		}	
+
+		$("html body").keydown(function(event){
+			if ($("html body").hasClass(GLOBAL_CLASS_BIO))
+			{
+				if (event.which === 27) {
+					$("html body").removeClass(GLOBAL_CLASS_BIO);
+				}
+				return;
+			}
+		});
+
 
 		new Banner($(".banner").eq(0));
 		new SocialButtonBar();
@@ -118,9 +134,6 @@
 
 		$(e.currentTarget).addClass("active");
 
-		var index = $.inArray(e.currentTarget, $("#list li"));
-		$("#list").animate({scrollTop: index*$("#list li").outerHeight()}, 'slow');
-		
 	}
 
 	function onMapClick(e)

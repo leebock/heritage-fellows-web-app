@@ -1,4 +1,5 @@
 $GLOBAL-CLASS-MOBILE: ".mobile";
+$GLOBAL-CLASS-HOVER: ".hover-capable";
 $GLOBAL-CLASS-FILTER_LOCATION: ".state-filter-location";
 $GLOBAL-CLASS-FILTER_TEXT: ".state-filter-text";
 $GLOBAL-CLASS-BIO: ".state-bio";
@@ -245,12 +246,15 @@ a {
 
       }
 
-      li:hover {
-          background-color: #{$COLOR-GRAY-MOUSEOVER};
-          &.active {
-            background-color: #{$COLOR-GRAY-CLICK};
-          }
+      #{$GLOBAL-CLASS-HOVER} & {
+        li:hover {
+            background-color: #{$COLOR-GRAY-MOUSEOVER};
+            &.active {
+              background-color: #{$COLOR-GRAY-CLICK};
+            }
+        }
       }
+
 
     }
 

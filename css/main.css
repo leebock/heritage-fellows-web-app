@@ -209,9 +209,9 @@ a {
           background-color: #7f7f7f; }
         #container #list-container #list li div:nth-child(2) {
           font-style: italic; }
-      #container #list-container #list li:hover {
+      .hover-capable #container #list-container #list li:hover {
         background-color: #656565; }
-        #container #list-container #list li:hover.active {
+        .hover-capable #container #list-container #list li:hover.active {
           background-color: #7f7f7f; }
     #container #list-container #bio {
       position: absolute;
