@@ -258,7 +258,6 @@ a {
 
       position: absolute;
       z-index: 2000;
-      top: 100%;
 
       width: calc(100% - 20px);
       height: calc(100% - 10px);
@@ -269,10 +268,21 @@ a {
       display: flex;
       flex-direction: column;
 
-      -webkit-transition: top 1s; /* For Safari 3.1 to 6.0 */
-      transition: top 1s;  
-
+      left: 100%;
+      -webkit-transition: left 1s; /* For Safari 3.1 to 6.0 */
+      transition: left 1s;  
       #{$GLOBAL-CLASS-BIO} & {
+        left: 10px;
+      }
+
+      #{$GLOBAL-CLASS-MOBILE} & {
+        left: inherit;
+        top: 100%;
+        -webkit-transition: top 1s; /* For Safari 3.1 to 6.0 */
+        transition: top 1s;  
+      }
+
+      #{$GLOBAL-CLASS-MOBILE}#{$GLOBAL-CLASS-BIO} & {
         top: 10px;
       }
 
