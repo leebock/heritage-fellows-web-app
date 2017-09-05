@@ -4,6 +4,8 @@ $GLOBAL-CLASS-FILTER_LOCATION: ".state-filter-location";
 $GLOBAL-CLASS-FILTER_TEXT: ".state-filter-text";
 $GLOBAL-CLASS-BIO: ".state-bio";
 
+$LISTITEM-CLASS-ACTIVE: ".active";
+
 $COLOR-GOLD: "#5ea7e6";
 $COLOR-OFF-WHITE: "#f9f9f9";
 $COLOR-PANEL-GRAY: "#505050";
@@ -236,7 +238,7 @@ a {
         border-bottom-width: 2px;
         cursor: pointer;
 
-        &.active {
+        &#{$LISTITEM-CLASS-ACTIVE} {
           background-color: #{$COLOR-GRAY-CLICK};
         }
 
@@ -249,7 +251,7 @@ a {
       #{$GLOBAL-CLASS-HOVER} & {
         li:hover {
             background-color: #{$COLOR-GRAY-MOUSEOVER};
-            &.active {
+            &#{$LISTITEM-CLASS-ACTIVE} {
               background-color: #{$COLOR-GRAY-CLICK};
             }
         }

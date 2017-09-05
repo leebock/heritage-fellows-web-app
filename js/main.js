@@ -10,6 +10,8 @@
 
 	var GLOBAL_CLASS_BIO = "state-bio";
 
+	var LISTITEM_CLASS_ACTIVE = "active";
+
 	var SPREADSHEET_URL =  "resources/data/artists_geocoded.csv";
 
 	var FIELDNAME$ID = "artist_id";
@@ -130,7 +132,7 @@
 			{closeButton: false}
 		);			
 
-		$(e.currentTarget).addClass("active");
+		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
 
 	}
 
@@ -182,7 +184,7 @@
 
 		if (_selection.length === 1) {
 			setBio(_selection[0]);
-			$("#list li:nth-child(1)").addClass("active");
+			$("#list li:nth-child(1)").addClass(LISTITEM_CLASS_ACTIVE);
 		}
 
 		/* 	final note: 
@@ -242,7 +244,7 @@
 
 	function clearActive()
 	{
-		$("#list li").removeClass("active");	 	
+		$("#list li").removeClass(LISTITEM_CLASS_ACTIVE);	 	
 		if (!_filterLocation) {
 			_map.closePopup();	
 		}
