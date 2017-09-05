@@ -46,7 +46,6 @@
 			}
 		});
 
-
 		new Banner($(".banner").eq(0));
 		new SocialButtonBar();
 
@@ -61,7 +60,6 @@
 				function(btn, map){fitBounds(_layerDots.getBounds().pad(0.1));}
 			).addTo(_map);
 		}
-
 
 		$("#search input").on("keyup", onInputKeyUp);	
 		$(".filter-display-location .clear-filter").click(clearLocationFilter);
@@ -181,6 +179,11 @@
 			e.layer.getLatLng(),
 			{closeButton: false, autoPanPaddingTopLeft: L.Browser.mobile ? L.point(10,10) : L.point(50,10)}
 		);			
+
+		if (_selection.length === 1) {
+			setBio(_selection[0]);
+			$("#list li:nth-child(1)").addClass("active");
+		}
 
 		/* 	final note: 
 
@@ -341,10 +344,6 @@
 
 		loadList();
 		$("#list").scrollTop(0);
-
-		if (_selection.length === 1) {
-			setBio(_selection[0]);
-		}
 
 	}
 
