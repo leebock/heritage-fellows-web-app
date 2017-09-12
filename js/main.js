@@ -179,6 +179,37 @@
 
 	}
 
+	function clearActive()
+	{
+		$("#list li").removeClass(LISTITEM_CLASS_ACTIVE);	 	
+		if (!_filterLocation) {
+			_map.closePopup();	
+		}
+	}
+
+	function clearBio()
+	{
+		$("html body").removeClass(GLOBAL_CLASS_BIO);
+	}
+
+	function clearLocationFilter()
+	{
+		_filterLocation = null;
+    	updateFilter();
+		_map.closePopup();
+	}
+
+
+	function clearTextFilter()
+	{
+		$("#search input").val("");
+		updateFilter();	
+		if (!_filterLocation) {
+			_map.closePopup();	
+		}
+	}	
+
+
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
@@ -216,38 +247,6 @@
 		);
 
 	}
-
-
-	function clearActive()
-	{
-		$("#list li").removeClass(LISTITEM_CLASS_ACTIVE);	 	
-		if (!_filterLocation) {
-			_map.closePopup();	
-		}
-	}
-
-	function clearBio()
-	{
-		$("html body").removeClass(GLOBAL_CLASS_BIO);
-	}
-
-	function clearLocationFilter()
-	{
-		_filterLocation = null;
-    	updateFilter();
-		_map.closePopup();
-	}
-
-
-	function clearTextFilter()
-	{
-		$("#search input").val("");
-		updateFilter();	
-		if (!_filterLocation) {
-			_map.closePopup();	
-		}
-	}	
-
 
 	function fitBounds(bnds)
 	{
