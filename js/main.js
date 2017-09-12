@@ -158,20 +158,6 @@
 
 		$(".leaflet-tooltip").remove();
 
-		/*
-
-			further note: in the past we have had to put the remove inside a 
-			one-time movestart event AND we have also had to put the pan on a
-			slight time delay (setTimeout).  just sayin'...
-
-		    _map.once('movestart', function(e) {
-
-		    });
-
-		*/
-
-		//_map.panTo(e.layer.getLatLng());
-
 		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
 		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
 		updateFilter();
@@ -186,24 +172,6 @@
 			setBio(_selection[0]);
 			$("#list li:nth-child(1)").addClass(LISTITEM_CLASS_ACTIVE);
 		}
-
-		/* 	final note: 
-
-			code for situating the map w/ offsets. using a test offset here, 
-		 	but the offset would generally be the height or width of some 
-		 	container.
-
-			var pixels = _map.latLngToContainerPoint(e.layer.getLatLng());
-			var offset = 0; // height or width of some container.
-
-			if ($("html body").hasClass("mobile")) {
-				pixels = pixels.add([0, offset/2]);  // vertical offset
-			} else {
-				pixels = pixels.add([-offset/2, 0]); // left hand offset
-			}
-			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});					
-
-		*/
 
 	}
 
