@@ -246,9 +246,19 @@ a {
       #container #list-container #bio #bio-placename {
         margin-bottom: 10px;
         font-style: italic; }
-      #container #list-container #bio #textarea {
+      #container #list-container #bio div#scrollable {
         flex: 1;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch; }
+        #container #list-container #bio div#scrollable #textarea img {
+          width: 150px;
+          float: left;
+          margin-right: 10px; }
+        #container #list-container #bio div#scrollable #textarea p:nth-child(2) {
+          margin-top: -2px; }
+        #container #list-container #bio div#scrollable #gallery {
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
 
 /*# sourceMappingURL=main.css.map */

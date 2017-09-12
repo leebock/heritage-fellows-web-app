@@ -350,13 +350,65 @@
 	}
 
 	function setBio(rec) {
+
 		$("html body").addClass(GLOBAL_CLASS_BIO);
 		$("#bio #fellow-name").text(rec[FIELDNAME$FIRSTNAME]+" "+rec[FIELDNAME$LASTNAME]);
 		$("#bio #bio-placename").text(rec[FIELDNAME$DISPLAY_NAME]);
-		$("#bio #textarea").text(rec[FIELDNAME$SHORT_BIO]);
-		if ($("#bio #textarea").text().trim() === "") {
-			$("#bio #textarea").text("Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.");
+
+		var s = rec[FIELDNAME$SHORT_BIO];
+		if (s.trim() === "") {
+			s = "Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.";
 		}
+
+
+		$("#bio #scrollable").empty();
+
+		var textarea = $("<div>").attr("id", "textarea");
+
+		var img = $("<img>");
+		if (parseInt(rec[FIELDNAME$ID]) === 1) {
+			$(img).attr("src", "resources/images/sheila-kay-thumb.jpg");
+		} else if (parseInt(rec[FIELDNAME$ID]) === 346) {
+			$(img).attr("src", "resources/images/theresa-secord-thumb.jpg");
+		} else {
+			$(img).attr("src", "resources/no-portrait.jpg");
+		}
+		$(textarea).append(img);
+		$(textarea).append($("<p>").html(s));
+
+		$("#bio #scrollable").append(textarea);
+		var gallery = $("<div>").attr("id", "gallery");
+		$("#bio #scrollable").append(gallery);
+
+		if (parseInt(rec[FIELDNAME$ID]) === 1) {
+
+			var source =$("<source>");
+			$(source).attr("src", "resources/audio/sheila-kay.wav");
+
+			var audio = $("<audio>");
+			$(audio).append(source);
+			$(audio).attr("id", "player");
+
+
+			$(gallery).append(audio);
+
+			setTimeout(
+				function(){
+					document.getElementById("player").controls = true;			
+					document.getElementById("player").load();
+				}, 
+				1000
+			);
+
+		}
+
+		if (parseInt(rec[FIELDNAME$ID]) === 346) {
+			$(gallery).append($("<img>").attr("src", "resources/images/secord-basket-thumb.jpg"));
+			$(gallery).append($("<img>").attr("src", "resources/images/secord-four-baskets-thumb.jpg"));
+		}
+
+		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
+
 	}
 
 	function loadList()

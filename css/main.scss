@@ -312,10 +312,33 @@ a {
         font-style: italic;
       }
 
-      #textarea {
+
+      div#scrollable {
+
         flex: 1;
         overflow-y: auto;
        -webkit-overflow-scrolling: touch;
+
+        #textarea {
+
+          img {
+            width: 150px;
+            float: left;
+            margin-right: 10px;
+          }
+
+          p:nth-child(2) {
+            margin-top: -2px;
+          }
+
+        }
+
+        #gallery {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
       }
 
     }
