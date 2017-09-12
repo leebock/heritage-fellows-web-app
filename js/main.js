@@ -96,49 +96,14 @@
 	});
 
 	/***************************************************************************
-	********************************* EVENTS ***********************************
+	********************** EVENTS that affect selection ************************
 	***************************************************************************/
-
-	function handleWindowResize() {
-		if ($(window).width() <= 700) {
-			$("html body").addClass(GLOBAL_CLASS_MOBILE);
-		} else {
-			$("html body").removeClass(GLOBAL_CLASS_MOBILE);
-		}
-	}
 
 	function onInputKeyUp(e)
 	{
 		updateFilter();
 	}
 
-
-	function onListEntryClick(e)
-	{
-
-		clearActive();
-
-		var rec = $.grep(
-			_records,
-			function(value) {
-				return value[FIELDNAME$ID] === $(e.currentTarget).attr("storymaps-id");
-			}
-		)[0];
-
-		setBio(rec);
-
-		var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
-		panTo(ll);
-
-		_map.openPopup(
-			rec[FIELDNAME$DISPLAY_NAME],
-			ll,
-			{closeButton: false}
-		);			
-
-		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
-
-	}
 
 	function onMapClick(e)
 	{
@@ -179,18 +144,6 @@
 
 	}
 
-	function clearActive()
-	{
-		$("#list li").removeClass(LISTITEM_CLASS_ACTIVE);	 	
-		if (!_filterLocation) {
-			_map.closePopup();	
-		}
-	}
-
-	function clearBio()
-	{
-		$("html body").removeClass(GLOBAL_CLASS_BIO);
-	}
 
 	function clearLocationFilter()
 	{
@@ -209,6 +162,58 @@
 		}
 	}	
 
+
+	/***************************************************************************
+	**************************** EVENTS (other) ********************************
+	***************************************************************************/
+
+	function clearActive()
+	{
+		$("#list li").removeClass(LISTITEM_CLASS_ACTIVE);	 	
+		if (!_filterLocation) {
+			_map.closePopup();	
+		}
+	}
+
+	function clearBio()
+	{
+		$("html body").removeClass(GLOBAL_CLASS_BIO);
+	}
+
+	function handleWindowResize() {
+		if ($(window).width() <= 700) {
+			$("html body").addClass(GLOBAL_CLASS_MOBILE);
+		} else {
+			$("html body").removeClass(GLOBAL_CLASS_MOBILE);
+		}
+	}
+
+	function onListEntryClick(e)
+	{
+
+		clearActive();
+
+		var rec = $.grep(
+			_records,
+			function(value) {
+				return value[FIELDNAME$ID] === $(e.currentTarget).attr("storymaps-id");
+			}
+		)[0];
+
+		setBio(rec);
+
+		var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
+		panTo(ll);
+
+		_map.openPopup(
+			rec[FIELDNAME$DISPLAY_NAME],
+			ll,
+			{closeButton: false}
+		);			
+
+		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
+
+	}
 
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
