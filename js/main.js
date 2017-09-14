@@ -100,6 +100,7 @@
 
 	function onInputKeyUp(e)
 	{
+		clearActive();
 		updateFilter();
 	}
 
