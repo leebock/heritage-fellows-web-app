@@ -12,12 +12,11 @@
 
 	var LISTITEM_CLASS_ACTIVE = "active";
 
-	var SPREADSHEET_URL =  "resources/data/artists_geocoded.csv";
+	var SPREADSHEET_URL =  "/proxy/proxy.ashx?https://docs.google.com/spreadsheets/d/e/2PACX-1vSwnVGKYBCzY1rwpuT1dkhudKG2MRVgs9NUWgFw6KPGpIwilqSo1RUkF9f-Mv521lkRwhhpOZKaFISe/pub?gid=1974679186&single=true&output=csv";
 
 	var FIELDNAME$ID = "artist_id";
 	var FIELDNAME$FIRSTNAME = "first_middle_name";
 	var FIELDNAME$LASTNAME	= "last_name";
-	var FIELDNAME$SHORT_BIO = "short_bio";
 	var FIELDNAME$X = "x";
 	var FIELDNAME$Y = "y";
 	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
@@ -335,10 +334,10 @@
 		$("#bio #fellow-name").text(rec[FIELDNAME$FIRSTNAME]+" "+rec[FIELDNAME$LASTNAME]);
 		$("#bio #bio-placename").text(rec[FIELDNAME$DISPLAY_NAME]);
 
-		var s = rec[FIELDNAME$SHORT_BIO];
-		if (s.trim() === "") {
+		var s;// = rec[FIELDNAME$SHORT_BIO];
+		/*if (s.trim() === "") {*/
 			s = "Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.";
-		}
+		/*}*/
 
 
 		$("#bio #scrollable").empty();
