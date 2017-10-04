@@ -5,6 +5,8 @@
 	var GLOBAL_CLASS_MOBILE = "mobile";	
 	var GLOBAL_CLASS_HOVER = "hover-capable";
 
+	var GLOBAL_CLASS_MOBILE$TABLE_UP = "mobile-table-up";
+	
 	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
 	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
 
@@ -66,6 +68,12 @@
 		$(".filter-display-location .clear-filter").click(clearLocationFilter);
 		$("#search .clear-filter").click(clearTextFilter);			
 		$("#bio .clear-filter").click(clearBio);
+
+		$("#button-show").click(
+			function(){
+				$("html body").toggleClass(GLOBAL_CLASS_MOBILE$TABLE_UP);
+			}
+		);
 
 		_layerDots = L.featureGroup()
 			.addTo(_map)

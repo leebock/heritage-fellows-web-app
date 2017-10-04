@@ -4,6 +4,8 @@ $GLOBAL-CLASS-FILTER_LOCATION: ".state-filter-location";
 $GLOBAL-CLASS-FILTER_TEXT: ".state-filter-text";
 $GLOBAL-CLASS-BIO: ".state-bio";
 
+$GLOBAL-CLASS-MOBILE_TABLE_UP: ".mobile-table-up";
+
 $LISTITEM-CLASS-ACTIVE: ".active";
 
 $COLOR-GOLD: "#5ea7e6";
@@ -106,6 +108,11 @@ a {
     overflow: hidden;
 
     #{$GLOBAL-CLASS-MOBILE} & {
+      -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
+      transition: height 1s;
+    }
+
+    #{$GLOBAL-CLASS-MOBILE} & {
       top: initial;
       bottom: 0px;
       right: initial;
@@ -115,8 +122,51 @@ a {
       max-width: none;
       min-width: initial;
       height: 40%;
-      max-height: 300px;
       min-height: inherit;
+      overflow: visible;
+    }
+
+    #{$GLOBAL-CLASS-MOBILE}#{$GLOBAL-CLASS-MOBILE_TABLE_UP} & {
+      height: 70%;
+    }
+
+    a#button-show {
+
+      display: none;
+      position: absolute;
+      width: 60px;
+      height: 40px;
+      top: -40px;
+      right: 20px;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #{$COLOR-PANEL-GRAY};  
+
+      border-radius: 10px 10px 0px 0px;
+
+      #{$GLOBAL-CLASS-MOBILE} & {
+        display: block;
+      }
+
+      .fa {
+        position: absolute;
+        bottom: 0px;
+        font-size: 40px;
+      }
+
+      .fa.fa-chevron-down {
+        display: none;
+        #{$GLOBAL-CLASS-MOBILE_TABLE_UP} & {
+          display: block;
+        }
+      }
+
+      .fa.fa-chevron-up {
+        #{$GLOBAL-CLASS-MOBILE_TABLE_UP} & {
+          display: none;
+        }
+      }
+
     }
 
     a.clear-filter {
@@ -223,11 +273,6 @@ a {
       -moz-margin-end: 0px;
       -moz-padding-start: 15px;
       -moz-padding-end: 15px;
-
-      #{$GLOBAL-CLASS-MOBILE} & {
-        -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
-        transition: height 1s;
-      }
 
       li {
 

@@ -111,6 +111,10 @@ a {
     border-radius: 10px;
     overflow: hidden; }
     .mobile #container #list-container {
+      -webkit-transition: height 1s;
+      /* For Safari 3.1 to 6.0 */
+      transition: height 1s; }
+    .mobile #container #list-container {
       top: initial;
       bottom: 0px;
       right: initial;
@@ -120,8 +124,33 @@ a {
       max-width: none;
       min-width: initial;
       height: 40%;
-      max-height: 300px;
-      min-height: inherit; }
+      min-height: inherit;
+      overflow: visible; }
+    .mobile.mobile-table-up #container #list-container {
+      height: 70%; }
+    #container #list-container a#button-show {
+      display: none;
+      position: absolute;
+      width: 60px;
+      height: 40px;
+      top: -40px;
+      right: 20px;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #505050;
+      border-radius: 10px 10px 0px 0px; }
+      .mobile #container #list-container a#button-show {
+        display: block; }
+      #container #list-container a#button-show .fa {
+        position: absolute;
+        bottom: 0px;
+        font-size: 40px; }
+      #container #list-container a#button-show .fa.fa-chevron-down {
+        display: none; }
+        .mobile-table-up #container #list-container a#button-show .fa.fa-chevron-down {
+          display: block; }
+      .mobile-table-up #container #list-container a#button-show .fa.fa-chevron-up {
+        display: none; }
     #container #list-container a.clear-filter {
       font-size: 30px; }
     #container #list-container a.clear-filter:before {
@@ -194,10 +223,6 @@ a {
       -moz-margin-end: 0px;
       -moz-padding-start: 15px;
       -moz-padding-end: 15px; }
-      .mobile #container #list-container #list {
-        -webkit-transition: height 1s;
-        /* For Safari 3.1 to 6.0 */
-        transition: height 1s; }
       #container #list-container #list li {
         padding: 7px;
         border-style: solid;
