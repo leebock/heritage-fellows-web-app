@@ -67,7 +67,14 @@
 		$("#search input").on("keyup", onInputKeyUp);	
 		$(".filter-display-location .clear-filter").click(clearLocationFilter);
 		$("#search .clear-filter").click(clearTextFilter);			
-		$("#bio .clear-filter").click(clearBio);
+		$("#bio .clear-filter").click(function(){
+			clearBio();
+			if (_selection && _selection.length === 1 && _filterLocation) {
+				clearLocationFilter();
+			} else {
+				clearActive();
+			}
+		});
 
 		$("#button-show").click(
 			function(){
