@@ -6,7 +6,7 @@
 	var GLOBAL_CLASS_HOVER = "hover-capable";
 
 	var GLOBAL_CLASS_MOBILE$TABLE_UP = "mobile-table-up";
-	
+
 	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
 	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
 
@@ -138,7 +138,7 @@
 		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
 		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
 		updateFilter();
-		panTo(e.layer.getLatLng());
+		setTimeout(function(){panTo(e.layer.getLatLng());}, 1500);
 		_map.openPopup(
 			_filterDisplayName,
 			e.layer.getLatLng(),
@@ -211,7 +211,7 @@
 		setBio(rec);
 
 		var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
-		panTo(ll);
+		setTimeout(function(){panTo(ll);}, 1500);
 
 		_map.openPopup(
 			rec[FIELDNAME$DISPLAY_NAME],
@@ -293,7 +293,7 @@
 			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});					
 		} else {
 			pixels = pixels.add([$("#list-container").outerWidth()/2, 0]);  // vertical offset
-			_map.panTo(_map.containerPointToLatLng(pixels),{animate: true, duration: 1});
+			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});
 		}	
 	}	
 
@@ -395,7 +395,7 @@
 			$(gallery).append($("<img>").attr("src", "resources/images/secord-four-baskets-thumb.jpg"));
 		}
 
-		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
+		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("html body").addClass(GLOBAL_CLASS_MOBILE$TABLE_UP);});
 
 	}
 
