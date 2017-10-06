@@ -303,7 +303,7 @@
 			pixels = pixels.add([0, ($("#list-container").outerHeight()-$(".banner").outerHeight())/2]);  // vertical offset
 			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});					
 		} else {
-			pixels = pixels.add([$("#list-container").outerWidth()/2, 0]);  // vertical offset
+			pixels = pixels.add([$("#list-container").outerWidth()/2, 0]);  // horizontal offset
 			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});
 		}	
 	}	
