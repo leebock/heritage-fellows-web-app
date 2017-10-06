@@ -234,13 +234,17 @@
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
 
-	function createMarkers()
+	function createMarkers(recs)
 	{
 
 		_layerDots.clearLayers();
 
 		var sumTable = new SummaryTable().createSummaryTable(
-			_selection, FIELDNAME$X, FIELDNAME$Y, FIELDNAME$STANDARDIZED_LOCATION, FIELDNAME$DISPLAY_NAME
+			recs, 
+			FIELDNAME$X, 
+			FIELDNAME$Y, 
+			FIELDNAME$STANDARDIZED_LOCATION, 
+			FIELDNAME$DISPLAY_NAME
 		);
 
 		var marker, frequency;
@@ -317,7 +321,7 @@
 			$("html body").removeClass(GLOBAL_CLASS_FILTER$TEXT);
 		}
 
-		createMarkers();
+		createMarkers(_selection);
 
 		if (_filterLocation) {
 			_selection = filterByLocation(_selection);
@@ -328,7 +332,7 @@
 			$(".filter-display-location .filter-text").text("Showing All Locations");					
 		}		
 
-		loadList();
+		loadList(_selection);
 		$("#list").scrollTop(0);
 
 		function filterByText(recs)
@@ -416,11 +420,11 @@
 
 	}
 
-	function loadList()
+	function loadList(recs)
 	{
 		$("#list").empty();
 		$.each(
-			_selection, 
+			recs, 
 			function(index, value) {
 				$("#list").append(
 					$("<li>")
