@@ -31,7 +31,7 @@
 	var _layerDots;
 
 	var _records;				
-	var _selection;
+	var _selection; /* record set that appears in the table */
 
 	$(document).ready(function() {
 
@@ -312,13 +312,7 @@
 
 		if ($.trim($("#search input").val()).length > 0) {
 			$("html body").addClass(GLOBAL_CLASS_FILTER$TEXT);
-			_selection = $.grep(
-				_selection, 
-				function(value) {
-					return value[FIELDNAME$FIRSTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
-							value[FIELDNAME$LASTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
-				}
-			);
+			_selection = filterByText(_selection);
 		} else {
 			$("html body").removeClass(GLOBAL_CLASS_FILTER$TEXT);
 		}
@@ -326,12 +320,7 @@
 		createMarkers();
 
 		if (_filterLocation) {
-			_selection = $.grep(
-				_selection, 
-				function(value, index) {
-					return value[FIELDNAME$STANDARDIZED_LOCATION] === _filterLocation;
-				}
-			);
+			_selection = filterByLocation(_selection);
 			$("html body").addClass(GLOBAL_CLASS_FILTER$LOCATION);	
 			$(".filter-display-location .filter-text").text(_filterDisplayName);		
 		} else {
@@ -341,6 +330,27 @@
 
 		loadList();
 		$("#list").scrollTop(0);
+
+		function filterByText(recs)
+		{
+			return $.grep(
+				recs, 
+				function(value) {
+					return value[FIELDNAME$FIRSTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
+							value[FIELDNAME$LASTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
+				}
+			);
+		}
+
+		function filterByLocation(recs)
+		{
+			return $.grep(
+				recs, 
+				function(value, index) {
+					return value[FIELDNAME$STANDARDIZED_LOCATION] === _filterLocation;
+				}
+			);
+		}
 
 	}
 
