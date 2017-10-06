@@ -234,44 +234,6 @@
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
 
-	function createMarkers(recs)
-	{
-
-		_layerDots.clearLayers();
-
-		var sumTable = new SummaryTable().createSummaryTable(
-			recs, 
-			FIELDNAME$X, 
-			FIELDNAME$Y, 
-			FIELDNAME$STANDARDIZED_LOCATION, 
-			FIELDNAME$DISPLAY_NAME
-		);
-
-		var marker, frequency;
-		$.each(
-			sumTable, 
-			function(index, rec) {
-				frequency = rec[SummaryTable.FIELDNAME$FREQUENCY];
-				marker = L.circleMarker(
-					[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
-					{
-						weight: 1,
-						radius: 7+(frequency-1)*4,
-						color: "#c0c4c8",
-						fillColor: "#5ea7e6",
-						fillOpacity: 0.7
-					}
-				).addTo(_layerDots);
-
-				if (!L.Browser.mobile) {
-					marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]+": "+frequency);
-				}
-				marker.properties = rec;
-			}
-		);
-
-	}
-
 	function fitBounds(bnds)
 	{
 		if (!bnds) {
@@ -335,6 +297,45 @@
 		loadList(_selection);
 		$("#list").scrollTop(0);
 
+
+		function createMarkers(recs)
+		{
+
+			_layerDots.clearLayers();
+
+			var sumTable = new SummaryTable().createSummaryTable(
+				recs, 
+				FIELDNAME$X, 
+				FIELDNAME$Y, 
+				FIELDNAME$STANDARDIZED_LOCATION, 
+				FIELDNAME$DISPLAY_NAME
+			);
+
+			var marker, frequency;
+			$.each(
+				sumTable, 
+				function(index, rec) {
+					frequency = rec[SummaryTable.FIELDNAME$FREQUENCY];
+					marker = L.circleMarker(
+						[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
+						{
+							weight: 1,
+							radius: 7+(frequency-1)*4,
+							color: "#c0c4c8",
+							fillColor: "#5ea7e6",
+							fillOpacity: 0.7
+						}
+					).addTo(_layerDots);
+
+					if (!L.Browser.mobile) {
+						marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]+": "+frequency);
+					}
+					marker.properties = rec;
+				}
+			);
+
+		}
+
 		function filterByText(recs)
 		{
 			return $.grep(
@@ -354,6 +355,25 @@
 					return value[FIELDNAME$STANDARDIZED_LOCATION] === _filterLocation;
 				}
 			);
+		}
+
+		function loadList(recs)
+		{
+			$("#list").empty();
+			$.each(
+				recs, 
+				function(index, value) {
+					$("#list").append(
+						$("<li>")
+							.append($("<div>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]))
+							.append($("<div>").text(value[FIELDNAME$DISPLAY_NAME]))
+							.attr("storymaps-id", value[FIELDNAME$ID])
+					);
+				}
+			);
+
+			$("#list li").click(onListEntryClick);
+
 		}
 
 	}
@@ -417,25 +437,6 @@
 		}
 
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("html body").addClass(GLOBAL_CLASS_MOBILE$TABLE_UP);});
-
-	}
-
-	function loadList(recs)
-	{
-		$("#list").empty();
-		$.each(
-			recs, 
-			function(index, value) {
-				$("#list").append(
-					$("<li>")
-						.append($("<div>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]))
-						.append($("<div>").text(value[FIELDNAME$DISPLAY_NAME]))
-						.attr("storymaps-id", value[FIELDNAME$ID])
-				);
-			}
-		);
-
-		$("#list li").click(onListEntryClick);
 
 	}
 
