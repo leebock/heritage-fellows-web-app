@@ -169,11 +169,11 @@ a {
 
     }
 
-    a.clear-filter {
+    a.x-button {
       font-size: 30px;
     }
 
-    a.clear-filter:before {
+    a.x-button:before {
       content: "\00d7";
     }
 
@@ -201,7 +201,7 @@ a {
         color: #{$COLOR-GOLD};
       }
 
-      a.clear-filter {
+      a.x-button {
         margin-left: -30px;
         color: #{$COLOR-GOLD};
         visibility: hidden;
@@ -244,7 +244,7 @@ a {
         }
       }
 
-      a.clear-filter {
+      a.x-button {
         margin-left: -30px;
         margin-top: 3px;
         visibility: hidden;
@@ -346,7 +346,7 @@ a {
           margin-bottom: 10px;
         }
 
-        a.clear-filter {
+        a.x-button {
           margin-top: 10px;
         }
 

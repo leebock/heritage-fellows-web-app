@@ -151,9 +151,9 @@ a {
           display: block; }
       .mobile-table-up #container #list-container a#button-show .fa.fa-chevron-up {
         display: none; }
-    #container #list-container a.clear-filter {
+    #container #list-container a.x-button {
       font-size: 30px; }
-    #container #list-container a.clear-filter:before {
+    #container #list-container a.x-button:before {
       content: "\00d7"; }
     #container #list-container #search {
       padding: 10px;
@@ -173,11 +173,11 @@ a {
         padding-left: 5px;
         font-size: 16px;
         color: #5ea7e6; }
-      #container #list-container #search a.clear-filter {
+      #container #list-container #search a.x-button {
         margin-left: -30px;
         color: #5ea7e6;
         visibility: hidden; }
-        .state-filter-text #container #list-container #search a.clear-filter {
+        .state-filter-text #container #list-container #search a.x-button {
           visibility: visible; }
     #container #list-container .filter-display-location {
       /* note: for some reason, toggling the display
@@ -201,12 +201,12 @@ a {
         color: #bbbbbb; }
         .state-filter-location #container #list-container .filter-display-location div.filter-text {
           color: #5ea7e6; }
-      #container #list-container .filter-display-location a.clear-filter {
+      #container #list-container .filter-display-location a.x-button {
         margin-left: -30px;
         margin-top: 3px;
         visibility: hidden;
         color: #5ea7e6; }
-        .state-filter-location #container #list-container .filter-display-location a.clear-filter {
+        .state-filter-location #container #list-container .filter-display-location a.x-button {
           visibility: visible; }
     #container #list-container #list {
       flex-grow: 1;
@@ -266,7 +266,7 @@ a {
         #container #list-container #bio div#bio-header h3#fellow-name {
           flex: 1;
           margin-bottom: 10px; }
-        #container #list-container #bio div#bio-header a.clear-filter {
+        #container #list-container #bio div#bio-header a.x-button {
           margin-top: 10px; }
       #container #list-container #bio #bio-placename {
         margin-bottom: 10px;
