@@ -1,10 +1,10 @@
-$GLOBAL-CLASS-MOBILE: ".mobile";
+$GLOBAL_CLASS_SMALL: ".small";
 $GLOBAL-CLASS-HOVER: ".hover-capable";
 $GLOBAL-CLASS-FILTER_LOCATION: ".state-filter-location";
 $GLOBAL-CLASS-FILTER_TEXT: ".state-filter-text";
 $GLOBAL-CLASS-BIO: ".state-bio";
 
-$GLOBAL-CLASS-MOBILE_TABLE_UP: ".mobile-table-up";
+$GLOBAL_CLASS_SMALL_TABLE_UP: ".small-table-up";
 
 $LISTITEM-CLASS-ACTIVE: ".active";
 
@@ -107,12 +107,12 @@ a {
     border-radius: 10px;
     overflow: hidden;
 
-    #{$GLOBAL-CLASS-MOBILE} & {
+    #{$GLOBAL_CLASS_SMALL} & {
       -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
       transition: height 1s;
     }
 
-    #{$GLOBAL-CLASS-MOBILE} & {
+    #{$GLOBAL_CLASS_SMALL} & {
       top: initial;
       bottom: 0px;
       right: initial;
@@ -126,7 +126,7 @@ a {
       overflow: visible;
     }
 
-    #{$GLOBAL-CLASS-MOBILE}#{$GLOBAL-CLASS-MOBILE_TABLE_UP} & {
+    #{$GLOBAL_CLASS_SMALL}#{$GLOBAL_CLASS_SMALL_TABLE_UP} & {
       height: 70%;
     }
 
@@ -144,7 +144,7 @@ a {
 
       border-radius: 10px 10px 0px 0px;
 
-      #{$GLOBAL-CLASS-MOBILE} & {
+      #{$GLOBAL_CLASS_SMALL} & {
         display: block;
       }
 
@@ -156,13 +156,13 @@ a {
 
       .fa.fa-chevron-down {
         display: none;
-        #{$GLOBAL-CLASS-MOBILE_TABLE_UP} & {
+        #{$GLOBAL_CLASS_SMALL_TABLE_UP} & {
           display: block;
         }
       }
 
       .fa.fa-chevron-up {
-        #{$GLOBAL-CLASS-MOBILE_TABLE_UP} & {
+        #{$GLOBAL_CLASS_SMALL_TABLE_UP} & {
           display: none;
         }
       }
@@ -225,7 +225,7 @@ a {
       padding: 5px;
       padding-right: 10px;
 
-      #{$GLOBAL-CLASS-MOBILE} & {
+      #{$GLOBAL_CLASS_SMALL} & {
         font-size: 16px;
       }
 
@@ -326,14 +326,14 @@ a {
         left: 10px;
       }
 
-      #{$GLOBAL-CLASS-MOBILE} & {
+      #{$GLOBAL_CLASS_SMALL} & {
         left: inherit;
         top: 100%;
         -webkit-transition: top 1s; /* For Safari 3.1 to 6.0 */
         transition: top 1s;  
       }
 
-      #{$GLOBAL-CLASS-MOBILE}#{$GLOBAL-CLASS-BIO} & {
+      #{$GLOBAL_CLASS_SMALL}#{$GLOBAL-CLASS-BIO} & {
         top: 10px;
       }
 

@@ -2,10 +2,10 @@
 
 	"use strict";
 
-	var GLOBAL_CLASS_MOBILE = "mobile";	
+	var GLOBAL_CLASS_SMALL = "small";	
 	var GLOBAL_CLASS_HOVER = "hover-capable";
 
-	var GLOBAL_CLASS_MOBILE$TABLE_UP = "mobile-table-up";
+	var GLOBAL_CLASS_SMALL$TABLE_UP = "small-table-up";
 
 	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
 	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
@@ -78,7 +78,7 @@
 
 		$("#button-show").click(
 			function(){
-				$("html body").toggleClass(GLOBAL_CLASS_MOBILE$TABLE_UP);
+				$("html body").toggleClass(GLOBAL_CLASS_SMALL$TABLE_UP);
 			}
 		);
 
@@ -197,9 +197,9 @@
 
 	function handleWindowResize() {
 		if ($(window).width() <= 700) {
-			$("html body").addClass(GLOBAL_CLASS_MOBILE);
+			$("html body").addClass(GLOBAL_CLASS_SMALL);
 		} else {
-			$("html body").removeClass(GLOBAL_CLASS_MOBILE);
+			$("html body").removeClass(GLOBAL_CLASS_SMALL);
 		}
 	}
 
@@ -239,7 +239,7 @@
 		if (!bnds) {
 			bnds = _layerDots.getBounds().pad(0.1);
 		}
-		if ($("html body").hasClass(GLOBAL_CLASS_MOBILE)) {
+		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
 			_map.fitBounds(
 				bnds,
 				{
@@ -261,7 +261,7 @@
 	{
 		var pixels = _map.latLngToContainerPoint(latLng);
 
-		if ($("html body").hasClass(GLOBAL_CLASS_MOBILE)) {
+		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
 			pixels = pixels.add([0, ($("#list-container").outerHeight()-$(".banner").outerHeight())/2]);  // vertical offset
 			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});					
 		} else {
@@ -436,7 +436,7 @@
 			$(gallery).append($("<img>").attr("src", "resources/images/secord-four-baskets-thumb.jpg"));
 		}
 
-		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("html body").addClass(GLOBAL_CLASS_MOBILE$TABLE_UP);});
+		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("html body").addClass(GLOBAL_CLASS_SMALL$TABLE_UP);});
 
 	}
 

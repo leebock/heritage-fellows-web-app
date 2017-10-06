@@ -110,11 +110,11 @@ a {
     padding: 10px;
     border-radius: 10px;
     overflow: hidden; }
-    .mobile #container #list-container {
+    .small #container #list-container {
       -webkit-transition: height 1s;
       /* For Safari 3.1 to 6.0 */
       transition: height 1s; }
-    .mobile #container #list-container {
+    .small #container #list-container {
       top: initial;
       bottom: 0px;
       right: initial;
@@ -126,7 +126,7 @@ a {
       height: 40%;
       min-height: inherit;
       overflow: visible; }
-    .mobile.mobile-table-up #container #list-container {
+    .small.small-table-up #container #list-container {
       height: 70%; }
     #container #list-container a#button-show {
       display: none;
@@ -139,7 +139,7 @@ a {
       box-sizing: border-box;
       background-color: #505050;
       border-radius: 10px 10px 0px 0px; }
-      .mobile #container #list-container a#button-show {
+      .small #container #list-container a#button-show {
         display: block; }
       #container #list-container a#button-show .fa {
         position: absolute;
@@ -147,9 +147,9 @@ a {
         font-size: 40px; }
       #container #list-container a#button-show .fa.fa-chevron-down {
         display: none; }
-        .mobile-table-up #container #list-container a#button-show .fa.fa-chevron-down {
+        .small-table-up #container #list-container a#button-show .fa.fa-chevron-down {
           display: block; }
-      .mobile-table-up #container #list-container a#button-show .fa.fa-chevron-up {
+      .small-table-up #container #list-container a#button-show .fa.fa-chevron-up {
         display: none; }
     #container #list-container a.x-button {
       font-size: 30px; }
@@ -189,7 +189,7 @@ a {
       display: none;
       padding: 5px;
       padding-right: 10px; }
-      .mobile #container #list-container .filter-display-location {
+      .small #container #list-container .filter-display-location {
         font-size: 16px; }
       .state-filter-location #container #list-container .filter-display-location {
         display: flex;
@@ -253,13 +253,13 @@ a {
       transition: left 1s; }
       .state-bio #container #list-container #bio {
         left: 10px; }
-      .mobile #container #list-container #bio {
+      .small #container #list-container #bio {
         left: inherit;
         top: 100%;
         -webkit-transition: top 1s;
         /* For Safari 3.1 to 6.0 */
         transition: top 1s; }
-      .mobile.state-bio #container #list-container #bio {
+      .small.state-bio #container #list-container #bio {
         top: 10px; }
       #container #list-container #bio div#bio-header {
         display: flex; }
