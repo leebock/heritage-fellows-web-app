@@ -4,7 +4,7 @@ $GLOBAL-CLASS-FILTER_LOCATION: ".state-filter-location";
 $GLOBAL-CLASS-FILTER_TEXT: ".state-filter-text";
 $GLOBAL-CLASS-BIO: ".state-bio";
 
-$GLOBAL_CLASS_SMALL_TABLE_UP: ".small-table-up";
+$LISTCONTAINER_CLASS_UP: ".table-up";
 
 $LISTITEM-CLASS-ACTIVE: ".active";
 
@@ -126,8 +126,10 @@ a {
       overflow: visible;
     }
 
-    #{$GLOBAL_CLASS_SMALL}#{$GLOBAL_CLASS_SMALL_TABLE_UP} & {
-      height: 70%;
+    #{$GLOBAL_CLASS_SMALL} & {
+      &#{$LISTCONTAINER_CLASS_UP} {
+        height: 70%;
+      }
     }
 
     a#button-show {
@@ -156,14 +158,22 @@ a {
 
       .fa.fa-chevron-down {
         display: none;
-        #{$GLOBAL_CLASS_SMALL_TABLE_UP} & {
-          display: block;
-        }
       }
 
       .fa.fa-chevron-up {
-        #{$GLOBAL_CLASS_SMALL_TABLE_UP} & {
-          display: none;
+        display: block;
+      }
+
+    }
+
+    &#{$LISTCONTAINER_CLASS_UP} {
+
+      a#button-show {
+        .fa.fa-chevron-down {
+            display: block;
+        }
+        .fa.fa-chevron-up {
+            display: none;
         }
       }
 

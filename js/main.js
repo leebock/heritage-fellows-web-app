@@ -5,7 +5,7 @@
 	var GLOBAL_CLASS_SMALL = "small";	
 	var GLOBAL_CLASS_HOVER = "hover-capable";
 
-	var GLOBAL_CLASS_SMALL$TABLE_UP = "small-table-up";
+	var LISTCONTAINER_CLASS_UP = "table-up";
 
 	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
 	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
@@ -78,7 +78,7 @@
 
 		$("#button-show").click(
 			function(){
-				$("html body").toggleClass(GLOBAL_CLASS_SMALL$TABLE_UP);
+				$("#list-container").toggleClass(LISTCONTAINER_CLASS_UP);
 			}
 		);
 
@@ -436,7 +436,7 @@
 			$(gallery).append($("<img>").attr("src", "resources/images/secord-four-baskets-thumb.jpg"));
 		}
 
-		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("html body").addClass(GLOBAL_CLASS_SMALL$TABLE_UP);});
+		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("#list-container").addClass(LISTCONTAINER_CLASS_UP);});
 
 	}
 

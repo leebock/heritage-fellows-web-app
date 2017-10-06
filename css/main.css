@@ -126,7 +126,7 @@ a {
       height: 40%;
       min-height: inherit;
       overflow: visible; }
-    .small.small-table-up #container #list-container {
+    .small #container #list-container.table-up {
       height: 70%; }
     #container #list-container a#button-show {
       display: none;
@@ -147,10 +147,12 @@ a {
         font-size: 40px; }
       #container #list-container a#button-show .fa.fa-chevron-down {
         display: none; }
-        .small-table-up #container #list-container a#button-show .fa.fa-chevron-down {
-          display: block; }
-      .small-table-up #container #list-container a#button-show .fa.fa-chevron-up {
-        display: none; }
+      #container #list-container a#button-show .fa.fa-chevron-up {
+        display: block; }
+    #container #list-container.table-up a#button-show .fa.fa-chevron-down {
+      display: block; }
+    #container #list-container.table-up a#button-show .fa.fa-chevron-up {
+      display: none; }
     #container #list-container a.x-button {
       font-size: 30px; }
     #container #list-container a.x-button:before {
