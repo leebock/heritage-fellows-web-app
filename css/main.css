@@ -86,8 +86,7 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  background-color: wheat; }
+  overflow: hidden; }
   #container #map {
     background-color: #232227;
     flex-grow: 1; }
