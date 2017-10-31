@@ -108,9 +108,6 @@ a {
     #{$GLOBAL_CLASS_SMALL} & {
       -webkit-transition: height 1s; /* For Safari 3.1 to 6.0 */
       transition: height 1s;
-    }
-
-    #{$GLOBAL_CLASS_SMALL} & {
       top: initial;
       bottom: 0px;
       right: initial;
@@ -122,9 +119,6 @@ a {
       height: 40%;
       min-height: inherit;
       overflow: visible;
-    }
-
-    #{$GLOBAL_CLASS_SMALL} & {
       &#{$LISTCONTAINER_CLASS_UP} {
         height: 70%;
       }

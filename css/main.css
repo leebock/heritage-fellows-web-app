@@ -112,8 +112,7 @@ a {
     .small #container #list-container {
       -webkit-transition: height 1s;
       /* For Safari 3.1 to 6.0 */
-      transition: height 1s; }
-    .small #container #list-container {
+      transition: height 1s;
       top: initial;
       bottom: 0px;
       right: initial;
@@ -125,8 +124,8 @@ a {
       height: 40%;
       min-height: inherit;
       overflow: visible; }
-    .small #container #list-container.table-up {
-      height: 70%; }
+      .small #container #list-container.table-up {
+        height: 70%; }
     #container #list-container a#button-show {
       display: none;
       position: absolute;
