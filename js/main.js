@@ -120,15 +120,7 @@
 				rec = rec[0];
 
 				setBio(rec);
-
-				var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
-				setTimeout(function(){panTo(ll);}, 1500);
-
-				_map.openPopup(
-					rec[FIELDNAME$DISPLAY_NAME],
-					ll,
-					{closeButton: false}
-				);			
+				showLocation(rec[FIELDNAME$DISPLAY_NAME], L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]));
 
 			}
 		}
@@ -171,12 +163,7 @@
 		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
 		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
 		updateFilter();
-		setTimeout(function(){panTo(e.layer.getLatLng());}, 1500);
-		_map.openPopup(
-			_filterDisplayName,
-			e.layer.getLatLng(),
-			{closeButton: false, autoPanPaddingTopLeft: L.Browser.mobile ? L.point(10,10) : L.point(50,10)}
-		);			
+		showLocation(_filterDisplayName, e.layer.getLatLng());
 
 		if (_selection.length === 1) {
 			setBio(_selection[0]);
@@ -242,16 +229,7 @@
 		)[0];
 
 		setBio(rec);
-
-		var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
-		setTimeout(function(){panTo(ll);}, 1500);
-
-		_map.openPopup(
-			rec[FIELDNAME$DISPLAY_NAME],
-			ll,
-			{closeButton: false}
-		);			
-
+		showLocation(rec[FIELDNAME$DISPLAY_NAME], L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]));
 		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
 
 	}
@@ -464,6 +442,18 @@
 
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("#list-container").addClass(LISTCONTAINER_CLASS_UP);});
 
+	}
+
+	function showLocation(label, ll)
+	{
+
+		setTimeout(function(){panTo(ll);}, 1500);
+
+		_map.openPopup(
+			label,
+			ll,
+			{closeButton: false}
+		);					
 	}
 
 	function parseArtist()
