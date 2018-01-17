@@ -52,7 +52,7 @@
 		new Banner($(".banner").eq(0));
 		new SocialButtonBar();
 
-		_map = L.map("map", {zoomControl: !L.Browser.mobile})
+		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12})
 			.addLayer(L.esri.basemapLayer("DarkGray"))
 			.addLayer(L.esri.basemapLayer("DarkGrayLabels"))
 			.on("click", onMapClick);
@@ -60,7 +60,7 @@
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
-				function(btn, map){fitBounds(_layerDots.getBounds().pad(0.1));}
+				function(btn, map){fitBounds(_layerDots.getBounds());}
 			).addTo(_map);
 		}
 
@@ -163,7 +163,7 @@
 		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
 		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
 		updateFilter();
-		showLocation(_filterDisplayName, e.layer.getLatLng());
+		showLocation(_filterDisplayName, e.layer.getLatLng(), true);
 
 		if (_selection.length === 1) {
 			setBio(_selection[0]);
@@ -229,7 +229,10 @@
 		)[0];
 
 		setBio(rec);
-		showLocation(rec[FIELDNAME$DISPLAY_NAME], L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]));
+		if (!_filterLocation || isListRetracted()) {
+			// todo: pass keepZoom if current zoom is less than flyTo zoom?
+			showLocation(rec[FIELDNAME$DISPLAY_NAME], L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]));
+		}
 		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
 
 	}
@@ -238,27 +241,21 @@
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
 
-	function fitBounds(bnds)
+	function fitBounds(bnds, flyTo)
 	{
-		if (!bnds) {
-			bnds = _layerDots.getBounds().pad(0.1);
-		}
-		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
-			_map.fitBounds(
-				bnds,
-				{
-					paddingBottomRight:[0, $("#list-container").outerHeight()],
-					paddingTopLeft: [0, $(".banner").outerHeight()]
-				}
-			);
+		var options = $("html body").hasClass(GLOBAL_CLASS_SMALL) ?
+						{
+							paddingBottomRight:[0, $("#list-container").outerHeight()],
+							paddingTopLeft: [0, $(".banner").outerHeight()]
+						} :
+						{
+							paddingBottomRight:[$("#list-container").outerWidth()+20, 0]
+						};
+		if (flyTo) {
+			_map.flyToBounds(bnds, options);
 		} else {
-			_map.fitBounds(
-				bnds,
-				{
-					paddingBottomRight:[$("#list-container").outerWidth()+20, 0]
-				}
-			);
-		}		
+			_map.fitBounds(bnds, options);
+		}
 	}
 
 	function panTo(latLng)
@@ -267,12 +264,12 @@
 
 		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
 			pixels = pixels.add([0, ($("#list-container").outerHeight()-$(".banner").outerHeight())/2]);  // vertical offset
-			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});					
 		} else {
 			pixels = pixels.add([$("#list-container").outerWidth()/2, 0]);  // horizontal offset
-			_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});
 		}	
+		_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});
 	}	
+
 
 	function updateFilter()
 	{
@@ -444,22 +441,23 @@
 
 	}
 
-	function showLocation(label, ll)
+	function showLocation(label, ll, keepZoom)
 	{
 
-		var delay = $("html body").hasClass(GLOBAL_CLASS_SMALL) && 
-					!$("#list-container").hasClass(LISTCONTAINER_CLASS_UP);
+		var delay = isListRetracted() ? 1200 : 0;
 
-		setTimeout(
-			function(){panTo(ll);}, 
-			delay ? 1200 : 0
-		);
+		var func = keepZoom ? 
+				   function(){panTo(ll);} : 
+				   function(){fitBounds(ll.toBounds(500000), true);};
+
+		setTimeout(func, delay);
 
 		_map.openPopup(
 			label,
 			ll,
 			{closeButton: false}
-		);					
+		);
+
 	}
 
 	function parseArtist()
@@ -483,6 +481,12 @@
 
 		return obj.id === undefined ? null : obj.id;
 
+	}
+
+	function isListRetracted()
+	{
+		return $("html body").hasClass(GLOBAL_CLASS_SMALL) && 
+			!$("#list-container").hasClass(LISTCONTAINER_CLASS_UP);
 	}
 
 
