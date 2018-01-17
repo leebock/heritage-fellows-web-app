@@ -105,6 +105,32 @@
 			fitBounds([[15, -160],[64, -59]]);
 			updateFilter();
 
+			/*  if there's an id in the url parameter, then initialize
+				with that record active. */
+
+			var rec = $.grep(
+				_records,
+				function(value) {
+					return value[FIELDNAME$ID] === parseArtist();
+				}
+			);
+
+			if (rec.length > 0) {
+
+				rec = rec[0];
+
+				setBio(rec);
+
+				var ll = L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]); 
+				setTimeout(function(){panTo(ll);}, 1500);
+
+				_map.openPopup(
+					rec[FIELDNAME$DISPLAY_NAME],
+					ll,
+					{closeButton: false}
+				);			
+
+			}
 		}
 
 	});
@@ -439,5 +465,29 @@
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("#list-container").addClass(LISTCONTAINER_CLASS_UP);});
 
 	}
+
+	function parseArtist()
+	{
+		var parts = decodeURIComponent(document.location.href).split("?");
+		if (parts.length === 1) {
+			return null;
+		}
+
+		var args = parts[1].toLowerCase().split("&");
+		var obj = {};
+		args = $.each(
+			args, 
+			function(index, value){
+				var temp = value.split("=");
+				if (temp.length > 1) {
+					obj[temp[0]] = temp[1];
+				} 
+			}
+		);
+
+		return obj.id === undefined ? null : obj.id;
+
+	}
+
 
 })();
