@@ -447,7 +447,13 @@
 	function showLocation(label, ll)
 	{
 
-		setTimeout(function(){panTo(ll);}, 1500);
+		var delay = $("html body").hasClass(GLOBAL_CLASS_SMALL) && 
+					!$("#list-container").hasClass(LISTCONTAINER_CLASS_UP);
+
+		setTimeout(
+			function(){panTo(ll);}, 
+			delay ? 1200 : 0
+		);
 
 		_map.openPopup(
 			label,
