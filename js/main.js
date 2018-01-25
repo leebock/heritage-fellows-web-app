@@ -32,6 +32,7 @@
 
 	var _records;				
 	var _selection; /* record set that appears in the table */
+	var _active;
 
 	$(document).ready(function() {
 
@@ -50,7 +51,7 @@
 		});
 
 		new Banner($(".banner").eq(0));
-		new SocialButtonBar();
+		new SocialButtonBar({url:encodeURIComponent(window.location.href.split("?")[0])});
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12})
 			.addLayer(L.esri.basemapLayer("DarkGray"))
@@ -75,6 +76,8 @@
 				clearActive();
 			}
 		});
+
+		$("#bio a.fa.fa-twitter").click(tweetBio);
 
 		$("#button-show").click(
 			function(){
@@ -108,19 +111,19 @@
 			/*  if there's an id in the url parameter, then initialize
 				with that record active. */
 
-			var rec = $.grep(
+			var recs = $.grep(
 				_records,
 				function(value) {
 					return value[FIELDNAME$ID] === parseArtist();
 				}
 			);
 
-			if (rec.length > 0) {
+			if (recs.length > 0) {
 
-				rec = rec[0];
+				_active = recs[0];
 
-				setBio(rec);
-				showLocation(rec[FIELDNAME$DISPLAY_NAME], L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]));
+				setBio(_active);
+				showLocation(_active[FIELDNAME$DISPLAY_NAME], L.latLng(_active[FIELDNAME$Y], _active[FIELDNAME$X]));
 
 			}
 		}
@@ -166,7 +169,8 @@
 		showLocation(_filterDisplayName, e.layer.getLatLng(), true);
 
 		if (_selection.length === 1) {
-			setBio(_selection[0]);
+			_active = _selection[0];
+			setBio(_active);
 			$("#list li:nth-child(1)").addClass(LISTITEM_CLASS_ACTIVE);
 		}
 
@@ -221,17 +225,17 @@
 
 		clearActive();
 
-		var rec = $.grep(
+		_active = $.grep(
 			_records,
 			function(value) {
 				return value[FIELDNAME$ID] === $(e.currentTarget).attr("storymaps-id");
 			}
 		)[0];
 
-		setBio(rec);
+		setBio(_active);
 		if (!_filterLocation || isListRetracted()) {
 			// todo: pass keepZoom if current zoom is less than flyTo zoom?
-			showLocation(rec[FIELDNAME$DISPLAY_NAME], L.latLng(rec[FIELDNAME$Y], rec[FIELDNAME$X]));
+			showLocation(_active[FIELDNAME$DISPLAY_NAME], L.latLng(_active[FIELDNAME$Y], _active[FIELDNAME$X]));
 		}
 		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
 
@@ -456,6 +460,29 @@
 			label,
 			ll,
 			{closeButton: false}
+		);
+
+	}
+
+
+	function tweetBio()
+	{
+
+		var text = "Celebrating the work of "+
+					_active[FIELDNAME$FIRSTNAME]+" "+_active[FIELDNAME$LASTNAME]+
+					" and all of our other amazing NEA National Heritage Fellows.";
+
+		var url = window.location.href.split("?")[0]+"?id="+_active[FIELDNAME$ID];
+
+		var twitterOptions = 'text=' + encodeURIComponent(text) + 
+		    '&url=' + encodeURIComponent(url)+ 
+		    '&via=' + encodeURIComponent($('meta[name="twitter:site"]').attr('content').replace('@','')) + 
+		    "&hashtags=storymap";
+
+		window.open(
+			'https://twitter.com/intent/tweet?' + twitterOptions,
+			'Tweet',
+			'toolbar=0,status=0,width=626,height=436'
 		);
 
 	}

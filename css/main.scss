@@ -362,7 +362,6 @@ a {
 
       div#scrollable {
 
-        flex: 1;
         overflow-y: auto;
        -webkit-overflow-scrolling: touch;
 
@@ -384,6 +383,18 @@ a {
           display: flex;
           flex-direction: column;
           align-items: center;
+        }
+
+      }
+
+      div#bio-social {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-end;
+
+        a:first-child {
+          margin-right: 10px;
         }
 
       }

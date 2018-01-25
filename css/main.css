@@ -272,7 +272,6 @@ a {
         margin-bottom: 10px;
         font-style: italic; }
       #container #list-container #bio div#scrollable {
-        flex: 1;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch; }
         #container #list-container #bio div#scrollable #textarea img {
@@ -285,5 +284,12 @@ a {
           display: flex;
           flex-direction: column;
           align-items: center; }
+      #container #list-container #bio div#bio-social {
+        margin-top: 15px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: flex-end; }
+        #container #list-container #bio div#bio-social a:first-child {
+          margin-right: 10px; }
 
 /*# sourceMappingURL=main.css.map */
