@@ -51,7 +51,8 @@
 		});
 
 		new Banner($(".banner").eq(0));
-		new SocialButtonBar({url:encodeURIComponent(window.location.href.split("?")[0])});
+		new SocialButtonBar({url:encodeURIComponent($('meta[property="og:url"]').attr('content'))});
+		$("div.banner a#title").attr("href", ".");
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12})
 			.addLayer(L.esri.basemapLayer("DarkGray"))

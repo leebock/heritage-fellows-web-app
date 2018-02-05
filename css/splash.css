@@ -1,0 +1,134 @@
+html {
+  overflow: hidden;
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+html, body {
+  height: 100%; }
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  color: #7f6647;
+  background-image: url("../resources/images/splash-background.jpg");
+  padding: 50px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+/* hides adobe analytics white stripe */
+div.adsbox {
+  display: none; }
+
+a {
+  cursor: pointer; }
+
+h1 {
+  font-style: italic;
+  font-size: 80px;
+  margin-top: auto;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.1;
+  max-width: 70%; }
+
+hr {
+  width: 400px;
+  color: #7f6647;
+  border-top: solid;
+  border-top-width: 2px; }
+
+h2 {
+  max-width: 650px;
+  text-align: center;
+  font-weight: 400;
+  font-size: 40px;
+  margin-top: 15px;
+  line-height: 1; }
+
+h3 {
+  font-weight: 400;
+  font-size: 24px;
+  text-align: center;
+  max-width: 650px;
+  color: #4d4537;
+  line-height: 1; }
+
+ul {
+  list-style-type: none;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px; }
+
+ul#pictures {
+  margin-right: 50px;
+  margin-left: 50px;
+  flex-shrink: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; }
+  ul#pictures li {
+    width: 140px;
+    height: 140px;
+    margin: 3px;
+    border: solid;
+    border-width: 1px;
+    background-position: center;
+    background-size: cover; }
+
+ul#logos {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center; }
+  ul#logos li {
+    margin: 20px;
+    color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    ul#logos li a {
+      height: 80px;
+      width: 200px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain; }
+    ul#logos li a#logoSmithsonian {
+      background-image: url("../resources/images/smithsonian-logo.png"); }
+    ul#logos li a#logoNEA {
+      background-image: url("../resources/images/NEAlogo.png"); }
+    ul#logos li a#logoEsri {
+      background-image: url("../resources/esri-logo.png");
+      background-size: auto; }
+
+a#enter {
+  margin-bottom: auto;
+  padding: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #7f6647;
+  border: solid;
+  border-width: 1px;
+  border-color: gray;
+  color: lightgray;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none; }
+  a#enter:hover {
+    background-color: goldenrod; }
+  a#enter:visited {
+    color: lightgray; }
+
+/*# sourceMappingURL=splash.css.map */
