@@ -9,10 +9,10 @@ $LISTCONTAINER_CLASS_UP: ".table-up";
 $LISTITEM-CLASS-ACTIVE: ".active";
 
 $COLOR-FILTER-TEXT: "#5ea7e6";
-$COLOR-LIST-TEXT: "#f9f9f9";
-$COLOR-PANEL-BACKGROUND: "#505050";
-$COLOR-ITEM-MOUSEOVER: "#656565";
-$COLOR-ITEM-CLICK: "#7f7f7f";
+$COLOR-LIST-TEXT: "black";
+$COLOR-PANEL-BACKGROUND: "#ded4c8";
+$COLOR-ITEM-MOUSEOVER: "goldenrod";
+$COLOR-ITEM-CLICK: "brown";
 
 html {
 	box-sizing: border-box;
@@ -60,6 +60,7 @@ a {
 
 .banner {
   flex-shrink: 0;
+  background-color: #4b4239;
 }
 
 #container {
