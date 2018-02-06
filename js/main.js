@@ -54,14 +54,14 @@
 		new SocialButtonBar({url:encodeURIComponent($('meta[property="og:url"]').attr('content'))});
 		$("div.banner a#title").attr("href", ".");
 
-		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12})
+		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2})
 			.addLayer(L.esri.Vector.basemap("Spring"))
 			.on("click", onMapClick);
 
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
-				function(btn, map){fitBounds(_layerDots.getBounds());}
+				function(btn, map){fitBounds([[30, -127],[49, -59]]);}
 			).addTo(_map);
 		}
 
