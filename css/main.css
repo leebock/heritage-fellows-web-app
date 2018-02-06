@@ -89,7 +89,7 @@ a {
   flex-direction: column;
   overflow: hidden; }
   #container #map {
-    background-color: #232227;
+    background-color: white;
     flex-grow: 1; }
     #container #map .easy-button-button {
       font-size: 18px;
@@ -97,8 +97,7 @@ a {
   #container #list-container {
     position: absolute;
     width: 40%;
-    max-width: 500px;
-    min-width: 450px;
+    max-width: 400px;
     height: calc(100% - 60px);
     right: 20px;
     top: 20px;

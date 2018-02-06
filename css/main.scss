@@ -65,7 +65,6 @@ a {
 
 #container {
 
-
   flex-grow: 1;
   width: 100%;
   position: relative;
@@ -76,7 +75,7 @@ a {
 
   #map {
 
-    background-color: rgb(35,34,39);
+    background-color: white;
     flex-grow: 1;
 
     .easy-button-button {
@@ -90,8 +89,7 @@ a {
 
     position: absolute;
     width: 40%;
-    max-width: 500px;
-    min-width: 450px;
+    max-width: 400px;
     height: calc(100% - 60px);
     right: 20px;
     top: 20px;

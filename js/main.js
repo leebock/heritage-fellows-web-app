@@ -55,8 +55,7 @@
 		$("div.banner a#title").attr("href", ".");
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12})
-			.addLayer(L.esri.basemapLayer("DarkGray"))
-			.addLayer(L.esri.basemapLayer("DarkGrayLabels"))
+			.addLayer(L.esri.Vector.basemap("Spring"))
 			.on("click", onMapClick);
 
 		if (!L.Browser.mobile) {
@@ -327,9 +326,9 @@
 						[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
 						{
 							weight: 1,
-							radius: 7+(frequency-1)*4,
-							color: "#c0c4c8",
-							fillColor: "#5ea7e6",
+							radius: 5+(frequency-1)*2,
+							color: "darkred",
+							fillColor: "red",
 							fillOpacity: 0.7
 						}
 					).addTo(_layerDots);
