@@ -1,7 +1,7 @@
 function SummaryTable()
 {
 
-	this.createSummaryTable = function(recs, fieldX, fieldY, fieldStandardizedLocation, fieldDisplayName)
+	this.createSummaryTable = function(recs, fieldX, fieldY, fieldStandardizedLocation, fieldDisplayName, fieldArtistLastName)
 	{
 
 		var uniques = Helper.unique(
@@ -32,6 +32,7 @@ function SummaryTable()
 				sumItem[SummaryTable.FIELDNAME$DISPLAY_NAME] = selected[0][fieldDisplayName];
 				sumItem[SummaryTable.FIELDNAME$X] = selected[0][fieldX];
 				sumItem[SummaryTable.FIELDNAME$Y] = selected[0][fieldY];
+				sumItem[SummaryTable.FIELDNAME$ARTIST] = selected[0][fieldArtistLastName];
 
 				table.push(sumItem);
 
@@ -52,3 +53,4 @@ SummaryTable.FIELDNAME$STANDARDIZED_LOCATION = "standardized-location";
 SummaryTable.FIELDNAME$DISPLAY_NAME = "display-name";
 SummaryTable.FIELDNAME$X = "x";
 SummaryTable.FIELDNAME$Y = "y";
+SummaryTable.FIELDNAME$ARTIST = "artist";

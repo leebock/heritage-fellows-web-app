@@ -314,7 +314,8 @@
 				FIELDNAME$X, 
 				FIELDNAME$Y, 
 				FIELDNAME$STANDARDIZED_LOCATION, 
-				FIELDNAME$DISPLAY_NAME
+				FIELDNAME$DISPLAY_NAME,
+				FIELDNAME$LASTNAME
 			);
 
 			var marker, frequency;
@@ -334,7 +335,14 @@
 					).addTo(_layerDots);
 
 					if (!L.Browser.mobile) {
-						marker.bindTooltip(rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0]+": "+frequency);
+						var placename = rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0];
+						var tooltip;
+						if (frequency > 1) {
+							tooltip = placename+": "+frequency+" Artists";
+						} else {
+							tooltip = placename+": "+rec[SummaryTable.FIELDNAME$ARTIST];
+						}
+						marker.bindTooltip(tooltip);
 					}
 					marker.properties = rec;
 				}
