@@ -96,6 +96,7 @@
         "Banner": false,
         "Papa": false,
         "Helper": false,
-        "SummaryTable": false
+        "SummaryTable": false,
+        "OVBar": false
 	}        // additional predefined global variables
 }

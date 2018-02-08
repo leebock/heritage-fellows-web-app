@@ -89,7 +89,7 @@ a {
 
     position: absolute;
     width: 40%;
-    max-width: 350px;
+    max-width: 450px;
     height: calc(100% - 60px);
     right: 20px;
     top: 20px;
@@ -419,6 +419,19 @@ a {
 
     }
 
+  } 
+
+  @import "OVBar";
+
+  div#ovBar {
+    position: absolute;
+    width: 55%;
+    bottom: 40px;
+    left: 20px;
+    z-index: 2000;
+    #{$GLOBAL_CLASS_SMALL} & {
+      display: none;
+    }
   }
 
 }

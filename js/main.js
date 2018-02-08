@@ -26,11 +26,20 @@
 	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
 	var FIELDNAME$DISPLAY_NAME = "Display-Name";
 
+	var BNDS = {
+		ov48: [[25, -126],[49,-65]],
+		ovAK: [[54, -168],[72, -127]],
+		ovHI: [[19,-160],[22.5,-154]],
+		ovPR: [[17.5,-67.5],[19,-64.5]],
+		ovNM: [[13,144.5],[15.5,146]]
+	};
+
 	var _filterLocation;
 	var _filterDisplayName;
 
 	var _map;
 	var _layerDots;
+	var _ovBar;
 
 	var _records;				
 	var _selection; /* record set that appears in the table */
@@ -58,12 +67,13 @@
 
 		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2})
 			.addLayer(L.esri.Vector.basemap("Spring"))
-			.on("click", onMapClick);
+			.on("click", onMapClick)
+			.on("moveend", onExtentChange);
 
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
-				function(btn, map){fitBounds([[30, -127],[49, -59]]);}
+				function(btn, map){fitBounds(BNDS.ov48, true);}
 			).addTo(_map);
 		}
 
@@ -87,6 +97,14 @@
 			}
 		);
 
+		_ovBar = new OVBar($("div#ovBar"), BNDS);
+		$(_ovBar).on(
+			"tileClick", 
+			function(event, bnds){
+				fitBounds(bnds, true);
+			}
+		);
+
 		_layerDots = L.featureGroup()
 			.addTo(_map)
 			.on("click", onMarkerClick);
@@ -107,7 +125,7 @@
 		{
 
 			_records = data;
-			fitBounds([[15, -160],[64, -59]]);
+			fitBounds(BNDS.ov48);
 			updateFilter();
 
 			/*  if there's an id in the url parameter, then initialize
@@ -201,6 +219,27 @@
 	**************************** EVENTS (other) ********************************
 	***************************************************************************/
 
+	function onExtentChange(event)
+	{
+
+		var ll = _map.containerPointToLatLng(
+			L.point({
+				x: 0,
+				y: $("div#container").height() - ($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))	
+			})							
+		);
+
+		var ur = _map.containerPointToLatLng(
+			L.point({
+				x: $("div#container").width() - ($("#list-container").outerWidth()+20),
+				y: 0	
+			})							
+		);
+
+		_ovBar.update(L.latLngBounds([ll,ur])); // pass visible bounds
+
+	}
+
 	function clearActive()
 	{
 		$("#list li").removeClass(LISTITEM_CLASS_ACTIVE);	 	
@@ -255,7 +294,11 @@
 							paddingTopLeft: [0, $(".banner").outerHeight()]
 						} :
 						{
-							paddingBottomRight:[$("#list-container").outerWidth()+20, 0]
+							paddingBottomRight:
+							[
+								$("#list-container").outerWidth()+20,
+								$("div#ov48").height() + parseInt($("div#ovBar").css("bottom"))
+							]
 						};
 		if (flyTo) {
 			_map.flyToBounds(bnds, options);
@@ -271,7 +314,10 @@
 		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
 			pixels = pixels.add([0, ($("#list-container").outerHeight()-$(".banner").outerHeight())/2]);  // vertical offset
 		} else {
-			pixels = pixels.add([$("#list-container").outerWidth()/2, 0]);  // horizontal offset
+			pixels = pixels.add([
+				($("#list-container").outerWidth()+20)/2, 
+				($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))/2
+			]);
 		}	
 		_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});
 	}	

@@ -98,7 +98,7 @@ a {
   #container #list-container {
     position: absolute;
     width: 40%;
-    max-width: 350px;
+    max-width: 450px;
     height: calc(100% - 60px);
     right: 20px;
     top: 20px;
@@ -305,5 +305,46 @@ a {
         justify-content: flex-end; }
         #container #list-container #bio div#bio-social a:first-child {
           margin-right: 10px; }
+  #container div#ovBar {
+    display: flex; }
+    #container div#ovBar div.ov {
+      width: 100%;
+      margin-top: 2%;
+      margin-right: 2%;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: solid;
+      cursor: pointer; }
+      #container div#ovBar div.ov:before {
+        content: "";
+        float: left;
+        padding-top: 100%; }
+      #container div#ovBar div.ov#ov48 {
+        background-image: url("../resources/images/ov-48.png"); }
+      #container div#ovBar div.ov#ovAK {
+        background-image: url("../resources/images/ov-ak.png"); }
+      #container div#ovBar div.ov#ovHI {
+        background-image: url("../resources/images/ov-hi.png"); }
+      #container div#ovBar div.ov#ovPR {
+        background-image: url("../resources/images/ov-pr.png"); }
+      #container div#ovBar div.ov#ovNM {
+        background-image: url("../resources/images/ov-nm.png"); }
+      #container div#ovBar div.ov div.veil {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(128, 128, 128, 0.5); }
+      #container div#ovBar div.ov:hover div.veil {
+        background-color: rgba(128, 128, 128, 0.2); }
+      #container div#ovBar div.ov.selected div.veil {
+        background-color: rgba(128, 128, 128, 0); }
+  #container div#ovBar {
+    position: absolute;
+    width: 55%;
+    bottom: 40px;
+    left: 20px;
+    z-index: 2000; }
+    .small #container div#ovBar {
+      display: none; }
 
 /*# sourceMappingURL=main.css.map */
