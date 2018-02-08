@@ -19,6 +19,8 @@
 	var FIELDNAME$ID = "artist_id";
 	var FIELDNAME$FIRSTNAME = "first_middle_name";
 	var FIELDNAME$LASTNAME	= "last_name";
+	/*var FIELDNAME$TRADITION = "tradition";*/
+	var FIELDNAME$AWARD_YEAR = "award_year";
 	var FIELDNAME$X = "x";
 	var FIELDNAME$Y = "y";
 	var FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
@@ -378,8 +380,12 @@
 				function(index, value) {
 					$("#list").append(
 						$("<li>")
-							.append($("<div>").text(value[FIELDNAME$LASTNAME]+", "+value[FIELDNAME$FIRSTNAME]))
-							.append($("<div>").text(value[FIELDNAME$DISPLAY_NAME]))
+							.append($("<div>").addClass("thumb"))
+							.append($("<div>").addClass("info")
+								.append($("<div>").text(value[FIELDNAME$FIRSTNAME]+" "+value[FIELDNAME$LASTNAME]))
+								.append($("<div>").text("Tradition"))								
+								.append($("<div>").text(value[FIELDNAME$AWARD_YEAR]+" | "+value[FIELDNAME$DISPLAY_NAME]))
+							)
 							.attr("storymaps-id", value[FIELDNAME$ID])
 					);
 				}
