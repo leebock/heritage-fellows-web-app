@@ -188,12 +188,30 @@ a {
         display: none;
       }
 
+      input::-webkit-input-placeholder {
+        color: #{$COLOR-PANEL-BACKGROUND} !important;
+        font-style: italic;
+      }
+       
+      input:-moz-placeholder { /* Firefox 18- */
+        color: #{$COLOR-PANEL-BACKGROUND} !important;  
+        font-style: italic;
+      }
+       
+      input::-moz-placeholder {  /* Firefox 19+ */
+        color: #{$COLOR-PANEL-BACKGROUND} !important;  
+        font-style: italic;
+      }
+       
+      input:-ms-input-placeholder {  
+        color: #{$COLOR-PANEL-BACKGROUND} !important;  
+        font-style: italic;
+      }      
+
       input {
-        background-color: #{$COLOR-PANEL-BACKGROUND};
         font-weight: bold;
         width: 100%;
         height: 100%;
-        border-radius: 5px;
         border-style: solid;
         border-color: gray;
         padding-left: 5px;
