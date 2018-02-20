@@ -28,7 +28,6 @@
 	var _filterDisplayName;
 
 	var _map;
-	var _layerDots;
 	var _ovBar;
 
 	var _records;				
@@ -55,9 +54,10 @@
 		new SocialButtonBar({url:encodeURIComponent($('meta[property="og:url"]').attr('content'))});
 		$("div.banner a#title").attr("href", ".");
 
-		_map = L.map("map", {zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2})
+		_map = new L.HFMap("map", {zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2})
 			.addLayer(L.esri.Vector.basemap("Spring"))
 			.on("click", onMapClick)
+			.on("markerClick", onMarkerClick)
 			.on("moveend", onExtentChange);
 
 		if (!L.Browser.mobile) {
@@ -94,10 +94,6 @@
 				fitBounds(bnds, true);
 			}
 		);
-
-		_layerDots = L.featureGroup()
-			.addTo(_map)
-			.on("click", onMarkerClick);
 
 		Papa.parse(
 			SPREADSHEET_URL, 
@@ -159,19 +155,6 @@
 
 	function onMarkerClick(e)
 	{
-
-		// so this doesn't further trigger map::click
-
-    	L.DomEvent.stop(e);
-
-		/* note: 
-
-			because of weirdness with toolTip, currently you need to manually 
-			hide the toolTip so that it doesn't display concurrently with the
-			popup (which looks weird).
-		*/
-
-		$(".leaflet-tooltip").remove();
 
 		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
 		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
@@ -326,7 +309,7 @@
 			$("html body").removeClass(GLOBAL_CLASS_FILTER$TEXT);
 		}
 
-		createMarkers(_selection);
+		_map.loadMarkers(_selection);
 
 		if (_filterLocation) {
 			_selection = filterByLocation(_selection);
@@ -339,46 +322,6 @@
 
 		loadList(_selection);
 		$("#list").scrollTop(0);
-
-
-		function createMarkers(recs)
-		{
-
-			_layerDots.clearLayers();
-
-			var sumTable = new SummaryTable().createSummaryTable(recs);
-
-			var marker, frequency;
-			$.each(
-				sumTable, 
-				function(index, rec) {
-					frequency = rec[SummaryTable.FIELDNAME$FREQUENCY];
-					marker = L.circleMarker(
-						[rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
-						{
-							weight: 1,
-							radius: 5+(frequency-1)*2,
-							color: "darkred",
-							fillColor: "red",
-							fillOpacity: 0.7
-						}
-					).addTo(_layerDots);
-
-					if (!L.Browser.mobile) {
-						var placename = rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0];
-						var tooltip;
-						if (frequency > 1) {
-							tooltip = placename+": "+frequency+" Artists";
-						} else {
-							tooltip = placename+": "+rec[SummaryTable.FIELDNAME$ARTIST];
-						}
-						marker.bindTooltip(tooltip);
-					}
-					marker.properties = rec;
-				}
-			);
-
-		}
 
 		function filterByText(recs)
 		{
