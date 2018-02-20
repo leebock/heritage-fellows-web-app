@@ -346,14 +346,7 @@
 
 			_layerDots.clearLayers();
 
-			var sumTable = new SummaryTable().createSummaryTable(
-				recs, 
-				Record.FIELDNAME$X, 
-				Record.FIELDNAME$Y, 
-				Record.FIELDNAME$STANDARDIZED_LOCATION, 
-				Record.FIELDNAME$DISPLAY_NAME,
-				Record.FIELDNAME$LASTNAME
-			);
+			var sumTable = new SummaryTable().createSummaryTable(recs);
 
 			var marker, frequency;
 			$.each(

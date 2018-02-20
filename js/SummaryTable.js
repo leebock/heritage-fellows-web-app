@@ -1,13 +1,13 @@
 function SummaryTable()
 {
 
-	this.createSummaryTable = function(recs, fieldX, fieldY, fieldStandardizedLocation, fieldDisplayName, fieldArtistLastName)
+	this.createSummaryTable = function(recs)
 	{
 
 		var uniques = Helper.unique(
 			$.map(
 				recs, 
-				function(value, index){return value[fieldStandardizedLocation];}
+				function(value, index){return value[Record.FIELDNAME$STANDARDIZED_LOCATION];}
 			)
 		);
 
@@ -22,17 +22,17 @@ function SummaryTable()
 				selected = $.grep(
 					recs, 
 					function(rec, idx) {
-						return rec[fieldStandardizedLocation] === value;
+						return rec[Record.FIELDNAME$STANDARDIZED_LOCATION] === value;
 					}
 				);
 
 				sumItem = {};
 				sumItem[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION] = value;
 				sumItem[SummaryTable.FIELDNAME$FREQUENCY] = selected.length;
-				sumItem[SummaryTable.FIELDNAME$DISPLAY_NAME] = selected[0][fieldDisplayName];
-				sumItem[SummaryTable.FIELDNAME$X] = selected[0][fieldX];
-				sumItem[SummaryTable.FIELDNAME$Y] = selected[0][fieldY];
-				sumItem[SummaryTable.FIELDNAME$ARTIST] = selected[0][fieldArtistLastName];
+				sumItem[SummaryTable.FIELDNAME$DISPLAY_NAME] = selected[0][Record.FIELDNAME$DISPLAY_NAME];
+				sumItem[SummaryTable.FIELDNAME$X] = selected[0][Record.FIELDNAME$X];
+				sumItem[SummaryTable.FIELDNAME$Y] = selected[0][Record.FIELDNAME$Y];
+				sumItem[SummaryTable.FIELDNAME$ARTIST] = selected[0][Record.FIELDNAME$LASTNAME];
 
 				table.push(sumItem);
 
