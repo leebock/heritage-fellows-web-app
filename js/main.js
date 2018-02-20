@@ -198,13 +198,13 @@
 		var ll = _map.containerPointToLatLng(
 			L.point({
 				x: 0,
-				y: $("div#container").height() - ($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))	
+				y: $("div#map").height() - ($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))	
 			})							
 		);
 
 		var ur = _map.containerPointToLatLng(
 			L.point({
-				x: $("div#container").width() - ($("#list-container").outerWidth()+20),
+				x: $("div#map").width() - ($("div#list-container").outerWidth()+20),
 				y: 0	
 			})							
 		);
