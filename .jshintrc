@@ -97,6 +97,7 @@
         "Papa": false,
         "Helper": false,
         "SummaryTable": false,
-        "OVBar": false
+        "OVBar": false,
+        "Record": false
 	}        // additional predefined global variables
 }
