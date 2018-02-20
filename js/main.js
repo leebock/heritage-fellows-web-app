@@ -124,7 +124,7 @@
 			var recs = $.grep(
 				_records,
 				function(value) {
-					return value[Record.FIELDNAME$ID] === parseArtist();
+					return Record.getID(value) === parseArtist();
 				}
 			);
 
@@ -133,7 +133,7 @@
 				_active = recs[0];
 
 				setBio(_active);
-				showLocation(_active[Record.FIELDNAME$DISPLAY_NAME], L.latLng(_active[Record.FIELDNAME$Y], _active[Record.FIELDNAME$X]));
+				showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
 
 			}
 		}
@@ -259,14 +259,14 @@
 		_active = $.grep(
 			_records,
 			function(value) {
-				return value[Record.FIELDNAME$ID] === $(e.currentTarget).attr("storymaps-id");
+				return Record.getID(value) === parseInt($(e.currentTarget).attr("storymaps-id"));
 			}
 		)[0];
 
 		setBio(_active);
 		if (!_filterLocation || isListRetracted()) {
 			// todo: pass keepZoom if current zoom is less than flyTo zoom?
-			showLocation(_active[Record.FIELDNAME$DISPLAY_NAME], L.latLng(_active[Record.FIELDNAME$Y], _active[Record.FIELDNAME$X]));
+			showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
 		}
 		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
 
@@ -385,8 +385,8 @@
 			return $.grep(
 				recs, 
 				function(value) {
-					return value[Record.FIELDNAME$FIRSTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
-							value[Record.FIELDNAME$LASTNAME].toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
+					return Record.getFirstName(value).toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
+							Record.getLastName(value).toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
 				}
 			);
 		}
@@ -396,7 +396,7 @@
 			return $.grep(
 				recs, 
 				function(value, index) {
-					return value[Record.FIELDNAME$STANDARDIZED_LOCATION] === _filterLocation;
+					return Record.getStandardizedLocation(value) === _filterLocation;
 				}
 			);
 		}
@@ -411,11 +411,11 @@
 						$("<li>")
 							.append($("<div>").addClass("thumb"))
 							.append($("<div>").addClass("info")
-								.append($("<div>").text(value[Record.FIELDNAME$FIRSTNAME]+" "+value[Record.FIELDNAME$LASTNAME]))
+								.append($("<div>").text(Record.getFirstName(value)+" "+Record.getLastName(value)))
 								.append($("<div>").text("Tradition"))								
-								.append($("<div>").text(value[Record.FIELDNAME$AWARD_YEAR]+" | "+value[Record.FIELDNAME$DISPLAY_NAME]))
+								.append($("<div>").text(Record.getAwardYear(value)+" | "+Record.getLocationDisplayName(value)))
 							)
-							.attr("storymaps-id", value[Record.FIELDNAME$ID])
+							.attr("storymaps-id", Record.getID(value))
 					);
 				}
 			);
@@ -429,10 +429,10 @@
 	function setBio(rec) {
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
-		$("#bio #fellow-name").text(rec[Record.FIELDNAME$FIRSTNAME]+" "+rec[Record.FIELDNAME$LASTNAME]);
-		$("#bio #bio-placename").text(rec[Record.FIELDNAME$DISPLAY_NAME]);
+		$("#bio #fellow-name").text(Record.getFirstName(rec)+" "+Record.getLastName(rec));
+		$("#bio #bio-placename").text(Record.getLocationDisplayName(rec));
 
-		var s;// = rec[Record.FIELDNAME$SHORT_BIO];
+		var s;// = Record.getBio();
 		/*if (s.trim() === "") {*/
 			s = "Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.";
 		/*}*/
@@ -443,9 +443,9 @@
 		var textarea = $("<div>").attr("id", "textarea");
 
 		var img = $("<img>");
-		if (parseInt(rec[Record.FIELDNAME$ID]) === 1) {
+		if (Record.getID(rec) === 1) {
 			$(img).attr("src", "resources/images/sheila-kay-thumb.jpg");
-		} else if (parseInt(rec[Record.FIELDNAME$ID]) === 346) {
+		} else if (Record.getID(rec) === 346) {
 			$(img).attr("src", "resources/images/theresa-secord-thumb.jpg");
 		} else {
 			$(img).attr("src", "resources/no-portrait.jpg");
@@ -457,7 +457,7 @@
 		var gallery = $("<div>").attr("id", "gallery");
 		$("#bio #scrollable").append(gallery);
 
-		if (parseInt(rec[Record.FIELDNAME$ID]) === 1) {
+		if (Record.getID(rec) === 1) {
 
 			var source =$("<source>");
 			$(source).attr("src", "resources/audio/sheila-kay.wav");
@@ -479,7 +479,7 @@
 
 		}
 
-		if (parseInt(rec[Record.FIELDNAME$ID]) === 346) {
+		if (Record.getID(rec) === 346) {
 			$(gallery).append($("<img>").attr("src", "resources/images/secord-basket-thumb.jpg"));
 			$(gallery).append($("<img>").attr("src", "resources/images/secord-four-baskets-thumb.jpg"));
 		}
@@ -512,10 +512,10 @@
 	{
 
 		var text = "Celebrating the work of "+
-					_active[Record.FIELDNAME$FIRSTNAME]+" "+_active[Record.FIELDNAME$LASTNAME]+
+					Record.getFirstName(_active)+" "+Record.getLastName(_active)+
 					" and all of our other amazing NEA National Heritage Fellows.";
 
-		var url = window.location.href.split("?")[0]+"?id="+_active[Record.FIELDNAME$ID];
+		var url = window.location.href.split("?")[0]+"?id="+Record.getID(_active);
 
 		var twitterOptions = 'text=' + encodeURIComponent(text) + 
 		    '&url=' + encodeURIComponent(url)+ 
