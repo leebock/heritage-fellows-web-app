@@ -54,8 +54,8 @@
 		new SocialButtonBar({url:encodeURIComponent($('meta[property="og:url"]').attr('content'))});
 		$("div.banner a#title").attr("href", ".");
 
-		_map = new L.HFMap("map", {zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2})
-			.addLayer(L.esri.Vector.basemap("Spring"))
+		_map = new L.HFMap("map", {zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2, worldCopyJump: true})
+			.addLayer(L.esri.Vector.basemap("ModernAntique"))
 			.on("click", onMapClick)
 			.on("markerClick", onMarkerClick)
 			.on("moveend", onExtentChange);
