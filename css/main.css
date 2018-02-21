@@ -99,14 +99,20 @@ a {
   height: calc(100% - 110px);
   right: 20px;
   top: 80px;
-  z-index: 1000;
+  z-index: 1001;
   color: black;
   background-color: #ded4c8;
   display: flex;
   flex-direction: column;
   padding: 10px;
   border-radius: 10px;
-  overflow: hidden; }
+  overflow: hidden;
+  -webkit-transition: width 1s;
+  /* For Safari 3.1 to 6.0 */
+  transition: width 1s; }
+  .state-bio #list-container {
+    width: 70%;
+    max-width: none; }
   .small #list-container {
     -webkit-transition: height 1s;
     /* For Safari 3.1 to 6.0 */
@@ -251,17 +257,14 @@ a {
         background-color: brown; }
   #list-container #bio {
     position: absolute;
-    z-index: 2000;
+    z-index: 1;
     width: calc(100% - 20px);
     height: calc(100% - 10px);
     padding: 10px;
     background-color: #ded4c8;
     display: flex;
     flex-direction: column;
-    left: 100%;
-    -webkit-transition: left 1s;
-    /* For Safari 3.1 to 6.0 */
-    transition: left 1s; }
+    left: 100%; }
     .state-bio #list-container #bio {
       left: 10px; }
     .small #list-container #bio {
@@ -284,13 +287,11 @@ a {
       font-style: italic; }
     #list-container #bio div#scrollable {
       overflow-y: auto;
+      overflow-x: hidden;
       -webkit-overflow-scrolling: touch; }
       #list-container #bio div#scrollable #textarea img {
-        width: 150px;
-        float: left;
+        width: 100%;
         margin-right: 10px; }
-      #list-container #bio div#scrollable #textarea p:nth-child(2) {
-        margin-top: -2px; }
       #list-container #bio div#scrollable #gallery {
         display: flex;
         flex-direction: column;
@@ -340,9 +341,12 @@ div#ovBar {
 div#ovBar {
   position: absolute;
   width: 55%;
+  max-width: 600px;
   bottom: 40px;
   left: 20px;
-  z-index: 2000; }
+  z-index: 1000; }
+  .state-bio div#ovBar {
+    display: none; }
   .small div#ovBar {
     display: none; }
 

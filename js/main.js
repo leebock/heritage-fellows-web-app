@@ -131,7 +131,7 @@
 				setBio(_active);
 				showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
 
-			}
+		}
 		}
 
 	});
@@ -159,13 +159,14 @@
 		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
 		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
 		updateFilter();
-		showLocation(_filterDisplayName, e.layer.getLatLng(), true);
 
 		if (_selection.length === 1) {
 			_active = _selection[0];
 			setBio(_active);
 			$("#list li:nth-child(1)").addClass(LISTITEM_CLASS_ACTIVE);
 		}
+
+		showLocation(_filterDisplayName, e.layer.getLatLng(), true);
 
 	}
 
@@ -247,10 +248,18 @@
 		)[0];
 
 		setBio(_active);
-		if (!_filterLocation || isListRetracted()) {
-			// todo: pass keepZoom if current zoom is less than flyTo zoom?
+
+		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
+			if (!_filterLocation || isListRetracted()) {
+				// todo: pass keepZoom if current zoom is less than flyTo zoom?
+				showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
+			} else {
+				// do nothing
+			}
+		} else {
 			showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
 		}
+
 		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
 
 	}
@@ -261,18 +270,23 @@
 
 	function fitBounds(bnds, flyTo)
 	{
-		var options = $("html body").hasClass(GLOBAL_CLASS_SMALL) ?
-						{
-							paddingBottomRight:[0, $("#list-container").outerHeight()],
-							paddingTopLeft: [0, $(".banner").outerHeight()]
-						} :
-						{
-							paddingBottomRight:
-							[
-								$("#list-container").outerWidth()+20,
-								$("div#ov48").height() + parseInt($("div#ovBar").css("bottom"))
-							]
-						};
+
+		var options;
+
+		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
+			options = {
+				paddingBottomRight:[0, calcBottom()]
+			};
+		} else {
+			options = {
+				paddingBottomRight:
+				[
+					calcRight(),
+					$("div#ov48").height() + parseInt($("div#ovBar").css("bottom"))
+				]
+			};
+		}
+
 		if (flyTo) {
 			_map.flyToBounds(bnds, options);
 		} else {
@@ -284,16 +298,37 @@
 	{
 		var pixels = _map.latLngToContainerPoint(latLng);
 
+		var offsetX = 0;
+		var offsetY = 0;
+
 		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
-			pixels = pixels.add([0, ($("#list-container").outerHeight()-$(".banner").outerHeight())/2]);  // vertical offset
+			offsetY = calcBottom()/2;
 		} else {
-			pixels = pixels.add([
-				($("#list-container").outerWidth()+20)/2, 
-				($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))/2
-			]);
+			offsetX = calcRight()/2;
+			offsetY = ($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))/2;
 		}	
-		_map.panTo(_map.containerPointToLatLng(pixels), {animate: true, duration: 1});
+		_map.panTo(_map.containerPointToLatLng(pixels.add([offsetX, offsetY])), {animate: true, duration: 1});
 	}	
+
+	function calcRight()
+	{
+		var right = parseInt($("#list-container").css("right"));
+		var width;
+		if ($("html body").hasClass(GLOBAL_CLASS_BIO)) {
+			width = $("html body").width() * 0.7;
+			right = right + width;
+		} else {
+			width = $("html body").width() * 0.4;
+			right = right + (width > 450 ? 450 : width);
+		}
+		return right;
+	}
+
+	function calcBottom()
+	{
+		var pct = $("#list-container").hasClass(LISTCONTAINER_CLASS_UP) ? 0.7 : 0.4;
+		return $("div#map").height() * pct;
+	}
 
 
 	function updateFilter()
@@ -386,12 +421,10 @@
 		var textarea = $("<div>").attr("id", "textarea");
 
 		var img = $("<img>");
-		if (Record.getID(rec) === 1) {
+		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
 			$(img).attr("src", "resources/images/sheila-kay-thumb.jpg");
-		} else if (Record.getID(rec) === 346) {
-			$(img).attr("src", "resources/images/theresa-secord-thumb.jpg");
 		} else {
-			$(img).attr("src", "resources/no-portrait.jpg");
+			$(img).attr("src", "resources/images/sheila-kay-large.jpg");
 		}
 		$(textarea).append(img);
 		$(textarea).append($("<p>").html(s));
@@ -426,21 +459,20 @@
 			$(gallery).append($("<img>").attr("src", "resources/images/secord-basket-thumb.jpg"));
 			$(gallery).append($("<img>").attr("src", "resources/images/secord-four-baskets-thumb.jpg"));
 		}
-
-		$("#bio #scrollable").animate({scrollTop: 0}, 'slow', function(){$("#list-container").addClass(LISTCONTAINER_CLASS_UP);});
+		
+		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
+		$("#list-container").addClass(LISTCONTAINER_CLASS_UP);
 
 	}
 
 	function showLocation(label, ll, keepZoom)
 	{
 
-		var delay = isListRetracted() ? 1200 : 0;
-
-		var func = keepZoom ? 
-				   function(){panTo(ll);} : 
-				   function(){fitBounds(ll.toBounds(500000), true);};
-
-		setTimeout(func, delay);
+		if (keepZoom) {
+			panTo(ll);
+		} else {
+			fitBounds(ll.toBounds(500000), true);
+		}
 
 		_map.openPopup(
 			label,
