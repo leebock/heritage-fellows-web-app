@@ -524,7 +524,7 @@
 			}
 		);
 
-		return obj.id === undefined ? null : obj.id;
+		return obj.id === undefined ? null : parseInt(obj.id);
 
 	}
 
