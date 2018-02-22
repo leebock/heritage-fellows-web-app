@@ -279,7 +279,8 @@ a {
       display: flex; }
       #list-container #bio div#bio-header h3#fellow-name {
         flex: 1;
-        margin-bottom: 10px; }
+        margin-bottom: 10px;
+        margin-top: 0px; }
       #list-container #bio div#bio-header a.x-button {
         margin-top: 10px; }
     #list-container #bio #bio-placename {
@@ -288,10 +289,11 @@ a {
     #list-container #bio div#scrollable {
       overflow-y: auto;
       overflow-x: hidden;
-      -webkit-overflow-scrolling: touch; }
+      -webkit-overflow-scrolling: touch;
+      padding-left: 20px;
+      padding-right: 20px; }
       #list-container #bio div#scrollable #textarea img {
-        width: 100%;
-        margin-right: 10px; }
+        width: 100%; }
       #list-container #bio div#scrollable #gallery {
         display: flex;
         flex-direction: column;

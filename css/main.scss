@@ -363,6 +363,7 @@ a {
       h3#fellow-name {
         flex: 1;
         margin-bottom: 10px;
+        margin-top: 0px;
       }
 
       a.x-button {
@@ -381,13 +382,14 @@ a {
 
       overflow-y: auto;
       overflow-x: hidden;
-     -webkit-overflow-scrolling: touch;
-
+      -webkit-overflow-scrolling: touch;
+      padding-left: 20px;
+      padding-right: 20px;
+     
       #textarea {
 
         img {
           width: 100%;
-          margin-right: 10px;
         }
 
       }
