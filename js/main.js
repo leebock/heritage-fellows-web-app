@@ -14,7 +14,7 @@
 
 	var LISTITEM_CLASS_ACTIVE = "active";
 
-	var SPREADSHEET_URL =  "/proxy/proxy.ashx?https://docs.google.com/spreadsheets/d/e/2PACX-1vSwnVGKYBCzY1rwpuT1dkhudKG2MRVgs9NUWgFw6KPGpIwilqSo1RUkF9f-Mv521lkRwhhpOZKaFISe/pub?gid=1974679186&single=true&output=csv";
+	var SPREADSHEET_URL = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
 
 	var BNDS = {
 		ov48: [[25, -126],[49,-65]],
@@ -490,7 +490,7 @@
 					Record.getFirstName(_active)+" "+Record.getLastName(_active)+
 					" and all of our other amazing NEA National Heritage Fellows.";
 
-		var url = window.location.href.split("?")[0]+"?id="+Record.getID(_active);
+		var url = window.location.href.split("?")[0]+"?id="+Record.getID(_active).toString();
 
 		var twitterOptions = 'text=' + encodeURIComponent(text) + 
 		    '&url=' + encodeURIComponent(url)+ 

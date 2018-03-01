@@ -43,7 +43,7 @@ Record.getAwardYear = function(obj)
 	return obj[Record.FIELDNAME$AWARD_YEAR];
 };
 
-Record.FIELDNAME$ID = "artist_id";
+Record.FIELDNAME$ID = "ID";
 Record.FIELDNAME$FIRSTNAME = "first_middle_name";
 Record.FIELDNAME$LASTNAME	= "last_name";
 /*var FIELDNAME$TRADITION = "tradition";*/
@@ -51,4 +51,4 @@ Record.FIELDNAME$AWARD_YEAR = "award_year";
 Record.FIELDNAME$X = "x";
 Record.FIELDNAME$Y = "y";
 Record.FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
-Record.FIELDNAME$DISPLAY_NAME = "Display-Name";
+Record.FIELDNAME$DISPLAY_NAME = "Location";
