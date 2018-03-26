@@ -14,7 +14,8 @@
 
 	const LISTITEM_CLASS_ACTIVE = "active";
 
-	const SPREADSHEET_URL = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
+	const SPREADSHEET_URL_ARTISTS = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
+	const SPREADSHEET_URL_WORKS = "https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
 
 	const BNDS = {
 		ov48: [[25, -126],[49,-65]],
@@ -30,7 +31,8 @@
 	var _map;
 	var _ovBar;
 
-	var _records;				
+	var _recordsArtists;			
+	var _recordsWorks;	
 	var _selection; /* record set that appears in the table */
 	var _active;
 
@@ -96,21 +98,35 @@
 		);
 
 		Papa.parse(
-			SPREADSHEET_URL, 
+			SPREADSHEET_URL_ARTISTS, 
 			{
 				header: true,
 				download: true,
-				complete: function(data){finish(data.data);}
+				complete: function(data){_recordsArtists = data.data;finish();}
 			}
-		);		
+		);
+
+		Papa.parse(
+			SPREADSHEET_URL_WORKS,
+			{
+				header: true,
+				download: true,
+				complete: function(data){_recordsWorks = data.data;finish();}
+			}
+		);
 
 		$(window).resize(handleWindowResize);
 		handleWindowResize();
 
-		function finish(data)
+		function finish()
 		{
 
-			_records = data;
+			/* wait for both CSV downloads to complete */
+
+			if (!_recordsArtists || !_recordsWorks) {
+				return;
+			}
+
 			fitBounds(BNDS.ov48);
 			updateFilter();
 
@@ -118,7 +134,7 @@
 				with that record active. */
 
 			var recs = $.grep(
-				_records,
+				_recordsArtists,
 				function(value) {
 					return Record.getID(value) === parseArtist();
 				}
@@ -131,7 +147,7 @@
 				setBio(_active);
 				showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
 
-		}
+			}
 		}
 
 	});
@@ -241,7 +257,7 @@
 		clearActive();
 
 		_active = $.grep(
-			_records,
+			_recordsArtists,
 			function(value) {
 				return Record.getID(value) === parseInt($(e.currentTarget).attr("storymaps-id"));
 			}
@@ -335,7 +351,7 @@
 	{
 
 		clearBio();
-		_selection = _records;
+		_selection = _recordsArtists;
 
 		if ($.trim($("#search input").val()).length > 0) {
 			$("html body").addClass(GLOBAL_CLASS_FILTER$TEXT);
