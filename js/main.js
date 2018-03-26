@@ -2,21 +2,21 @@
 
 	"use strict";
 
-	var GLOBAL_CLASS_SMALL = "small";	
-	var GLOBAL_CLASS_HOVER = "hover-capable";
+	const GLOBAL_CLASS_SMALL = "small";	
+	const GLOBAL_CLASS_HOVER = "hover-capable";
 
-	var LISTCONTAINER_CLASS_UP = "table-up";
+	const LISTCONTAINER_CLASS_UP = "table-up";
 
-	var GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
-	var GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
+	const GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
+	const GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
 
-	var GLOBAL_CLASS_BIO = "state-bio";
+	const GLOBAL_CLASS_BIO = "state-bio";
 
-	var LISTITEM_CLASS_ACTIVE = "active";
+	const LISTITEM_CLASS_ACTIVE = "active";
 
-	var SPREADSHEET_URL = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
+	const SPREADSHEET_URL = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
 
-	var BNDS = {
+	const BNDS = {
 		ov48: [[25, -126],[49,-65]],
 		ovAK: [[54, -168],[72, -127]],
 		ovHI: [[19,-160],[22.5,-154]],
