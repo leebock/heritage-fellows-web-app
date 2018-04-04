@@ -38,6 +38,11 @@ Record.getLastName = function(obj)
 	return obj[Record.FIELDNAME$LASTNAME];
 };
 
+Record.getFullName = function(obj)
+{
+	return obj[Record.FIELDNAME$FULLNAME];
+};
+
 Record.getAwardYear = function(obj)
 {
 	return obj[Record.FIELDNAME$AWARD_YEAR];
@@ -46,6 +51,7 @@ Record.getAwardYear = function(obj)
 Record.FIELDNAME$ID = "ID";
 Record.FIELDNAME$FIRSTNAME = "first_middle_name";
 Record.FIELDNAME$LASTNAME	= "last_name";
+Record.FIELDNAME$FULLNAME = "full_name";
 /*var FIELDNAME$TRADITION = "tradition";*/
 Record.FIELDNAME$AWARD_YEAR = "award_year";
 Record.FIELDNAME$X = "x";
