@@ -434,16 +434,9 @@
 
 		$("#bio #scrollable").empty();
 
-		var textarea = $("<div>").attr("id", "textarea");
-
-		var img = $("<img>");
-		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
-			$(img).attr("src", "resources/images/sheila-kay-thumb.jpg");
-		} else {
-			$(img).attr("src", "resources/images/sheila-kay-large.jpg");
-		}
-		$(textarea).append(img);
-		$(textarea).append($("<p>").html(s));
+		var textarea = $("<div>").attr("id", "textarea")
+			.append($("<img>").attr("src", getPortrait(Record.getFullName(rec))))
+			.append($("<p>").html(s));
 
 		$("#bio #scrollable").append(textarea);
 		var gallery = $("<div>").attr("id", "gallery");
@@ -478,6 +471,41 @@
 		
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
 		$("#list-container").addClass(LISTCONTAINER_CLASS_UP);
+
+	}
+
+	function getPortrait(artistName)
+	{
+
+		const PLACEHOLDER_PORTRAIT = "resources/no-image.gif";	
+
+		const FIELDNAME_WORKS$ARTIST = "Artist-id";
+		const FIELDNAME_WORKS$MEDIA_TYPE = "Media-type";
+		const FIELDNAME_WORKS$LINK = "Link";
+
+		var portrait = PLACEHOLDER_PORTRAIT;
+
+		var works = $.grep(
+			_recordsWorks, 
+			function(value) {
+				return value[FIELDNAME_WORKS$ARTIST] === artistName;
+			}
+		);
+
+		if (works.length) {
+			var portraits = $.grep(
+				works, 
+				function(value) {
+					return value[FIELDNAME_WORKS$MEDIA_TYPE].toLowerCase() === "portrait";
+				}
+			);
+
+			if (portraits.length) {
+				portrait = portraits[0][FIELDNAME_WORKS$LINK];
+			}
+		}
+
+		return portrait;
 
 	}
 
