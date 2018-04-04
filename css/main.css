@@ -239,7 +239,7 @@ a {
       #list-container #list li div.thumb {
         width: 70px;
         height: 70px;
-        background-image: url("../resources/no-portrait.jpg");
+        background-image: url("../resources/no-image.gif");
         background-position: center;
         background-size: cover;
         margin-right: 8px;
