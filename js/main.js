@@ -403,7 +403,7 @@
 				function(index, value) {
 					$("#list").append(
 						$("<li>")
-							.append($("<div>").addClass("thumb"))
+							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(Record.getFullName(value))+"')"))
 							.append($("<div>").addClass("info")
 								.append($("<div>").text(Record.getFirstName(value)+" "+Record.getLastName(value)))
 								.append($("<div>").text("Tradition"))								
