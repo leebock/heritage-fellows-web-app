@@ -328,16 +328,17 @@
 
 	function calcRight()
 	{
-		var right = parseInt($("#list-container").css("right"));
-		var width;
-		if ($("html body").hasClass(GLOBAL_CLASS_BIO)) {
-			width = $("html body").width() * 0.7;
-			right = right + width;
-		} else {
-			width = $("html body").width() * 0.4;
-			right = right + (width > 450 ? 450 : width);
-		}
-		return right;
+		/* note: this function provides a theoretical #list-container width 
+				 calculation instead of querying the actual width.  this is 
+				 because the function fires while the div is in the process
+				 of growing/shrinking via css transition.  so the actual
+				 width value may be in flux. */
+
+		var maxWidth = parseInt($("div#list-container").css("max-width"));
+		var pct = $("html body").hasClass(GLOBAL_CLASS_BIO) ? 0.7 : 0.4;
+		var width = $("html body").width() * pct;
+		width = width > maxWidth ? maxWidth : width;		
+		return parseInt($("#list-container").css("right")) + width;
 	}
 
 	function calcBottom()
