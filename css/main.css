@@ -112,7 +112,7 @@ a {
   transition: width 1s; }
   .state-bio #list-container {
     width: 70%;
-    max-width: none; }
+    max-width: 1200px; }
   .small #list-container {
     -webkit-transition: height 1s;
     /* For Safari 3.1 to 6.0 */
