@@ -407,7 +407,7 @@
 							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(Record.getFullName(value), true)+"')"))
 							.append($("<div>").addClass("info")
 								.append($("<div>").text(Record.getFirstName(value)+" "+Record.getLastName(value)))
-								.append($("<div>").text("Tradition"))								
+								.append($("<div>").text(Record.getTradition(value) ? Record.getTradition(value) : "Lorem ipsum"))								
 								.append($("<div>").text(Record.getAwardYear(value)+" | "+Record.getLocationDisplayName(value)))
 							)
 							.attr("storymaps-id", Record.getID(value))
