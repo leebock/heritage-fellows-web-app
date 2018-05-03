@@ -292,8 +292,12 @@ a {
       -webkit-overflow-scrolling: touch;
       padding-left: 20px;
       padding-right: 20px; }
-      #list-container #bio div#scrollable #textarea img {
-        width: 100%; }
+      #list-container #bio div#scrollable #textarea div#portrait {
+        width: 100%;
+        height: 50vh;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat; }
       #list-container #bio div#scrollable #gallery {
         display: flex;
         flex-direction: column;

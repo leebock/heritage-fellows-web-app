@@ -436,7 +436,7 @@
 		$("#bio #scrollable").empty();
 
 		var textarea = $("<div>").attr("id", "textarea")
-			.append($("<img>").attr("src", getPortrait(Record.getFullName(rec))))
+			.append($("<div>").attr("id", "portrait").css("background-image", "url('"+getPortrait(Record.getFullName(rec))+"')"))
 			.append($("<p>").html(s));
 
 		$("#bio #scrollable").append(textarea);
