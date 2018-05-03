@@ -404,7 +404,7 @@
 				function(index, value) {
 					$("#list").append(
 						$("<li>")
-							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(Record.getFullName(value))+"')"))
+							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(Record.getFullName(value), true)+"')"))
 							.append($("<div>").addClass("info")
 								.append($("<div>").text(Record.getFirstName(value)+" "+Record.getLastName(value)))
 								.append($("<div>").text("Tradition"))								
@@ -475,7 +475,7 @@
 
 	}
 
-	function getPortrait(artistName)
+	function getPortrait(artistName, thumbNail)
 	{
 
 		const PLACEHOLDER_PORTRAIT = "resources/no-image.gif";	
@@ -483,6 +483,7 @@
 		const FIELDNAME_WORKS$ARTIST = "Artist-id";
 		const FIELDNAME_WORKS$MEDIA_TYPE = "Media-type";
 		const FIELDNAME_WORKS$LINK = "Link";
+		const FIELDNAME_WORKS$THUMBNAIL = "Thumbnail";
 
 		var portrait = PLACEHOLDER_PORTRAIT;
 
@@ -502,7 +503,9 @@
 			);
 
 			if (portraits.length) {
-				portrait = portraits[0][FIELDNAME_WORKS$LINK];
+				portrait = thumbNail ? 
+						   portraits[0][FIELDNAME_WORKS$THUMBNAIL] : 
+						   portraits[0][FIELDNAME_WORKS$LINK];
 			}
 		}
 
