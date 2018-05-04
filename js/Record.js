@@ -53,6 +53,16 @@ Record.getTradition = function(obj)
 	return obj[Record.FIELDNAME$TRADITION];
 };
 
+Record.getQuotation = function(obj)
+{
+	return obj[Record.FIELDNAME$QUOTATION];
+};
+
+Record.getBio = function(obj)
+{
+	return obj[Record.FIELDNAME$BIO];
+};
+
 Record.FIELDNAME$ID = "ID";
 Record.FIELDNAME$FIRSTNAME = "first_middle_name";
 Record.FIELDNAME$LASTNAME = "last_name";
@@ -63,3 +73,5 @@ Record.FIELDNAME$X = "x";
 Record.FIELDNAME$Y = "y";
 Record.FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
 Record.FIELDNAME$DISPLAY_NAME = "Location";
+Record.FIELDNAME$QUOTATION = "quotation";
+Record.FIELDNAME$BIO = "bio";

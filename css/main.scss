@@ -362,24 +362,44 @@ a {
 
       h3#fellow-name {
         flex: 1;
-        margin-bottom: 10px;
-        margin-top: 0px;
+        margin-bottom: 5px;
+        margin-top: -10px;
+        padding-bottom: 0px;
+        font-size: 36px;
+        font-style: italic;
       }
 
       a.x-button {
-        margin-top: 10px;
+        margin-top: -18px;
+        font-size: 40px;
+        color: #a2988c;
+        font-weight: 400;
       }
 
     }
 
-    #bio-placename {
-      margin-bottom: 10px;
-      font-style: italic;
+    hr {
+      border-style: solid;
+      border-color: #a2988c;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    h4 {
+      margin: 0px;
+      color: #a2988c;
+    }    
+
+    h4#bio-tradition {
+      margin-top: 5px;
+      margin-bottom: 5px;
+      color: black;
     }
 
 
     div#scrollable {
 
+      margin-top: 10px;
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
@@ -394,6 +414,12 @@ a {
           background-position: center;
           background-size: contain;
           background-repeat: no-repeat;
+        }
+
+        h5#quotation {
+          font-weight: 400;
+          font-size: 16px;
+          font-style: italic;
         }
 
       }

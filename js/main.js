@@ -424,19 +424,21 @@
 	function setBio(rec) {
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
-		$("#bio #fellow-name").text(Record.getFirstName(rec)+" "+Record.getLastName(rec));
-		$("#bio #bio-placename").text(Record.getLocationDisplayName(rec));
+		$("#bio h3#fellow-name").text(Record.getFirstName(rec)+" "+Record.getLastName(rec));
+		$("#bio h4#bio-tradition").text(Record.getTradition(rec) ? Record.getTradition(rec) : "Lorem Ipsum");
+		$("#bio h4#bio-awardyear").text(Record.getAwardYear(rec)+" NEA National Heritage Fellow");
+		$("#bio h4#bio-placename").text(Record.getLocationDisplayName(rec));
 
-		var s;// = Record.getBio();
-		/*if (s.trim() === "") {*/
+		var s = Record.getBio(rec);
+		if (s.trim() === "") {
 			s = "Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.";
-		/*}*/
-
+		}
 
 		$("#bio #scrollable").empty();
 
 		var textarea = $("<div>").attr("id", "textarea")
 			.append($("<div>").attr("id", "portrait").css("background-image", "url('"+getPortrait(Record.getFullName(rec))+"')"))
+			.append($("<h5>").attr("id", "quotation").html(Record.getQuotation(rec) ? Record.getQuotation(rec) : "Gaudeamus igitur Iuvenes dum sumus. Post iucundam iuventutem. Post molestam senectutem. Nos habebit humus."))
 			.append($("<p>").html(s));
 
 		$("#bio #scrollable").append(textarea);
