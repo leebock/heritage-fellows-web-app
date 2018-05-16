@@ -17,6 +17,13 @@
 	const SPREADSHEET_URL_ARTISTS = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
 	const SPREADSHEET_URL_WORKS = "https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
 
+	const FIELDNAME_WORKS$ARTIST = "Artist-id";
+	const FIELDNAME_WORKS$MEDIA_TYPE = "Media-type";
+	const FIELDNAME_WORKS$TITLE = "Title";
+	const FIELDNAME_WORKS$LINK = "Link";
+	const FIELDNAME_WORKS$THUMBNAIL = "Thumbnail";
+	const FIELDNAME_WORKS$DISPLAY_ORDER = "Display Order";
+
 	const BNDS = {
 		ov48: [[25, -126],[49,-65]],
 		ovAK: [[54, -168],[72, -127]],
@@ -445,32 +452,77 @@
 		var gallery = $("<div>").attr("id", "gallery");
 		$("#bio #scrollable").append(gallery);
 
-		if (Record.getID(rec) === 1) {
+		$.grep(
+			_recordsWorks, 
+			function(value) {
+				return value[FIELDNAME_WORKS$ARTIST] === Record.getFullName(rec) && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Object";
+			}
+		)
+		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
+		.forEach(
+			function(value) {
+				$(gallery).append(
+					$("<section>")
+						.append($("<img>").attr("src", value[FIELDNAME_WORKS$LINK]))
+						.append($("<p>").html(value[FIELDNAME_WORKS$TITLE]))
+				);
+			}
+		);
 
-			var source =$("<source>");
-			$(source).attr("src", "resources/audio/sheila-kay.wav");
+		$.grep(
+			_recordsWorks,
+			function(value) {
+				return value[FIELDNAME_WORKS$ARTIST] === Record.getFullName(rec) && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Audio";	
+			}
+		)
+		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
+		.forEach(
+			function(value) {
+				$(gallery).append(
+					$("<section>")
+						.append($("<audio>")
+							.addClass("player")
+							.append($("<source>").attr("src", value[FIELDNAME_WORKS$LINK])))
+						.append($("<p>").html(value[FIELDNAME_WORKS$TITLE]))
+				);
+			}
+		);
 
-			var audio = $("<audio>");
-			$(audio).append(source);
-			$(audio).attr("id", "player");
+		$.grep(
+			_recordsWorks,
+			function(value) {
+				return value[FIELDNAME_WORKS$ARTIST] === Record.getFullName(rec) && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Video";	
+			}
+		)
+		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
+		.forEach(
+			function(value) {
+				$(gallery).append(
+					$("<section>")
+						.append(
+							$("<div>").addClass("video-container")
+								.append(
+									$("<iframe>")
+										.attr("src", "https://player.vimeo.com/video/"+value[FIELDNAME_WORKS$LINK])
+										.attr("frameborder", 0)
+										/*.attr("allowfullscreen", '')*/
+								)
+						)
+						.append($("<p>").html(value[FIELDNAME_WORKS$TITLE]))
+				);
+			}
+		);
 
-
-			$(gallery).append(audio);
-
-			setTimeout(
-				function(){
-					document.getElementById("player").controls = true;			
-					document.getElementById("player").load();
-				}, 
-				1000
-			);
-
-		}
-
-		if (Record.getID(rec) === 346) {
-			$(gallery).append($("<img>").attr("src", "resources/images/secord-basket-thumb.jpg"));
-			$(gallery).append($("<img>").attr("src", "resources/images/secord-four-baskets-thumb.jpg"));
-		}
+		setTimeout(
+			function(){
+				var players = document.getElementsByClassName("player");
+				for (var i = 0; i < players.length; i++) {
+					players[i].controls = true;
+					players[i].load();
+				}
+			}, 
+			1000
+		);
 		
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
 		$("#list-container").addClass(LISTCONTAINER_CLASS_UP);
@@ -481,11 +533,6 @@
 	{
 
 		const PLACEHOLDER_PORTRAIT = "resources/no-image.gif";	
-
-		const FIELDNAME_WORKS$ARTIST = "Artist-id";
-		const FIELDNAME_WORKS$MEDIA_TYPE = "Media-type";
-		const FIELDNAME_WORKS$LINK = "Link";
-		const FIELDNAME_WORKS$THUMBNAIL = "Thumbnail";
 
 		var portrait = PLACEHOLDER_PORTRAIT;
 

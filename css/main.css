@@ -322,6 +322,22 @@ a {
         display: flex;
         flex-direction: column;
         align-items: center; }
+        #list-container #bio div#scrollable #gallery img {
+          width: 100%;
+          height: auto; }
+        #list-container #bio div#scrollable #gallery p {
+          font-style: italic;
+          font-size: 15px;
+          width: 100%; }
+        #list-container #bio div#scrollable #gallery div.video-container {
+          padding: 55.47% 0 0 0;
+          position: relative; }
+          #list-container #bio div#scrollable #gallery div.video-container iframe {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%; }
     #list-container #bio div#bio-social {
       margin-top: 15px;
       margin-bottom: 10px;
