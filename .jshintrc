@@ -98,6 +98,6 @@
         "Helper": false,
         "SummaryTable": false,
         "OVBar": false,
-        "Record": false
+        "ArtistRecord": false
 	}        // additional predefined global variables
 }

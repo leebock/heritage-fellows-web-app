@@ -109,7 +109,13 @@
 			{
 				header: true,
 				download: true,
-				complete: function(data){_recordsArtists = data.data;finish();}
+				complete: function(data){
+					_recordsArtists = $.map(
+						data.data, 
+						function(value){return new ArtistRecord(value);}
+					);
+					finish();
+				}
 			}
 		);
 
@@ -143,7 +149,7 @@
 			var recs = $.grep(
 				_recordsArtists,
 				function(value) {
-					return Record.getID(value) === parseArtist();
+					return value.getID() === parseArtist();
 				}
 			);
 
@@ -152,7 +158,7 @@
 				_active = recs[0];
 
 				setBio(_active);
-				showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
+				showLocation(_active.getLocationDisplayName(), L.latLng(_active.getY(), _active.getX()));
 
 			}
 		}
@@ -266,7 +272,7 @@
 		_active = $.grep(
 			_recordsArtists,
 			function(value) {
-				return Record.getID(value) === parseInt($(e.currentTarget).attr("storymaps-id"));
+				return value.getID() === parseInt($(e.currentTarget).attr("storymaps-id"));
 			}
 		)[0];
 
@@ -275,12 +281,12 @@
 		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
 			if (!_filterLocation || isListRetracted()) {
 				// todo: pass keepZoom if current zoom is less than flyTo zoom?
-				showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
+				showLocation(_active.getLocationDisplayName(), L.latLng(_active.getY(), _active.getX()));
 			} else {
 				// do nothing
 			}
 		} else {
-			showLocation(Record.getLocationDisplayName(_active), L.latLng(Record.getY(_active), Record.getX(_active)));
+			showLocation(_active.getLocationDisplayName(), L.latLng(_active.getY(), _active.getX()));
 		}
 
 		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
@@ -387,8 +393,8 @@
 			return $.grep(
 				recs, 
 				function(value) {
-					return Record.getFirstName(value).toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
-							Record.getLastName(value).toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
+					return value.getFirstName().toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
+							value.getLastName().toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
 				}
 			);
 		}
@@ -398,7 +404,7 @@
 			return $.grep(
 				recs, 
 				function(value, index) {
-					return Record.getStandardizedLocation(value) === _filterLocation;
+					return value.getStandardizedLocation() === _filterLocation;
 				}
 			);
 		}
@@ -411,13 +417,13 @@
 				function(index, value) {
 					$("#list").append(
 						$("<li>")
-							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(Record.getFullName(value), true)+"')"))
+							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(value.getFullName(), true)+"')"))
 							.append($("<div>").addClass("info")
-								.append($("<div>").text(Record.getFirstName(value)+" "+Record.getLastName(value)))
-								.append($("<div>").text(Record.getTradition(value) ? Record.getTradition(value) : "Lorem ipsum"))								
-								.append($("<div>").text(Record.getAwardYear(value)+" | "+Record.getLocationDisplayName(value)))
+								.append($("<div>").text(value.getFirstName()+" "+value.getLastName()))
+								.append($("<div>").text(value.getTradition() ? value.getTradition() : "Lorem ipsum"))								
+								.append($("<div>").text(value.getAwardYear()+" | "+value.getLocationDisplayName()))
 							)
-							.attr("storymaps-id", Record.getID(value))
+							.attr("storymaps-id", value.getID())
 					);
 				}
 			);
@@ -431,12 +437,12 @@
 	function setBio(rec) {
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
-		$("#bio h3#fellow-name").text(Record.getFirstName(rec)+" "+Record.getLastName(rec));
-		$("#bio h4#bio-tradition").text(Record.getTradition(rec) ? Record.getTradition(rec) : "Lorem Ipsum");
-		$("#bio h4#bio-awardyear").text(Record.getAwardYear(rec)+" NEA National Heritage Fellow");
-		$("#bio h4#bio-placename").text(Record.getLocationDisplayName(rec));
+		$("#bio h3#fellow-name").text(rec.getFirstName()+" "+rec.getLastName());
+		$("#bio h4#bio-tradition").text(rec.getTradition() ? rec.getTradition() : "Lorem Ipsum");
+		$("#bio h4#bio-awardyear").text(rec.getAwardYear()+" NEA National Heritage Fellow");
+		$("#bio h4#bio-placename").text(rec.getLocationDisplayName());
 
-		var s = Record.getBio(rec);
+		var s = rec.getBio();
 		if (s.trim() === "") {
 			s = "Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.";
 		}
@@ -444,8 +450,8 @@
 		$("#bio #scrollable").empty();
 
 		var textarea = $("<div>").attr("id", "textarea")
-			.append($("<div>").attr("id", "portrait").css("background-image", "url('"+getPortrait(Record.getFullName(rec))+"')"))
-			.append($("<h5>").attr("id", "quotation").html(Record.getQuotation(rec) ? Record.getQuotation(rec) : "Gaudeamus igitur Iuvenes dum sumus. Post iucundam iuventutem. Post molestam senectutem. Nos habebit humus."))
+			.append($("<div>").attr("id", "portrait").css("background-image", "url('"+getPortrait(rec.getFullName())+"')"))
+			.append($("<h5>").attr("id", "quotation").html(rec.getQuotation() ? rec.getQuotation() : "Gaudeamus igitur Iuvenes dum sumus. Post iucundam iuventutem. Post molestam senectutem. Nos habebit humus."))
 			.append($("<p>").html(s));
 
 		$("#bio #scrollable").append(textarea);
@@ -455,7 +461,7 @@
 		$.grep(
 			_recordsWorks, 
 			function(value) {
-				return value[FIELDNAME_WORKS$ARTIST] === Record.getFullName(rec) && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Object";
+				return value[FIELDNAME_WORKS$ARTIST] === rec.getFullName() && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Object";
 			}
 		)
 		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
@@ -472,7 +478,7 @@
 		$.grep(
 			_recordsWorks,
 			function(value) {
-				return value[FIELDNAME_WORKS$ARTIST] === Record.getFullName(rec) && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Audio";	
+				return value[FIELDNAME_WORKS$ARTIST] === rec.getFullName() && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Audio";	
 			}
 		)
 		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
@@ -491,7 +497,7 @@
 		$.grep(
 			_recordsWorks,
 			function(value) {
-				return value[FIELDNAME_WORKS$ARTIST] === Record.getFullName(rec) && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Video";	
+				return value[FIELDNAME_WORKS$ARTIST] === rec.getFullName() && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Video";	
 			}
 		)
 		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
@@ -584,10 +590,10 @@
 	{
 
 		var text = "Celebrating the work of "+
-					Record.getFirstName(_active)+" "+Record.getLastName(_active)+
+					_active.getFirstName()+" "+_active.getLastName()+
 					" and all of our other amazing NEA National Heritage Fellows.";
 
-		var url = window.location.href.split("?")[0]+"?id="+Record.getID(_active).toString();
+		var url = window.location.href.split("?")[0]+"?id="+_active.getID().toString();
 
 		var twitterOptions = 'text=' + encodeURIComponent(text) + 
 		    '&url=' + encodeURIComponent(url)+ 

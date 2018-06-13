@@ -7,7 +7,7 @@ function SummaryTable()
 		var uniques = Helper.unique(
 			$.map(
 				recs, 
-				function(value, index){return Record.getStandardizedLocation(value);}
+				function(value, index){return value.getStandardizedLocation();}
 			)
 		);
 
@@ -22,17 +22,17 @@ function SummaryTable()
 				selected = $.grep(
 					recs, 
 					function(rec, idx) {
-						return Record.getStandardizedLocation(rec) === value;
+						return rec.getStandardizedLocation() === value;
 					}
 				);
 
 				sumItem = {};
 				sumItem[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION] = value;
 				sumItem[SummaryTable.FIELDNAME$FREQUENCY] = selected.length;
-				sumItem[SummaryTable.FIELDNAME$DISPLAY_NAME] = Record.getLocationDisplayName(selected[0]);
-				sumItem[SummaryTable.FIELDNAME$X] = Record.getX(selected[0]);
-				sumItem[SummaryTable.FIELDNAME$Y] = Record.getY(selected[0]);
-				sumItem[SummaryTable.FIELDNAME$ARTIST] = Record.getLastName(selected[0]);
+				sumItem[SummaryTable.FIELDNAME$DISPLAY_NAME] = selected[0].getLocationDisplayName();
+				sumItem[SummaryTable.FIELDNAME$X] = selected[0].getX();
+				sumItem[SummaryTable.FIELDNAME$Y] = selected[0].getY();
+				sumItem[SummaryTable.FIELDNAME$ARTIST] = selected[0].getLastName();
 
 				table.push(sumItem);
 
