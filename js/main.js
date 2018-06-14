@@ -468,33 +468,24 @@
 		
 	}
 
-	function getPortrait(artistName, thumbNail)
+	function getPortrait(artistName, bThumbNail)
 	{
 
 		const PLACEHOLDER_PORTRAIT = "resources/no-image.gif";	
 
 		var portrait = PLACEHOLDER_PORTRAIT;
 
-		var works = $.grep(
+		var portraits = $.grep(
 			_recordsWorks, 
 			function(value) {
-				return value.getArtistID() === artistName;
+				return value.getArtistID() === artistName && value.isPortrait();
 			}
 		);
 
-		if (works.length) {
-			var portraits = $.grep(
-				works, 
-				function(value) {
-					return value.isPortrait();
-				}
-			);
-
-			if (portraits.length) {
-				portrait = thumbNail ? 
-						   portraits[0].getThumbnail() : 
-						   portraits[0].getLink();
-			}
+		if (portraits.length) {
+			portrait = bThumbNail ? 
+					   portraits[0].getThumbnail() : 
+					   portraits[0].getLink();
 		}
 
 		return portrait;
