@@ -146,21 +146,18 @@
 			/*  if there's an id in the url parameter, then initialize
 				with that record active. */
 
-			var recs = $.grep(
+			_active = $.grep(
 				_recordsArtists,
 				function(value) {
 					return value.getID() === parseArtist();
 				}
-			);
+			).shift();
 
-			if (recs.length > 0) {
-
-				_active = recs[0];
-
+			if (_active) {
 				setBio(_active);
 				showLocation(_active.getLocationDisplayName(), _active.getLatLng());
-
 			}
+
 		}
 
 	});
