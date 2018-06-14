@@ -444,19 +444,19 @@
 			$.grep(
 				_recordsWorks, 
 				function(recMedia) {
-					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Object";
+					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isObjectPhoto();
 				}
 			).sort(sortByDisplayOrder),
 			$.grep(
 				_recordsWorks,
 				function(recMedia) {
-					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Audio";	
+					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isAudio();	
 				}
 			).sort(sortByDisplayOrder),
 			$.grep(
 				_recordsWorks,
 				function(recMedia) {
-					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Video";	
+					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isVideo();	
 				}
 			).sort(sortByDisplayOrder)			
 		);
@@ -486,7 +486,7 @@
 			var portraits = $.grep(
 				works, 
 				function(value) {
-					return value.getMediaType().toLowerCase() === "portrait";
+					return value.isPortrait();
 				}
 			);
 

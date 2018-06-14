@@ -15,11 +15,6 @@ MediaRecord.prototype.getArtistID = function()
 	return this._obj[MediaRecord.FIELDNAME_WORKS$ARTIST_ID];
 };
 
-MediaRecord.prototype.getMediaType = function()
-{
-	return this._obj[MediaRecord.FIELDNAME_WORKS$MEDIA_TYPE];
-};
-
 MediaRecord.prototype.getThumbnail = function()
 {
 	return this._obj[MediaRecord.FIELDNAME_WORKS$THUMBNAIL];	
@@ -38,4 +33,24 @@ MediaRecord.prototype.getDisplayOrder = function()
 MediaRecord.prototype.getTitle = function()
 {
 	return this._obj[MediaRecord.FIELDNAME_WORKS$TITLE];
+};
+
+MediaRecord.prototype.isAudio = function()
+{
+	return this._obj[MediaRecord.FIELDNAME_WORKS$MEDIA_TYPE] === "Audio";
+};
+
+MediaRecord.prototype.isObjectPhoto = function()
+{
+	return this._obj[MediaRecord.FIELDNAME_WORKS$MEDIA_TYPE] === "Object";
+};
+
+MediaRecord.prototype.isPortrait = function()
+{
+	return this._obj[MediaRecord.FIELDNAME_WORKS$MEDIA_TYPE] === "Portrait";
+};
+
+MediaRecord.prototype.isVideo = function()
+{
+	return this._obj[MediaRecord.FIELDNAME_WORKS$MEDIA_TYPE] === "Video";	
 };
