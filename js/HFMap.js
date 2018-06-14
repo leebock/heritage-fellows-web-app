@@ -53,9 +53,9 @@ L.HFMap = L.Map.extend({
     $.each(
       sumTable, 
       function(index, rec) {
-        frequency = rec[SummaryTable.FIELDNAME$FREQUENCY];
+        frequency = rec.getFrequency();
         marker = L.circleMarker(
-          [rec[SummaryTable.FIELDNAME$Y], rec[SummaryTable.FIELDNAME$X]],
+          rec.getLatLng(),
           {
             weight: 1,
             radius: 5+(frequency-1)*2,
@@ -66,12 +66,12 @@ L.HFMap = L.Map.extend({
         ).addTo(layerDots);
 
         if (!L.Browser.mobile) {
-          var placename = rec[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION].split(",")[0];
+          var placename = rec.getStandardizedLocation().split(",")[0];
           var tooltip;
           if (frequency > 1) {
             tooltip = placename+": "+frequency+" Artists";
           } else {
-            tooltip = placename+": "+rec[SummaryTable.FIELDNAME$ARTIST];
+            tooltip = placename+": "+rec.getArtist();
           }
           marker.bindTooltip(tooltip);
         }

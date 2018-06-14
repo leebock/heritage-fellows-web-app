@@ -185,8 +185,8 @@
 	function onMarkerClick(e)
 	{
 
-		_filterLocation = e.layer.properties[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION];
-		_filterDisplayName = e.layer.properties[SummaryTable.FIELDNAME$DISPLAY_NAME];
+		_filterLocation = e.layer.properties.getStandardizedLocation();
+		_filterDisplayName = e.layer.properties.getDisplayName();
 		updateFilter();
 
 		if (_selection.length === 1) {

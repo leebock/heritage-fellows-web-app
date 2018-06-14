@@ -4,16 +4,25 @@ function SummaryTable()
 	this.createSummaryTable = function(recs)
 	{
 
-		var uniques = Helper.unique(
-			$.map(
-				recs, 
-				function(value, index){return value.getStandardizedLocation();}
-			)
-		);
+		var uniques = $.map(
+			recs, 
+			function(value, index){return value.getStandardizedLocation();}
+		)
+			.sort()
+			.reduce(
+				function(accumulator, current) {
+		    		const length = accumulator.length;
+				    if (length === 0 || accumulator[length - 1] !== current) {
+				        accumulator.push(current);
+				    }
+				    return accumulator;
+				}, 
+				[]
+			);
+
 
 		var table = [];
 		var selected;
-		var sumItem;
 
 		$.each(
 			uniques, 
@@ -26,31 +35,25 @@ function SummaryTable()
 					}
 				);
 
-				sumItem = {};
-				sumItem[SummaryTable.FIELDNAME$STANDARDIZED_LOCATION] = value;
-				sumItem[SummaryTable.FIELDNAME$FREQUENCY] = selected.length;
-				sumItem[SummaryTable.FIELDNAME$DISPLAY_NAME] = selected[0].getLocationDisplayName();
-				sumItem[SummaryTable.FIELDNAME$X] = selected[0].getX();
-				sumItem[SummaryTable.FIELDNAME$Y] = selected[0].getY();
-				sumItem[SummaryTable.FIELDNAME$ARTIST] = selected[0].getLastName();
-
-				table.push(sumItem);
+				table.push(
+					new SummaryRecord(
+						value, 
+						L.latLng(selected[0].getY(), selected[0].getX()),
+						selected[0].getLocationDisplayName(),
+						selected.length,
+						selected[0].getLastName()						
+					)
+				);
 
 			}
 		);
 
-		table.sort(function(a, b){return b[SummaryTable.FIELDNAME$FREQUENCY]-a[SummaryTable.FIELDNAME$FREQUENCY];});
+		table.sort(function(a, b){return b.getFrequency()-a.getFrequency();});
 
 		return table;
 
 	};
 
-
 }
 
-SummaryTable.FIELDNAME$FREQUENCY = "frequency";
-SummaryTable.FIELDNAME$STANDARDIZED_LOCATION = "standardized-location";
-SummaryTable.FIELDNAME$DISPLAY_NAME = "display-name";
-SummaryTable.FIELDNAME$X = "x";
-SummaryTable.FIELDNAME$Y = "y";
-SummaryTable.FIELDNAME$ARTIST = "artist";
+SummaryTable.prototype.foo = "foo";

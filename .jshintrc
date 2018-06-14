@@ -100,6 +100,7 @@
         "OVBar": false,
         "ProfileDisplay": false,
         "ArtistRecord": false,
-        "MediaRecord": false
+        "MediaRecord": false,
+        "SummaryRecord": false
 	}        // additional predefined global variables
 }
