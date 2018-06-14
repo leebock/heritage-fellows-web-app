@@ -46,6 +46,11 @@ ArtistRecord.prototype.getLastName = function()
 	return this._obj[ArtistRecord.FIELDNAME$LASTNAME];
 };
 
+ArtistRecord.prototype.getLatLng = function()
+{
+	return L.latLng(this._obj[ArtistRecord.FIELDNAME$Y], this._obj[ArtistRecord.FIELDNAME$X]);
+};
+
 ArtistRecord.prototype.getLocationDisplayName = function()
 {
 	return this._obj[ArtistRecord.FIELDNAME$DISPLAY_NAME];
@@ -64,14 +69,4 @@ ArtistRecord.prototype.getStandardizedLocation = function()
 ArtistRecord.prototype.getTradition = function()
 {
 	return this._obj[ArtistRecord.FIELDNAME$TRADITION];
-};
-
-ArtistRecord.prototype.getX = function()
-{
-	return this._obj[ArtistRecord.FIELDNAME$X];
-};
-
-ArtistRecord.prototype.getY = function()
-{
-	return this._obj[ArtistRecord.FIELDNAME$Y];
 };

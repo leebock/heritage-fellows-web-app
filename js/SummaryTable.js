@@ -38,7 +38,7 @@ function SummaryTable()
 				table.push(
 					new SummaryRecord(
 						value, 
-						L.latLng(selected[0].getY(), selected[0].getX()),
+						selected[0].getLatLng(),
 						selected[0].getLocationDisplayName(),
 						selected.length,
 						selected[0].getLastName()						

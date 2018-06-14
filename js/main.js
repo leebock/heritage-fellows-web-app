@@ -158,7 +158,7 @@
 				_active = recs[0];
 
 				setBio(_active);
-				showLocation(_active.getLocationDisplayName(), L.latLng(_active.getY(), _active.getX()));
+				showLocation(_active.getLocationDisplayName(), _active.getLatLng());
 
 			}
 		}
@@ -281,12 +281,12 @@
 		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
 			if (!_filterLocation || isListRetracted()) {
 				// todo: pass keepZoom if current zoom is less than flyTo zoom?
-				showLocation(_active.getLocationDisplayName(), L.latLng(_active.getY(), _active.getX()));
+				showLocation(_active.getLocationDisplayName(), _active.getLatLng());
 			} else {
 				// do nothing
 			}
 		} else {
-			showLocation(_active.getLocationDisplayName(), L.latLng(_active.getY(), _active.getX()));
+			showLocation(_active.getLocationDisplayName(), _active.getLatLng());
 		}
 
 		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
