@@ -446,27 +446,26 @@
 				function(recMedia) {
 					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Object";
 				}
-			)
-			.sort(function(a,b){return a.getDisplayOrder() - b.getDisplayOrder();}),
+			).sort(sortByDisplayOrder),
 			$.grep(
 				_recordsWorks,
 				function(recMedia) {
 					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Audio";	
 				}
-			)
-			.sort(function(a,b){return a.getDisplayOrder() - b.getDisplayOrder();}),
+			).sort(sortByDisplayOrder),
 			$.grep(
 				_recordsWorks,
 				function(recMedia) {
 					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Video";	
 				}
-			)
-			.sort(function(a,b){return a.getDisplayOrder() - b.getDisplayOrder();})			
+			).sort(sortByDisplayOrder)			
 		);
-		
+
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
 		$("#list-container").addClass(LISTCONTAINER_CLASS_UP);
 
+		function sortByDisplayOrder(a,b){return a.getDisplayOrder() - b.getDisplayOrder();}
+		
 	}
 
 	function getPortrait(artistName, thumbNail)
