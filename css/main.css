@@ -264,7 +264,8 @@ a {
     background-color: #ded4c8;
     display: flex;
     flex-direction: column;
-    left: 100%; }
+    left: 100%;
+    /* css for bio page internals */ }
     .state-bio #list-container #bio {
       left: 10px; }
     .small #list-container #bio {
