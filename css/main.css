@@ -229,7 +229,8 @@ a {
     -moz-margin-start: 0px;
     -moz-margin-end: 0px;
     -moz-padding-start: 15px;
-    -moz-padding-end: 15px; }
+    -moz-padding-end: 15px;
+    /* css for list internals */ }
     #list-container #list li {
       padding: 7px;
       cursor: pointer;

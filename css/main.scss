@@ -265,11 +265,11 @@ a {
   }    
 
   #list {
-
+    
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
-   -webkit-overflow-scrolling: touch;    
+    -webkit-overflow-scrolling: touch;    
 
     list-style-type: none;   
     -webkit-margin-before: 0px;
@@ -282,47 +282,7 @@ a {
     -moz-padding-start: 15px;
     -moz-padding-end: 15px;
 
-    li {
-
-      padding: 7px;
-      cursor: pointer;
-      display: flex;
-
-      &#{$LISTITEM-CLASS-ACTIVE} {
-        background-color: #{$COLOR-ITEM-CLICK};
-      }
-
-      div.thumb {
-        width: 70px;
-        height: 70px;
-        background-image: url("../resources/no-image.gif");
-        background-position: center;
-        background-size: cover;
-        margin-right: 8px;
-        flex-shrink: 0;
-      }
-
-      div.info {
-        font-size: 13px;
-        div:nth-child(1) {
-          font-weight: bold;
-          font-size: 14px;
-        }        
-        div:nth-child(3) {
-          font-weight: bold;
-        }        
-      }
-
-    }
-
-    #{$GLOBAL-CLASS-HOVER} & {
-      li:hover {
-          background-color: #{$COLOR-ITEM-MOUSEOVER};
-          &#{$LISTITEM-CLASS-ACTIVE} {
-            background-color: #{$COLOR-ITEM-CLICK};
-          }
-      }
-    }
+    @import 'list';
 
   }
 
