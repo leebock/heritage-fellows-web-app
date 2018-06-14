@@ -98,6 +98,8 @@
         "Helper": false,
         "SummaryTable": false,
         "OVBar": false,
-        "ArtistRecord": false
+        "ProfileDisplay": false,
+        "ArtistRecord": false,
+        "MediaRecord": false
 	}        // additional predefined global variables
 }

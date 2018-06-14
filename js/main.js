@@ -17,13 +17,6 @@
 	const SPREADSHEET_URL_ARTISTS = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
 	const SPREADSHEET_URL_WORKS = "https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
 
-	const FIELDNAME_WORKS$ARTIST = "Artist-id";
-	const FIELDNAME_WORKS$MEDIA_TYPE = "Media-type";
-	const FIELDNAME_WORKS$TITLE = "Title";
-	const FIELDNAME_WORKS$LINK = "Link";
-	const FIELDNAME_WORKS$THUMBNAIL = "Thumbnail";
-	const FIELDNAME_WORKS$DISPLAY_ORDER = "Display Order";
-
 	const BNDS = {
 		ov48: [[25, -126],[49,-65]],
 		ovAK: [[54, -168],[72, -127]],
@@ -37,6 +30,7 @@
 
 	var _map;
 	var _ovBar;
+	var _profileDisplay = new ProfileDisplay();
 
 	var _recordsArtists;			
 	var _recordsWorks;	
@@ -124,7 +118,13 @@
 			{
 				header: true,
 				download: true,
-				complete: function(data){_recordsWorks = data.data;finish();}
+				complete: function(data){
+					_recordsWorks = $.map(
+						data.data,
+						function(value){return new MediaRecord(value);}
+					);
+					finish();
+				}
 			}
 		);
 
@@ -434,100 +434,34 @@
 
 	}
 
-	function setBio(rec) {
+	function setBio(recArtist) {
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
-		$("#bio h3#fellow-name").text(rec.getFirstName()+" "+rec.getLastName());
-		$("#bio h4#bio-tradition").text(rec.getTradition() ? rec.getTradition() : "Lorem Ipsum");
-		$("#bio h4#bio-awardyear").text(rec.getAwardYear()+" NEA National Heritage Fellow");
-		$("#bio h4#bio-placename").text(rec.getLocationDisplayName());
 
-		var s = rec.getBio();
-		if (s.trim() === "") {
-			s = "Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.";
-		}
-
-		$("#bio #scrollable").empty();
-
-		var textarea = $("<div>").attr("id", "textarea")
-			.append($("<div>").attr("id", "portrait").css("background-image", "url('"+getPortrait(rec.getFullName())+"')"))
-			.append($("<h5>").attr("id", "quotation").html(rec.getQuotation() ? rec.getQuotation() : "Gaudeamus igitur Iuvenes dum sumus. Post iucundam iuventutem. Post molestam senectutem. Nos habebit humus."))
-			.append($("<p>").html(s));
-
-		$("#bio #scrollable").append(textarea);
-		var gallery = $("<div>").attr("id", "gallery");
-		$("#bio #scrollable").append(gallery);
-
-		$.grep(
-			_recordsWorks, 
-			function(value) {
-				return value[FIELDNAME_WORKS$ARTIST] === rec.getFullName() && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Object";
-			}
-		)
-		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
-		.forEach(
-			function(value) {
-				$(gallery).append(
-					$("<section>")
-						.append($("<img>").attr("src", value[FIELDNAME_WORKS$LINK]))
-						.append($("<p>").html(value[FIELDNAME_WORKS$TITLE]))
-				);
-			}
-		);
-
-		$.grep(
-			_recordsWorks,
-			function(value) {
-				return value[FIELDNAME_WORKS$ARTIST] === rec.getFullName() && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Audio";	
-			}
-		)
-		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
-		.forEach(
-			function(value) {
-				$(gallery).append(
-					$("<section>")
-						.append($("<audio>")
-							.addClass("player")
-							.append($("<source>").attr("src", value[FIELDNAME_WORKS$LINK])))
-						.append($("<p>").html(value[FIELDNAME_WORKS$TITLE]))
-				);
-			}
-		);
-
-		$.grep(
-			_recordsWorks,
-			function(value) {
-				return value[FIELDNAME_WORKS$ARTIST] === rec.getFullName() && value[FIELDNAME_WORKS$MEDIA_TYPE] === "Video";	
-			}
-		)
-		.sort(function(a,b){return a[FIELDNAME_WORKS$DISPLAY_ORDER] - b[FIELDNAME_WORKS$DISPLAY_ORDER];})
-		.forEach(
-			function(value) {
-				$(gallery).append(
-					$("<section>")
-						.append(
-							$("<div>").addClass("video-container")
-								.append(
-									$("<iframe>")
-										.attr("src", "https://player.vimeo.com/video/"+value[FIELDNAME_WORKS$LINK])
-										.attr("frameborder", 0)
-										/*.attr("allowfullscreen", '')*/
-								)
-						)
-						.append($("<p>").html(value[FIELDNAME_WORKS$TITLE]))
-				);
-			}
-		);
-
-		setTimeout(
-			function(){
-				var players = document.getElementsByClassName("player");
-				for (var i = 0; i < players.length; i++) {
-					players[i].controls = true;
-					players[i].load();
+		_profileDisplay.update(
+			recArtist, 
+			getPortrait(recArtist.getFullName()),
+			$.grep(
+				_recordsWorks, 
+				function(recMedia) {
+					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Object";
 				}
-			}, 
-			1000
+			)
+			.sort(function(a,b){return a.getDisplayOrder() - b.getDisplayOrder();}),
+			$.grep(
+				_recordsWorks,
+				function(recMedia) {
+					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Audio";	
+				}
+			)
+			.sort(function(a,b){return a.getDisplayOrder() - b.getDisplayOrder();}),
+			$.grep(
+				_recordsWorks,
+				function(recMedia) {
+					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.getMediaType() === "Video";	
+				}
+			)
+			.sort(function(a,b){return a.getDisplayOrder() - b.getDisplayOrder();})			
 		);
 		
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
@@ -545,7 +479,7 @@
 		var works = $.grep(
 			_recordsWorks, 
 			function(value) {
-				return value[FIELDNAME_WORKS$ARTIST] === artistName;
+				return value.getArtistID() === artistName;
 			}
 		);
 
@@ -553,14 +487,14 @@
 			var portraits = $.grep(
 				works, 
 				function(value) {
-					return value[FIELDNAME_WORKS$MEDIA_TYPE].toLowerCase() === "portrait";
+					return value.getMediaType().toLowerCase() === "portrait";
 				}
 			);
 
 			if (portraits.length) {
 				portrait = thumbNail ? 
-						   portraits[0][FIELDNAME_WORKS$THUMBNAIL] : 
-						   portraits[0][FIELDNAME_WORKS$LINK];
+						   portraits[0].getThumbnail() : 
+						   portraits[0].getLink();
 			}
 		}
 
