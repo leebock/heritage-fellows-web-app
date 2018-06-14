@@ -470,22 +470,14 @@
 
 		const PLACEHOLDER_PORTRAIT = "resources/no-image.gif";	
 
-		var portrait = PLACEHOLDER_PORTRAIT;
-
-		var portraits = $.grep(
+		var match = $.grep(
 			_recordsWorks, 
 			function(value) {
 				return value.getArtistID() === artistName && value.isPortrait();
 			}
-		);
+		).shift();
 
-		if (portraits.length) {
-			portrait = bThumbNail ? 
-					   portraits[0].getThumbnail() : 
-					   portraits[0].getLink();
-		}
-
-		return portrait;
+		return match ? (bThumbNail ? match.getThumbnail() : match.getLink()) : PLACEHOLDER_PORTRAIT;
 
 	}
 
