@@ -89,14 +89,14 @@ a {
   box-shadow: 5px 5px 10px #888888; 
   
   z-index: 1001;
-  color: #{$COLOR-LIST-TEXT};
   background-color: #{$COLOR-PANEL-BACKGROUND};  
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
+  color: #696969;
 
   -webkit-transition: width 1s; /* For Safari 3.1 to 6.0 */
   transition: width 1s;  
@@ -182,8 +182,7 @@ a {
 
   #search {
 
-    padding: 10px;
-    color: #{$COLOR-FILTER-TEXT};
+    padding: 5px;
 
     #{$GLOBAL-CLASS-FILTER_LOCATION} & {
       display: none;
@@ -238,7 +237,6 @@ a {
     div:nth-child(2) {
       margin-top: 5px;
       font-style: italic;
-      color: #696969;
       font-size: 15px;
     }
 
@@ -279,6 +277,10 @@ a {
 
   }    
 
+  #list, #bio {
+    color: #{$COLOR-LIST-TEXT};
+  }
+
   #list {
     
     flex-grow: 1;
@@ -289,13 +291,13 @@ a {
     list-style-type: none;   
     -webkit-margin-before: 0px;
     -webkit-margin-after: 0px;
-    -webkit-margin-start: 5px;
-    -webkit-margin-end: 5px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
     -webkit-padding-start: 0px;
     -moz-margin-start: 0px;
     -moz-margin-end: 0px;
-    -moz-padding-start: 5px;
-    -moz-padding-end: 5px;
+    -moz-padding-start: 0px;
+    -moz-padding-end: 0px;
 
     @import 'list';
 
@@ -333,6 +335,11 @@ a {
 
     @import 'bio';
 
+  }
+
+  #foot-note {
+    padding-top: 5px;
+    font-size: 14px;
   }
 
 } 

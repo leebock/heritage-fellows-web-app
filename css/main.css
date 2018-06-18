@@ -101,14 +101,14 @@ a {
   top: 80px;
   box-shadow: 5px 5px 10px #888888;
   z-index: 1001;
-  color: black;
   background-color: #ded4c7;
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  padding: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
+  color: #696969;
   -webkit-transition: width 1s;
   /* For Safari 3.1 to 6.0 */
   transition: width 1s; }
@@ -162,8 +162,7 @@ a {
   #list-container a.x-button:before {
     content: "\00d7"; }
   #list-container #search {
-    padding: 10px;
-    color: #5ea7e6;
+    padding: 5px;
     /* div:nth-child(1) */ }
     .state-filter-location #list-container #search {
       display: none; }
@@ -201,7 +200,6 @@ a {
     #list-container #search div:nth-child(2) {
       margin-top: 5px;
       font-style: italic;
-      color: #696969;
       font-size: 15px; }
   #list-container .filter-display-location {
     /* note: for some reason, toggling the display
@@ -225,6 +223,8 @@ a {
     #list-container .filter-display-location a.x-button {
       margin-left: -30px;
       margin-top: 3px; }
+  #list-container #list, #list-container #bio {
+    color: black; }
   #list-container #list {
     flex-grow: 1;
     overflow-y: auto;
@@ -233,13 +233,13 @@ a {
     list-style-type: none;
     -webkit-margin-before: 0px;
     -webkit-margin-after: 0px;
-    -webkit-margin-start: 5px;
-    -webkit-margin-end: 5px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
     -webkit-padding-start: 0px;
     -moz-margin-start: 0px;
     -moz-margin-end: 0px;
-    -moz-padding-start: 5px;
-    -moz-padding-end: 5px;
+    -moz-padding-start: 0px;
+    -moz-padding-end: 0px;
     /* css for list internals */ }
     #list-container #list li {
       padding: 7px;
@@ -357,6 +357,9 @@ a {
       justify-content: flex-end; }
       #list-container #bio div#bio-social a:first-child {
         margin-right: 10px; }
+  #list-container #foot-note {
+    padding-top: 5px;
+    font-size: 14px; }
 
 div#ovBar {
   display: flex; }
