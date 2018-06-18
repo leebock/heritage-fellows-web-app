@@ -2,13 +2,18 @@
 
 div#bio-header {
 
+  flex-shrink: 0;
+
   display: flex;
+  padding-bottom: 5px;
+  border-style: none;
+  border-bottom-style: solid;
+  border-width: 2px;
+  border-color: #6c6555;
 
   h3#fellow-name {
     flex: 1;
-    margin-bottom: 5px;
-    margin-top: -10px;
-    padding-bottom: 0px;
+    margin: 0px;
     color: #4a4339;    
     font-family: 'Tinos', sans-serif;
     font-size: 36px;
@@ -16,19 +21,13 @@ div#bio-header {
   }
 
   a.x-button {
-    margin-top: -18px;
+    margin-top: -14px;
+    height: 30px;
     font-size: 40px;
-    color: #a2988c;
+    color: #6c6555;
     font-weight: 400;
   }
 
-}
-
-hr {
-  border-style: solid;
-  border-color: #a2988c;
-  width: 100%;
-  margin-top: 8px;
 }
 
 h4 {
