@@ -272,7 +272,7 @@ a {
     width: calc(100% - 20px);
     height: calc(100% - 10px);
     padding: 10px;
-    background-color: #ded4c7;
+    background-color: #c9bdad;
     display: flex;
     flex-direction: column;
     left: 100%;
@@ -294,8 +294,10 @@ a {
         margin-bottom: 5px;
         margin-top: -10px;
         padding-bottom: 0px;
+        color: #4a4339;
+        font-family: 'Tinos', sans-serif;
         font-size: 36px;
-        font-style: italic; }
+        font-weight: normal; }
       #list-container #bio div#bio-header a.x-button {
         margin-top: -18px;
         font-size: 40px;
@@ -327,7 +329,9 @@ a {
         background-size: contain;
         background-repeat: no-repeat; }
       #list-container #bio div#scrollable #textarea h5#quotation {
-        font-weight: 400;
+        color: #4a4339;
+        font-family: 'Tinos', sans-serif;
+        font-weight: normal;
         font-size: 16px;
         font-style: italic; }
       #list-container #bio div#scrollable #gallery {

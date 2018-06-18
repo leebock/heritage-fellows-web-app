@@ -9,8 +9,10 @@ div#bio-header {
     margin-bottom: 5px;
     margin-top: -10px;
     padding-bottom: 0px;
+    color: #4a4339;
+    font-family: 'Tinos', sans-serif;
     font-size: 36px;
-    font-style: italic;
+    font-weight: normal;
   }
 
   a.x-button {
@@ -61,7 +63,9 @@ div#scrollable {
     }
 
     h5#quotation {
-      font-weight: 400;
+      color: #4a4339;
+      font-family: 'Tinos', sans-serif;
+      font-weight: normal;
       font-size: 16px;
       font-style: italic;
     }
