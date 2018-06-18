@@ -10,8 +10,8 @@ $LISTITEM-CLASS-ACTIVE: ".active";
 
 $COLOR-FILTER-TEXT: "#5ea7e6";
 $COLOR-LIST-TEXT: "black";
-$COLOR-PANEL-BACKGROUND: "#ded4c8";
-$COLOR-ITEM-MOUSEOVER: "goldenrod";
+$COLOR-PANEL-BACKGROUND: "#ded4c7";
+$COLOR-ITEM-MOUSEOVER: "#c8b9a6";
 $COLOR-ITEM-CLICK: "brown";
 
 html {
@@ -86,13 +86,15 @@ a {
   height: calc(100% - 110px);
   right: 20px;
   top: 80px;
+  box-shadow: 5px 5px 10px #888888; 
   
   z-index: 1001;
   color: #{$COLOR-LIST-TEXT};
   background-color: #{$COLOR-PANEL-BACKGROUND};  
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  padding: 5px;
+  padding-bottom: 10px;
   border-radius: 10px;
   overflow: hidden;
 
@@ -181,50 +183,63 @@ a {
   #search {
 
     padding: 10px;
-    height: 60px;
-    display: flex;
     color: #{$COLOR-FILTER-TEXT};
 
     #{$GLOBAL-CLASS-FILTER_LOCATION} & {
       display: none;
     }
+  
+    div:nth-child(1) {
 
-    input::-webkit-input-placeholder {
-      color: #{$COLOR-PANEL-BACKGROUND} !important;
-      font-style: italic;
-    }
-     
-    input:-moz-placeholder { /* Firefox 18- */
-      color: #{$COLOR-PANEL-BACKGROUND} !important;  
-      font-style: italic;
-    }
-     
-    input::-moz-placeholder {  /* Firefox 19+ */
-      color: #{$COLOR-PANEL-BACKGROUND} !important;  
-      font-style: italic;
-    }
-     
-    input:-ms-input-placeholder {  
-      color: #{$COLOR-PANEL-BACKGROUND} !important;  
-      font-style: italic;
-    }      
+      display: flex;
+      height: 40px;
 
-    input {
-      font-weight: bold;
-      width: 100%;
-      height: 100%;
-      border-style: groove;
-      padding-left: 5px;
-      font-size: 16px;
-      color: #{$COLOR-FILTER-TEXT};
-    }
-
-    a.x-button {
-      margin-left: -30px;
-      visibility: hidden;
-      #{$GLOBAL-CLASS-FILTER_TEXT} & {
-        visibility: visible;
+      input {
+        font-weight: bold;
+        width: 100%;
+        height: 100%;
+        border-style: groove;
+        padding-left: 5px;
+        font-size: 16px;
+        color: #{$COLOR-FILTER-TEXT};
+        background-color: #faf0e6;
       }
+
+      input::-webkit-input-placeholder {
+        color: #a8a8a8;
+        font-style: italic;
+      }
+       
+      input:-moz-placeholder { /* Firefox 18- */
+        color: #a8a8a8;
+        font-style: italic;
+      }
+       
+      input::-moz-placeholder {  /* Firefox 19+ */
+        color: #a8a8a8;
+        font-style: italic;
+      }
+       
+      input:-ms-input-placeholder {  
+        color: #a8a8a8;
+        font-style: italic;
+      }    
+
+      a.x-button {
+        margin-left: -30px;
+        visibility: hidden;
+        #{$GLOBAL-CLASS-FILTER_TEXT} & {
+          visibility: visible;
+        }
+      }
+
+    } /* div:nth-child(1) */
+
+    div:nth-child(2) {
+      margin-top: 5px;
+      font-style: italic;
+      color: #696969;
+      font-size: 15px;
     }
 
   }
@@ -274,13 +289,13 @@ a {
     list-style-type: none;   
     -webkit-margin-before: 0px;
     -webkit-margin-after: 0px;
-    -webkit-margin-start: 15px;
-    -webkit-margin-end: 15px;
+    -webkit-margin-start: 5px;
+    -webkit-margin-end: 5px;
     -webkit-padding-start: 0px;
     -moz-margin-start: 0px;
     -moz-margin-end: 0px;
-    -moz-padding-start: 15px;
-    -moz-padding-end: 15px;
+    -moz-padding-start: 5px;
+    -moz-padding-end: 5px;
 
     @import 'list';
 
