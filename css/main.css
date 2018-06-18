@@ -340,7 +340,9 @@ a {
         #list-container #bio div#scrollable #gallery p {
           font-style: italic;
           font-size: 15px;
-          width: 100%; }
+          width: 100%;
+          margin-top: 5px;
+          margin-bottom: 20px; }
         #list-container #bio div#scrollable #gallery div.video-container {
           padding: 55.47% 0 0 0;
           position: relative; }
