@@ -270,7 +270,7 @@ a {
     position: absolute;
     z-index: 1;
     width: calc(100% - 20px);
-    height: calc(100% - 10px);
+    height: calc(100% - 20px);
     padding: 10px;
     background-color: #c9bdad;
     display: flex;
@@ -310,7 +310,7 @@ a {
       margin-top: 8px; }
     #list-container #bio h4 {
       margin: 0px;
-      color: #a2988c; }
+      color: #6c6555; }
     #list-container #bio h4#bio-tradition {
       margin-top: 5px;
       margin-bottom: 5px;
