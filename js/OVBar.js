@@ -51,16 +51,12 @@ function OVBar(_div, BNDS)
 			}
 		);
 
-		console.log("overlaps: ", overlaps);
-
 		var contains = $.grep(
 			overlaps, 
 			function(key){
 				return L.latLngBounds(BNDS[key]).contains(visibleBounds.getCenter());
 			}
 		);
-
-		console.log("contains: ", contains);
 
 		var active;
 
@@ -71,8 +67,6 @@ function OVBar(_div, BNDS)
 				active = overlaps;
 			}
 		}
-
-		console.log(active);
 
 		if (active) {
 			$($(_div).find("div.ov#"+active)).addClass("selected");
