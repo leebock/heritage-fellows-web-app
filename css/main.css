@@ -259,7 +259,7 @@ a {
         font-size: 13px; }
         #list-container #list li div.info div:nth-child(1) {
           font-weight: bold;
-          font-size: 14px; }
+          font-size: 16px; }
         #list-container #list li div.info div:nth-child(3) {
           font-weight: bold; }
     .hover-capable #list-container #list li:hover {
