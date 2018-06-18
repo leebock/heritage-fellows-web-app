@@ -32,15 +32,16 @@ div#bio-header {
 }
 
 h4 {
+  padding-left: 20px;
   margin: 0px;
   color: #6c6555;
+
+  &#bio-tradition {
+    color: black;
+  }
+
 }    
 
-h4#bio-tradition {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: black;
-}
 
 div#scrollable {
 

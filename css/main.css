@@ -309,12 +309,11 @@ a {
         color: #6c6555;
         font-weight: 400; }
     #list-container #bio h4 {
+      padding-left: 20px;
       margin: 0px;
       color: #6c6555; }
-    #list-container #bio h4#bio-tradition {
-      margin-top: 5px;
-      margin-bottom: 5px;
-      color: black; }
+      #list-container #bio h4#bio-tradition {
+        color: black; }
     #list-container #bio div#scrollable {
       margin-top: 10px;
       overflow-y: auto;
