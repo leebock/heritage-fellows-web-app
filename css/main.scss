@@ -312,7 +312,7 @@ a {
     height: calc(100% - 20px);
     padding: 10px;
 
-    background-color: #c9bdad;
+    background-color: #{$COLOR-PANEL-BACKGROUND};  
 
     display: flex;
     flex-direction: column;
