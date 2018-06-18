@@ -17,7 +17,7 @@ function ProfileDisplay(div)
 		$("#bio #scrollable").empty();
 
 		var textarea = $("<div>").attr("id", "textarea")
-			.append($("<div>").attr("id", "portrait").css("background-image", "url('"+portrait+"')"))
+			.append($("<img>").attr("id", "portrait").attr("src", portrait))
 			.append($("<h5>").attr("id", "quotation").html(rec.getQuotation() ? rec.getQuotation() : "Gaudeamus igitur Iuvenes dum sumus. Post iucundam iuventutem. Post molestam senectutem. Nos habebit humus."))
 			.append($("<p>").html(s));
 

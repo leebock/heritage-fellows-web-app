@@ -6,6 +6,7 @@ div#bio-header {
 
   display: flex;
   padding-bottom: 5px;
+
   border-style: none;
   border-bottom-style: solid;
   border-width: 2px;
@@ -52,12 +53,9 @@ div#scrollable {
  
   #textarea {
 
-    div#portrait {
+    img#portrait {
       width: 100%;
-      height: 50vh;
-      background-position: center;
-      background-size: contain;
-      background-repeat: no-repeat;
+      height: auto;
     }
 
     h5#quotation {
