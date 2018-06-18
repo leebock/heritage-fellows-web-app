@@ -44,7 +44,7 @@ function ProfileDisplay(div)
 							$("<audio>").addClass("player")
 							.append($("<source>").attr("src", recMedia.getLink()))
 						)
-						.append($("<p>").html(recMedia.getTitle()))
+						.append($("<p>").html("Audio Sample: "+recMedia.getTitle()))
 				);
 			}
 		);
@@ -62,7 +62,7 @@ function ProfileDisplay(div)
 										/*.attr("allowfullscreen", '')*/
 								)
 						)
-						.append($("<p>").html(recMedia.getTitle()))
+						.append($("<p>").html("Video Sample: "+recMedia.getTitle()))
 				);
 			}
 		);
