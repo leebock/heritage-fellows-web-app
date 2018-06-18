@@ -11,6 +11,8 @@ div#ovBar {
     background-size: cover;
     background-repeat: no-repeat;
     border: solid;
+    border-color: #8aaca2;
+    border-width: 1px;
     cursor: pointer;
     
     &:before {
@@ -33,10 +35,6 @@ div#ovBar {
 
     &#ovPR {
       background-image: url("../resources/images/ov-pr.png");
-    }
-
-    &#ovNM {
-      background-image: url("../resources/images/ov-nm.png");
     }
 
     div.veil {
