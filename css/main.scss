@@ -86,7 +86,7 @@ a {
   height: calc(100% - 110px);
   right: 20px;
   top: 80px;
-  box-shadow: 5px 5px 10px #888888; 
+  box-shadow: 0px 0px 10px 6px rgba(0, 0, 0, 0.2); 
   
   z-index: 1001;
   background-color: #{$COLOR-PANEL-BACKGROUND};  
