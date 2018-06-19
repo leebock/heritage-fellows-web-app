@@ -46,7 +46,12 @@
 			if ($("html body").hasClass(GLOBAL_CLASS_BIO))
 			{
 				if (event.which === 27) {
-					$("html body").removeClass(GLOBAL_CLASS_BIO);
+					clearBio();
+					if (_selection && _selection.length === 1 && _filterLocation) {
+						clearLocationFilter();
+					} else {
+						clearActive();
+					}
 				}
 				return;
 			}
