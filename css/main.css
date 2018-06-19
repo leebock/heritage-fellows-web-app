@@ -195,8 +195,6 @@ a {
       #list-container #search div:nth-child(1) a.x-button {
         margin-left: -30px;
         visibility: hidden; }
-        .state-filter-text #list-container #search div:nth-child(1) a.x-button {
-          visibility: visible; }
     #list-container #search div:nth-child(2) {
       margin-top: 5px;
       font-style: italic;

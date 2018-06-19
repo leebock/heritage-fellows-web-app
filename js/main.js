@@ -8,7 +8,6 @@
 	const LISTCONTAINER_CLASS_UP = "table-up";
 
 	const GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
-	const GLOBAL_CLASS_FILTER$TEXT = "state-filter-text";
 
 	const GLOBAL_CLASS_BIO = "state-bio";
 
@@ -24,6 +23,7 @@
 		ovPR: [[17.5,-67.5],[19,-64.5]]
 	};
 
+	var _filterText;
 	var _filterLocation;
 	var _filterDisplayName;
 
@@ -74,9 +74,11 @@
 			).addTo(_map);
 		}
 
-		$("#search input").on("keyup", onInputKeyUp);	
+		$(new TextSearch())
+		.on("change", onTextSearchChange)
+		.on("clear", onTextSearchClear);
+
 		$(".filter-display-location .x-button").click(clearLocationFilter);
-		$("#search .x-button").click(clearTextFilter);			
 		$("#bio .x-button").click(function(){
 			clearBio();
 			if (_selection && _selection.length === 1 && _filterLocation) {
@@ -170,8 +172,9 @@
 	********************** EVENTS that affect selection ************************
 	***************************************************************************/
 
-	function onInputKeyUp(e)
+	function onTextSearchChange(event, value)
 	{
+		_filterText = value;
 		clearActive();
 		updateFilter();
 	}
@@ -209,9 +212,9 @@
 	}
 
 
-	function clearTextFilter()
+	function onTextSearchClear()
 	{
-		$("#search input").val("");
+		_filterText = null;
 		updateFilter();	
 		if (!_filterLocation) {
 			_map.closePopup();	
@@ -368,11 +371,8 @@
 		clearBio();
 		_selection = _recordsArtists;
 
-		if ($.trim($("#search input").val()).length > 0) {
-			$("html body").addClass(GLOBAL_CLASS_FILTER$TEXT);
-			_selection = filterByText(_selection);
-		} else {
-			$("html body").removeClass(GLOBAL_CLASS_FILTER$TEXT);
+		if (_filterText) {
+			_selection = filterByText(_selection, _filterText);
 		}
 
 		_map.loadMarkers(_selection);
@@ -389,13 +389,13 @@
 		loadList(_selection);
 		$("#list").scrollTop(0);
 
-		function filterByText(recs)
+		function filterByText(recs, filterText)
 		{
 			return $.grep(
 				recs, 
 				function(value) {
-					return value.getFirstName().toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1 ||
-							value.getLastName().toLowerCase().indexOf($("#search input").val().toLowerCase()) > -1;
+					return value.getFirstName().toLowerCase().indexOf(filterText.toLowerCase()) > -1 ||
+							value.getLastName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
 				}
 			);
 		}

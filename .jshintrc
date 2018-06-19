@@ -101,6 +101,7 @@
         "ProfileDisplay": false,
         "ArtistRecord": false,
         "MediaRecord": false,
-        "SummaryRecord": false
+        "SummaryRecord": false,
+        "TextSearch": false
 	}        // additional predefined global variables
 }
