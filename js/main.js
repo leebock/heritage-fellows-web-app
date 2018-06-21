@@ -394,8 +394,12 @@
 			return $.grep(
 				recs, 
 				function(value) {
-					return value.getFirstName().toLowerCase().indexOf(filterText.toLowerCase()) > -1 ||
-							value.getLastName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
+					var testFirstName = value.getFirstName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
+					var testLastName = value.getLastName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
+					var testTradition = value.getTradition().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
+					var testLocation = value.getLocationDisplayName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
+					var testYear = value.getAwardYear().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
+					return testFirstName || testLastName || testTradition || testLocation || testYear;
 				}
 			);
 		}
@@ -416,13 +420,25 @@
 			$.each(
 				recs, 
 				function(index, value) {
+					var firstName = value.getFirstName();
+					var lastName = value.getLastName();
+					var tradition = value.getTradition() ? value.getTradition() : "Lorem ipsum";
+					var location = value.getLocationDisplayName();
+					var year = value.getAwardYear();
+					if (_filterText) {
+						firstName = firstName.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
+						lastName = lastName.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
+						tradition = tradition.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
+						location = location.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
+						year = year.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
+					}
 					$("#list").append(
 						$("<li>")
 							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(value.getFullName(), true)+"')"))
 							.append($("<div>").addClass("info")
-								.append($("<div>").text(value.getFirstName()+" "+value.getLastName()))
-								.append($("<div>").text(value.getTradition() ? value.getTradition() : "Lorem ipsum"))								
-								.append($("<div>").text(value.getAwardYear()+" | "+value.getLocationDisplayName()))
+								.append($("<div>").html(firstName+" "+lastName))
+								.append($("<div>").html(tradition))								
+								.append($("<div>").html(year+" | "+location))
 							)
 							.attr("storymaps-id", value.getID())
 					);
