@@ -204,7 +204,6 @@
 
 	}
 
-
 	function clearLocationFilter()
 	{
 		_filterLocation = null;
@@ -222,6 +221,60 @@
 		}
 	}	
 
+	/***************************************************************************
+	********************** selection controller FUNCTION ***********************
+	***************************************************************************/
+
+	function updateFilter()
+	{
+
+		clearBio();
+		_selection = _recordsArtists;
+
+		if (_filterText) {
+			_selection = filterByText(_selection, _filterText);
+		}
+
+		_map.loadMarkers(_selection);
+
+		if (_filterLocation) {
+			_selection = filterByLocation(_selection);
+			$("html body").addClass(GLOBAL_CLASS_FILTER$LOCATION);	
+			$(".filter-display-location .filter-text").text(_filterDisplayName);		
+		} else {
+			$("html body").removeClass(GLOBAL_CLASS_FILTER$LOCATION);
+			$(".filter-display-location .filter-text").text("Showing All Locations");					
+		}		
+
+		_table.load(_selection, _filterText);
+
+		function filterByText(recs, filterText)
+		{
+			return $.grep(
+				recs, 
+				function(value) {
+					return [
+						value.getFirstName(), 
+						value.getLastName(), 
+						value.getTradition(), 
+						value.getLocationDisplayName(), 
+						value.getAwardYear()
+					].join().search(RegExp(filterText, "ig")) > -1;
+				}
+			);
+		}
+
+		function filterByLocation(recs)
+		{
+			return $.grep(
+				recs, 
+				function(value, index) {
+					return value.getStandardizedLocation() === _filterLocation;
+				}
+			);
+		}
+
+	}
 
 	/***************************************************************************
 	**************************** EVENTS (other) ********************************
@@ -361,58 +414,6 @@
 		return $("div#map").height() * pct;
 	}
 
-
-	function updateFilter()
-	{
-
-		clearBio();
-		_selection = _recordsArtists;
-
-		if (_filterText) {
-			_selection = filterByText(_selection, _filterText);
-		}
-
-		_map.loadMarkers(_selection);
-
-		if (_filterLocation) {
-			_selection = filterByLocation(_selection);
-			$("html body").addClass(GLOBAL_CLASS_FILTER$LOCATION);	
-			$(".filter-display-location .filter-text").text(_filterDisplayName);		
-		} else {
-			$("html body").removeClass(GLOBAL_CLASS_FILTER$LOCATION);
-			$(".filter-display-location .filter-text").text("Showing All Locations");					
-		}		
-
-		_table.load(_selection, _filterText);
-
-		function filterByText(recs, filterText)
-		{
-			return $.grep(
-				recs, 
-				function(value) {
-					return [
-						value.getFirstName(), 
-						value.getLastName(), 
-						value.getTradition(), 
-						value.getLocationDisplayName(), 
-						value.getAwardYear()
-					].join().search(RegExp(filterText, "ig")) > -1;
-				}
-			);
-		}
-
-		function filterByLocation(recs)
-		{
-			return $.grep(
-				recs, 
-				function(value, index) {
-					return value.getStandardizedLocation() === _filterLocation;
-				}
-			);
-		}
-
-	}
-
 	function setBio(recArtist) {
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
@@ -480,7 +481,6 @@
 
 	}
 
-
 	function tweetBio()
 	{
 
@@ -531,6 +531,5 @@
 		return $("html body").hasClass(GLOBAL_CLASS_SMALL) && 
 			!$("#list-container").hasClass(LISTCONTAINER_CLASS_UP);
 	}
-
 
 })();
