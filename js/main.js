@@ -390,12 +390,13 @@
 			return $.grep(
 				recs, 
 				function(value) {
-					var testFirstName = value.getFirstName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
-					var testLastName = value.getLastName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
-					var testTradition = value.getTradition().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
-					var testLocation = value.getLocationDisplayName().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
-					var testYear = value.getAwardYear().toLowerCase().indexOf(filterText.toLowerCase()) > -1;
-					return testFirstName || testLastName || testTradition || testLocation || testYear;
+					return [
+						value.getFirstName(), 
+						value.getLastName(), 
+						value.getTradition(), 
+						value.getLocationDisplayName(), 
+						value.getAwardYear()
+					].join().search(RegExp(filterText, "ig")) > -1;
 				}
 			);
 		}
