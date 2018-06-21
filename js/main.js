@@ -11,8 +11,6 @@
 
 	const GLOBAL_CLASS_BIO = "state-bio";
 
-	const LISTITEM_CLASS_ACTIVE = "active";
-
 	const SPREADSHEET_URL_ARTISTS = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
 	const SPREADSHEET_URL_WORKS = "https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
 
@@ -30,6 +28,7 @@
 	var _map;
 	var _ovBar;
 	var _profileDisplay = new ProfileDisplay();
+	var _table;
 
 	var _recordsArtists;			
 	var _recordsWorks;	
@@ -77,6 +76,8 @@
 		$(new TextSearch())
 		.on("change", onTextSearchChange)
 		.on("clear", onTextSearchClear);
+
+ 		_table = $(new Table($("ul#list").get(0), getPortrait)).on("itemActivate", table_onItemActivate).get(0);
 
 		$(".filter-display-location .x-button").click(clearLocationFilter);
 		$("#bio .x-button").click(function(){
@@ -196,7 +197,7 @@
 		if (_selection.length === 1) {
 			_active = _selection[0];
 			setBio(_active);
-			$("#list li:nth-child(1)").addClass(LISTITEM_CLASS_ACTIVE);
+			_table.activateItem(_active.getID());
 		}
 
 		showLocation(_filterDisplayName, e.layer.getLatLng(), true);
@@ -249,7 +250,7 @@
 
 	function clearActive()
 	{
-		$("#list li").removeClass(LISTITEM_CLASS_ACTIVE);	 	
+		_table.clearActive();
 		if (!_filterLocation) {
 			_map.closePopup();	
 		}
@@ -268,15 +269,13 @@
 		}
 	}
 
-	function onListEntryClick(e)
+	function table_onItemActivate(event, id)
 	{
-
-		clearActive();
 
 		_active = $.grep(
 			_recordsArtists,
 			function(value) {
-				return value.getID() === parseInt($(e.currentTarget).attr("storymaps-id"));
+				return value.getID() === id;
 			}
 		)[0];
 
@@ -292,8 +291,6 @@
 		} else {
 			showLocation(_active.getLocationDisplayName(), _active.getLatLng());
 		}
-
-		$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
 
 	}
 
@@ -386,8 +383,7 @@
 			$(".filter-display-location .filter-text").text("Showing All Locations");					
 		}		
 
-		loadList(_selection);
-		$("#list").scrollTop(0);
+		_table.load(_selection, _filterText);
 
 		function filterByText(recs, filterText)
 		{
@@ -412,41 +408,6 @@
 					return value.getStandardizedLocation() === _filterLocation;
 				}
 			);
-		}
-
-		function loadList(recs)
-		{
-			$("#list").empty();
-			$.each(
-				recs, 
-				function(index, value) {
-					var firstName = value.getFirstName();
-					var lastName = value.getLastName();
-					var tradition = value.getTradition() ? value.getTradition() : "Lorem ipsum";
-					var location = value.getLocationDisplayName();
-					var year = value.getAwardYear();
-					if (_filterText) {
-						firstName = firstName.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-						lastName = lastName.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-						tradition = tradition.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-						location = location.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-						year = year.replace(RegExp(_filterText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-					}
-					$("#list").append(
-						$("<li>")
-							.append($("<div>").addClass("thumb").css("background-image", "url('"+getPortrait(value.getFullName(), true)+"')"))
-							.append($("<div>").addClass("info")
-								.append($("<div>").html(firstName+" "+lastName))
-								.append($("<div>").html(tradition))								
-								.append($("<div>").html(year+" | "+location))
-							)
-							.attr("storymaps-id", value.getID())
-					);
-				}
-			);
-
-			$("#list li").click(onListEntryClick);
-
 		}
 
 	}

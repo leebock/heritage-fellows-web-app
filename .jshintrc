@@ -102,6 +102,7 @@
         "ArtistRecord": false,
         "MediaRecord": false,
         "SummaryRecord": false,
-        "TextSearch": false
+        "TextSearch": false,
+        "Table": false
 	}        // additional predefined global variables
 }
