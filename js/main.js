@@ -29,6 +29,7 @@
 	var _ovBar;
 	var _profileDisplay = new ProfileDisplay();
 	var _table;
+	var _textSearchWidget;
 
 	var _recordsArtists;			
 	var _recordsWorks;	
@@ -73,9 +74,9 @@
 			).addTo(_map);
 		}
 
-		$(new TextSearch())
+		_textSearchWidget = $(new TextSearch())
 		.on("change", onTextSearchChange)
-		.on("clear", onTextSearchClear);
+		.on("clear", onTextSearchClear).get(0);
 
  		_table = $(new Table($("ul#list").get(0), getPortrait)).on("itemActivate", table_onItemActivate).get(0);
 
@@ -148,6 +149,7 @@
 			}
 
 			fitBounds(BNDS.ov48);
+			_map.loadMarkers(_recordsArtists);
 			updateFilter();
 
 			/*  if there's an id in the url parameter, then initialize
@@ -190,8 +192,12 @@
 	function onMarkerClick(e)
 	{
 
-		_filterLocation = e.layer.properties.getStandardizedLocation();
-		_filterDisplayName = e.layer.properties.getDisplayName();
+		_filterLocation = e.record.getStandardizedLocation();
+		_filterDisplayName = e.record.getDisplayName();
+		if (e.ghost) {
+			_textSearchWidget.clear();
+			_filterText = null;
+		}
 		updateFilter();
 
 		if (_selection.length === 1) {
@@ -200,7 +206,7 @@
 			_table.activateItem(_active.getID());
 		}
 
-		showLocation(_filterDisplayName, e.layer.getLatLng(), true);
+		showLocation(_filterDisplayName, e.record.getLatLng(), true);
 
 	}
 
@@ -235,7 +241,7 @@
 			_selection = filterByText(_selection, _filterText);
 		}
 
-		_map.loadMarkers(_selection);
+		_map.addSpotlight(_selection);
 
 		if (_filterLocation) {
 			_selection = filterByLocation(_selection);

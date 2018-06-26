@@ -24,6 +24,12 @@ function TextSearch()
 		$(_self).trigger("clear");
 	}
 
+	this.clear = function()
+	{
+		$("#search .x-button").css("visibility", "hidden");
+		$("#search input").val("");	
+	};
+
 }
 
 TextSearch.prototype.foo = "foo";

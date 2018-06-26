@@ -5,8 +5,14 @@ L.HFMap = L.Map.extend({
   {
 
     L.Map.prototype.initialize.call(this, div, options);
-    
-    this._layerDots = L.featureGroup()
+
+    this.MARKER_OPACITY_DEFAULT = 0.4;
+
+    this._featureGroup = L.featureGroup()
+      .addTo(this)
+      .on("click", onLayerClick);
+
+    this._featureGroupActive = L.featureGroup()
       .addTo(this)
       .on("click", onLayerClick);
 
@@ -28,7 +34,7 @@ L.HFMap = L.Map.extend({
 
       $(".leaflet-tooltip").remove();
 
-      self.fire("markerClick", {layer: event.layer});
+      self.fire("markerClick", {record: event.layer.properties, ghost: event.target === self._featureGroup});
 
     }
 
@@ -41,11 +47,42 @@ L.HFMap = L.Map.extend({
 
   loadMarkers: function(recs)
   {
+    this._createMarkers(recs, this._featureGroup);
+  },
 
+  addSpotlight: function(recs)
+  {
 
-    var layerDots = this._layerDots;
+    var MARKER_OPACITY_SPOTLIGHT = 0.7;
+    var MARKER_OPACITY_GHOST = 0.4;
 
-    layerDots.clearLayers();
+    this._featureGroup.eachLayer(
+      function(layer) {
+        layer.setStyle({opacity: MARKER_OPACITY_GHOST, fillOpacity: MARKER_OPACITY_GHOST});
+      }
+    );
+
+    this._createMarkers(recs, this._featureGroupActive);
+
+    this._featureGroupActive.eachLayer(
+      function(layer) {
+        layer.setStyle({
+          opacity: MARKER_OPACITY_SPOTLIGHT, 
+          fillOpacity: MARKER_OPACITY_SPOTLIGHT,
+          color: "darkred",
+          fillColor: "red"
+        });
+      }
+    );
+
+  },
+
+  _createMarkers: function(recs, layerGroup)
+  {
+
+    var self = this;
+
+    layerGroup.clearLayers();
 
     var sumTable = this._createSummary(recs);
 
@@ -59,22 +96,13 @@ L.HFMap = L.Map.extend({
           {
             weight: 1,
             radius: 5+(frequency-1)*2,
-            color: "darkred",
-            fillColor: "red",
-            fillOpacity: 0.7
+            color: "darkgray",
+            fillColor: "gray",
+            fillOpacity: self.MARKER_OPACITY_DEFAULT
           }
-        ).addTo(layerDots);
+        ).addTo(layerGroup);
 
-        if (!L.Browser.mobile) {
-          var placename = rec.getStandardizedLocation().split(",")[0];
-          var tooltip;
-          if (frequency > 1) {
-            tooltip = placename+": "+frequency+" Artists";
-          } else {
-            tooltip = placename+": "+rec.getArtist();
-          }
-          marker.bindTooltip(tooltip);
-        }
+        marker.bindTooltip(rec.getStandardizedLocation().split(",").shift());
         marker.properties = rec;
       }
     );
