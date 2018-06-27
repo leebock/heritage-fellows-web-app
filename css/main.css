@@ -288,6 +288,7 @@ a {
     #list-container #bio div#bio-header {
       flex-shrink: 0;
       display: flex;
+      margin-left: 5px;
       padding-bottom: 5px;
       border-style: none;
       border-bottom-style: solid;
@@ -307,7 +308,7 @@ a {
         color: #6c6555;
         font-weight: 400; }
     #list-container #bio h4 {
-      padding-left: 20px;
+      padding-left: 10px;
       margin: 0px;
       color: #6c6555; }
       #list-container #bio h4#bio-tradition {
@@ -317,7 +318,7 @@ a {
       overflow-y: auto;
       overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
-      padding-left: 20px;
+      padding-left: 10px;
       padding-right: 20px; }
       #list-container #bio div#scrollable #textarea img#portrait {
         width: 100%;
