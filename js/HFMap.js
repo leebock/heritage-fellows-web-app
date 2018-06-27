@@ -101,8 +101,8 @@ L.HFMap = L.Map.extend({
             fillOpacity: self.MARKER_OPACITY_DEFAULT
           }
         ).addTo(layerGroup);
-
-        marker.bindTooltip(rec.getStandardizedLocation().split(",").shift());
+        // to do: turn off tool tips for touch environments.
+        marker.bindTooltip(rec.getStandardizedLocation().split(",").shift());          
         marker.properties = rec;
       }
     );
