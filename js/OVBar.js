@@ -58,15 +58,7 @@ function OVBar(_div, BNDS)
 			}
 		);
 
-		var active;
-
-		if (contains.length) {
-			active = contains;
-		} else {
-			if (overlaps.length) {
-				active = overlaps;
-			}
-		}
+		var active = contains.length ? contains.shift() : overlaps.shift();
 
 		if (active) {
 			$($(_div).find("div.ov#"+active)).addClass("selected");
