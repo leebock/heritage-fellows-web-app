@@ -303,7 +303,7 @@
 			})							
 		);
 
-		_ovBar.update(L.latLngBounds([ll,ur])); // pass visible bounds
+		_ovBar.update(L.latLngBounds(ll,ur)); // pass visible bounds
 
 	}
 
