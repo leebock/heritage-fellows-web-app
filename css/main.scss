@@ -6,13 +6,9 @@ $GLOBAL-CLASS-BIO: ".state-bio";
 
 $LISTCONTAINER_CLASS_UP: ".table-up";
 
-$LISTITEM-CLASS-ACTIVE: ".active";
-
 $COLOR-FILTER-TEXT: "#5ea7e6";
 $COLOR-LIST-TEXT: "black";
 $COLOR-PANEL-BACKGROUND: "#ded4c7";
-$COLOR-ITEM-MOUSEOVER: "#c8b9a6";
-$COLOR-ITEM-CLICK: "brown";
 
 html {
 	box-sizing: border-box;
@@ -233,25 +229,14 @@ a {
     color: #{$COLOR-LIST-TEXT};
   }
 
+  @import 'list';
+
   #list {
-    
+
     flex-grow: 1;
     overflow-y: auto;
     overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;    
-
-    list-style-type: none;   
-    -webkit-margin-before: 0px;
-    -webkit-margin-after: 0px;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 0px;
-    -moz-margin-start: 0px;
-    -moz-margin-end: 0px;
-    -moz-padding-start: 0px;
-    -moz-padding-end: 0px;
-
-    @import 'list';
+    -webkit-overflow-scrolling: touch;
 
   }
 

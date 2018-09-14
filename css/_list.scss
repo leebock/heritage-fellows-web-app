@@ -1,44 +1,63 @@
-/* css for list internals */
+$LISTITEM-CLASS-ACTIVE: ".active";
+$COLOR-ITEM-MOUSEOVER: "#c8b9a6";
+$COLOR-ITEM-CLICK: "brown";
 
-li {
+#list {
 
-  padding: 7px;
-  cursor: pointer;
-  display: flex;
+  list-style-type: none;   
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  -moz-margin-start: 0px;
+  -moz-margin-end: 0px;
+  -moz-padding-start: 0px;
+  -moz-padding-end: 0px;
 
-  &#{$LISTITEM-CLASS-ACTIVE} {
-    background-color: #{$COLOR-ITEM-CLICK};
+  li {
+
+    padding: 7px;
+    cursor: pointer;
+    display: flex;
+
+    &#{$LISTITEM-CLASS-ACTIVE} {
+      background-color: #{$COLOR-ITEM-CLICK};
+    }
+
+    div.thumb {
+      width: 90px;
+      height: 90px;
+      background-image: url("../resources/no-image.gif");
+      background-position: center;
+      background-size: cover;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+
+    div.info {
+      font-size: 13px;
+      div:nth-child(1) {
+        font-weight: bold;
+        font-size: 16px;
+      }        
+      div:nth-child(3) {
+        font-weight: bold;
+      }        
+    }
+
   }
 
-  div.thumb {
-    width: 90px;
-    height: 90px;
-    background-image: url("../resources/no-image.gif");
-    background-position: center;
-    background-size: cover;
-    margin-right: 8px;
-    flex-shrink: 0;
-  }
-
-  div.info {
-    font-size: 13px;
-    div:nth-child(1) {
-      font-weight: bold;
-      font-size: 16px;
-    }        
-    div:nth-child(3) {
-      font-weight: bold;
-    }        
+  #{$GLOBAL-CLASS-HOVER} & {
+    li:hover {
+        background-color: #{$COLOR-ITEM-MOUSEOVER};
+        &#{$LISTITEM-CLASS-ACTIVE} {
+          background-color: #{$COLOR-ITEM-CLICK};
+        }
+    }
   }
 
 }
 
-#{$GLOBAL-CLASS-HOVER} & {
-  li:hover {
-      background-color: #{$COLOR-ITEM-MOUSEOVER};
-      &#{$LISTITEM-CLASS-ACTIVE} {
-        background-color: #{$COLOR-ITEM-CLICK};
-      }
-  }
-}
+
 
