@@ -2,7 +2,8 @@
 
 	"use strict";
 
-	const GLOBAL_CLASS_SMALL = "small";	
+	const WIDTH_THRESHOLD = 750;
+
 	const GLOBAL_CLASS_HOVER = "hover-capable";
 
 	const LISTCONTAINER_CLASS_UP = "table-up";
@@ -135,9 +136,6 @@
 				}
 			}
 		);
-
-		$(window).resize(handleWindowResize);
-		handleWindowResize();
 
 		function finish()
 		{
@@ -320,14 +318,6 @@
 		$("html body").removeClass(GLOBAL_CLASS_BIO);
 	}
 
-	function handleWindowResize() {
-		if ($(window).width() <= 700) {
-			$("html body").addClass(GLOBAL_CLASS_SMALL);
-		} else {
-			$("html body").removeClass(GLOBAL_CLASS_SMALL);
-		}
-	}
-
 	function table_onItemActivate(event, id)
 	{
 
@@ -340,7 +330,7 @@
 
 		setBio(_active);
 
-		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
+		if ($(window).width() < WIDTH_THRESHOLD) {
 			if (!_filterLocation || isListRetracted()) {
 				// todo: pass keepZoom if current zoom is less than flyTo zoom?
 				showLocation(_active.getLocationDisplayName(), _active.getLatLng());
@@ -362,7 +352,7 @@
 
 		var options;
 
-		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
+		if ($(window).width() < WIDTH_THRESHOLD) {
 			options = {
 				paddingBottomRight:[0, calcBottom()]
 			};
@@ -390,7 +380,7 @@
 		var offsetX = 0;
 		var offsetY = 0;
 
-		if ($("html body").hasClass(GLOBAL_CLASS_SMALL)) {
+		if ($(window).width() < WIDTH_THRESHOLD) {
 			offsetY = calcBottom()/2;
 		} else {
 			offsetX = calcRight()/2;
@@ -534,7 +524,7 @@
 
 	function isListRetracted()
 	{
-		return $("html body").hasClass(GLOBAL_CLASS_SMALL) && 
+		return $(window).width() < WIDTH_THRESHOLD && 
 			!$("#list-container").hasClass(LISTCONTAINER_CLASS_UP);
 	}
 

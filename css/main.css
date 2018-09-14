@@ -115,23 +115,26 @@ a {
   .state-bio #list-container {
     width: 70%;
     max-width: 1000px; }
-  .small #list-container {
-    -webkit-transition: height 1s;
-    /* For Safari 3.1 to 6.0 */
-    transition: height 1s;
-    top: initial;
-    bottom: 0px;
-    right: initial;
-    border-bottom-right-radius: 0px;
-    border-bottom-left-radius: 0px;
-    width: 100%;
-    max-width: none;
-    min-width: initial;
-    height: 40%;
-    min-height: inherit;
-    overflow: visible; }
-    .small #list-container.table-up {
-      height: 70%; }
+  @media (max-width: 750px) {
+    #list-container {
+      -webkit-transition: height 1s;
+      /* For Safari 3.1 to 6.0 */
+      transition: height 1s;
+      top: initial;
+      bottom: 0px;
+      right: initial;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      width: 100%;
+      max-width: none;
+      min-width: initial;
+      height: 40%;
+      min-height: inherit;
+      overflow: visible; }
+      #list-container.table-up {
+        height: 70%;
+        width: 100%;
+        max-width: none; } }
   #list-container a#button-show {
     display: none;
     position: absolute;
@@ -143,8 +146,9 @@ a {
     box-sizing: border-box;
     background-color: #ded4c7;
     border-radius: 10px 10px 0px 0px; }
-    .small #list-container a#button-show {
-      display: block; }
+    @media (max-width: 750px) {
+      #list-container a#button-show {
+        display: block; } }
     #list-container a#button-show .fa {
       position: absolute;
       bottom: 0px;
@@ -210,8 +214,9 @@ a {
     padding: 5px;
     padding-right: 10px;
     color: #5ea7e6; }
-    .small #list-container .filter-display-location {
-      font-size: 16px; }
+    @media (max-width: 750px) {
+      #list-container .filter-display-location {
+        font-size: 16px; } }
     .state-filter-location #list-container .filter-display-location {
       display: flex; }
     #list-container .filter-display-location div.filter-text {
@@ -277,14 +282,15 @@ a {
     /* css for bio page internals */ }
     .state-bio #list-container #bio {
       left: 10px; }
-    .small #list-container #bio {
-      left: inherit;
-      top: 100%;
-      -webkit-transition: top 1s;
-      /* For Safari 3.1 to 6.0 */
-      transition: top 1s; }
-    .small.state-bio #list-container #bio {
-      top: 10px; }
+    @media (max-width: 750px) {
+      #list-container #bio {
+        left: inherit;
+        top: 100%;
+        -webkit-transition: top 1s;
+        /* For Safari 3.1 to 6.0 */
+        transition: top 1s; }
+        .state-bio #list-container #bio {
+          top: 10px; } }
     #list-container #bio div#bio-header {
       flex-shrink: 0;
       display: flex;
@@ -405,7 +411,8 @@ div#ovBar {
   z-index: 1000; }
   .state-bio div#ovBar {
     display: none; }
-  .small div#ovBar {
-    display: none; }
+  @media (max-width: 750px) {
+    div#ovBar {
+      display: none; } }
 
 /*# sourceMappingURL=main.css.map */
