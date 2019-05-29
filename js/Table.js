@@ -25,6 +25,7 @@ function Table(ul, portraitFunc)
 				}
 				$(ul).append(
 					$("<li>")
+						.attr("tabindex", "0")
 						.append($("<div>").addClass("thumb").css("background-image", "url('"+portraitFunc(value.getFullName(), true)+"')"))
 						.append($("<div>").addClass("info")
 							.append($("<div>").html(firstName+" "+lastName))
@@ -44,6 +45,19 @@ function Table(ul, portraitFunc)
 					"itemActivate", 
 					[parseInt($(e.currentTarget).attr("storymaps-id"))]
 				);
+			}
+		);
+
+		$(ul).find("li").keydown(
+			function(e) {
+				if (e.keyCode === 13) {
+					_self.clearActive();
+					$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
+					$(_self).trigger(
+						"itemActivate", 
+						[parseInt($(e.currentTarget).attr("storymaps-id"))]
+					);
+				}
 			}
 		);
 
