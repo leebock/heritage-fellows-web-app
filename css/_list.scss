@@ -45,6 +45,11 @@ $COLOR-ITEM-CLICK: "brown";
         font-weight: bold;
       }        
     }
+    
+    &:focus {
+      outline: none;
+      background-color: #{$COLOR-ITEM-MOUSEOVER};
+    }
 
   }
 
