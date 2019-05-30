@@ -4,9 +4,35 @@ function Table(ul, portraitFunc)
 	const LISTITEM_CLASS_ACTIVE = "active";
 
 	var _self = this;
+		
+	$(ul).focus(
+		function() {
+			$(ul).find("li").get(0).focus();
+			$(ul).attr("tabindex", "-1");
+		}
+	);
+
+	$(ul).keydown(
+		function(e) {
+			if (e.keyCode === 40 || e.keyCode === 38) {
+				e.preventDefault();
+				// look for an li element with focus
+				var current = $(e.currentTarget).find("li:focus").get(0);
+				$(current).attr("tabindex", "-1");
+				var idx = $.inArray(current, $(e.currentTarget).find("li"));
+				if (e.keyCode === 40) {
+					idx++;
+				} else if (e.keyCode === 38) {
+					idx--;
+				}
+				$(ul).find("li").get(idx).focus();
+			}
+		}
+	);
 
 	this.load = function(recs, highlightText)
 	{
+		$(ul).attr("tabindex", "0");
 		$(ul).empty();
 		$.each(
 			recs, 
@@ -25,7 +51,7 @@ function Table(ul, portraitFunc)
 				}
 				$(ul).append(
 					$("<li>")
-						.attr("tabindex", "0")
+						.attr("tabindex", "-1")
 						.append($("<div>").addClass("thumb").css("background-image", "url('"+portraitFunc(value.getFullName(), true)+"')"))
 						.append($("<div>").addClass("info")
 							.append($("<div>").html(firstName+" "+lastName))
@@ -58,6 +84,12 @@ function Table(ul, portraitFunc)
 						[parseInt($(e.currentTarget).attr("storymaps-id"))]
 					);
 				}
+			}
+		);
+		
+		$(ul).find("li").focus(
+			function(e) {
+				$(e.currentTarget).attr("tabindex", "0");
 			}
 		);
 
