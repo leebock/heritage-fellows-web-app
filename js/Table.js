@@ -43,16 +43,34 @@ function Table(ul, portraitFunc)
 				var location = value.getLocationDisplayName();
 				var year = value.getAwardYear();
 				if (highlightText) {
-					firstName = firstName.replace(RegExp(highlightText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-					lastName = lastName.replace(RegExp(highlightText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-					tradition = tradition.replace(RegExp(highlightText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-					location = location.replace(RegExp(highlightText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
-					year = year.replace(RegExp(highlightText,"ig"), function(str) {return "<mark>"+str+"</mark>";});
+					firstName = firstName.replace(
+						RegExp(highlightText,"ig"), 
+						function(str) {return "<mark>"+str+"</mark>";}
+					);
+					lastName = lastName.replace(
+						RegExp(highlightText,"ig"), 
+						function(str) {return "<mark>"+str+"</mark>";}
+					);
+					tradition = tradition.replace(
+						RegExp(highlightText,"ig"), 
+						function(str) {return "<mark>"+str+"</mark>";}
+					);
+					location = location.replace(
+						RegExp(highlightText,"ig"), 
+						function(str) {return "<mark>"+str+"</mark>";}
+					);
+					year = year.replace(
+						RegExp(highlightText,"ig"), 
+						function(str) {return "<mark>"+str+"</mark>";}
+					);
 				}
 				$(ul).append(
 					$("<li>")
 						.attr("tabindex", "-1")
-						.append($("<div>").addClass("thumb").css("background-image", "url('"+portraitFunc(value.getFullName(), true)+"')"))
+						.append($("<div>").addClass("thumb").css(
+							"background-image", 
+							"url('"+portraitFunc(value.getFullName(), true)+"')")
+						)
 						.append($("<div>").addClass("info")
 							.append($("<div>").html(firstName+" "+lastName))
 							.append($("<div>").html(tradition))								
