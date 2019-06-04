@@ -58,9 +58,7 @@
 			}
 		});
 
-		new Banner($(".banner").eq(0));
-		new SocialButtonBar({url:encodeURIComponent($('meta[property="og:url"]').attr('content'))});
-		$("div.banner a#title").attr("href", ".");
+		new SocialButtonBar();
 
 		_map = new L.HFMap("map", {zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2, worldCopyJump: true})
 			.addLayer(L.esri.Vector.basemap("ModernAntique"))
