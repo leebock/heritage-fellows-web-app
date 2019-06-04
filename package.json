@@ -1,7 +1,7 @@
 {
-  "name": "boilerplate-2016",
+  "name": "heritage-fellows-web-app",
   "version": "0.0.0",
-  "description": "Boilerplate files",
+  "description": "web files for heritage fellows story map labs app",
   "main": "Gruntfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
