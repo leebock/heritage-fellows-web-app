@@ -20,9 +20,10 @@ The primary file types in this repo are **html**, **css**, and **javascript**.  
 	
 	You *may* encounter cross domain issues pointing to these files from your deployment.  If that is the case, you can simply download these data files and host them along with the application files.  The relevant code for pointing to a different path can be found in *js/main.js*:
 
+```
 	const SPREADSHEET_URL_ARTISTS = ...
 	const SPREADSHEET_URL_WORKS = ...
-
+```
 
 * Files you can ignore:
 	* *Gruntfile.js*: A file that I use to automate some tasks in my own environment.  This file does not directly relate to the mechanics of the application.
