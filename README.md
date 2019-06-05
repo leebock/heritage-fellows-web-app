@@ -26,5 +26,6 @@ The primary file types in this repo are **html**, **css**, and **javascript**.  
 ```
 
 * Files you can ignore:
+
 	* *Gruntfile.js*: A file that I use to automate some tasks in my own environment.  This file does not directly relate to the mechanics of the application.
 	* Source *scss* files in the *scss* folder. If you're not using Sass, you needn't worry about these.
