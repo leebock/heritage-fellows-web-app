@@ -120,9 +120,12 @@
 					console.log("Error reaching ", SPREADSHEET_URL_ARTISTS);
 				},
 				complete: function(data){
-					_recordsArtists = $.map(
-						data.data, 
-						function(value){return new ArtistRecord(value);}
+					_recordsArtists = $.grep(
+						$.map(
+							data.data, 
+							function(value){return new ArtistRecord(value);}
+						),
+						function(artist){return artist.getTradition().trim() !== "";}
 					);
 					finish();
 				}
