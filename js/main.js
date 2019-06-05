@@ -12,8 +12,8 @@
 
 	const GLOBAL_CLASS_BIO = "state-bio";
 
-	const SPREADSHEET_URL_ARTISTS = "resources/data/artists.csv";
-	const SPREADSHEET_URL_WORKS = "resources/data/works.csv";
+	const SPREADSHEET_URL_ARTISTS = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
+	const SPREADSHEET_URL_WORKS = "https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
 
 	const BNDS = {
 		ov48: [[25, -126],[49,-65]],
@@ -110,6 +110,9 @@
 			{
 				header: true,
 				download: true,
+				error: function(error) {
+					console.log("Error reaching ", SPREADSHEET_URL_ARTISTS);
+				},
 				complete: function(data){
 					_recordsArtists = $.map(
 						data.data, 
@@ -125,6 +128,9 @@
 			{
 				header: true,
 				download: true,
+				error: function(error) {
+					console.log("Error reaching ", SPREADSHEET_URL_WORKS);
+				},
 				complete: function(data){
 					_recordsWorks = $.map(
 						data.data,
