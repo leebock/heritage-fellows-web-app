@@ -21,10 +21,9 @@ The primary file types in this repo are **html**, **css**, and **javascript**.  
 You may encounter cross domain issues with your deployment.  If that is the case, you can simply download these data files and host time along with the application files.  The relevant code for pointing to a different path can be found in main.js:
 
 
-			```
+
 	const SPREADSHEET_URL_ARTISTS = ...
 	const SPREADSHEET_URL_WORKS = ...
-			```
 
 
 * Files you can ignore:
