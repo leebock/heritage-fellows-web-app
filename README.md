@@ -12,9 +12,7 @@ The primary file types in this repo are **html**, **css**, and **javascript**.  
 * The *html* and *javascript* files in this project require no build scripts.  Source files are deployed as written.
 * The *css* files in the project reside under the *css* folder.  Developers have two options for working with css:
 	* You can edit the css files directly.
-	* OR...if you're familiar with [Sass](https://sass-lang.com/) (which we use for convenience in writing our css), you can edit the *scss* source files provided in the *scss* folder and then recompile with Sass.
+	* OR...if you're familiar with [Sass](https://sass-lang.com/) (which we use for convenience in writing our css), you can work with the *scss* source files provided (in the *scss* folder).
 	
 * Files you can ignore:
-
-	There are a few files which I keep in source control for preservation, but which may not be relevant to other folks.
 	* I keep a *Gruntfile.js* file in this repo for preservation.  This is a file that I use to automate some tasks in my own environment.  It is beyond the scope of understanding how this application works.  Feel free to ignore it!
