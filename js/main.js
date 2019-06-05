@@ -12,8 +12,14 @@
 
 	const GLOBAL_CLASS_BIO = "state-bio";
 
-	const SPREADSHEET_URL_ARTISTS = "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
-	const SPREADSHEET_URL_WORKS = "https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
+	const SPREADSHEET_URL_ARTISTS = 
+		window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0 ? 
+		"resources/data/artists.csv" :
+		"https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
+	const SPREADSHEET_URL_WORKS = 
+		window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0 ? 
+		"resources/data/works.csv" :	
+		"https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
 
 	const BNDS = {
 		ov48: [[25, -126],[49,-65]],
