@@ -1,6 +1,6 @@
 # heritage-fellows-web-app
 
-This repo contains the application files for the [NEA National Heritage Fellows Map](https://storymaps.esri.com/stories/2017/heritage-fellows/).  It is a custom application, built as a Story Maps Labs effort in cooperation with the Smithsonian Center for Folklife and Cultural Heritage.  
+This repo contains the application files for the [NEA National Heritage Fellows Map](https://storymaps.esri.com/stories/2017/heritage-fellows/map.html).  It is a custom application, built as a Story Maps Labs effort in cooperation with the Smithsonian Center for Folklife and Cultural Heritage.  
 
 ## Deployment
 
