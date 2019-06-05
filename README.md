@@ -18,7 +18,7 @@ The primary file types in this repo are **html**, **css**, and **javascript**.  
 	* https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv
 	* https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv
 	
-	You *may* encounter cross domain issues with your deployment.  If that is the case, you can simply download these data files and host time along with the application files.  The relevant code for pointing to a different path can be found in *js/main.js*:
+	You *may* encounter cross domain issues pointing to these files from your deployment.  If that is the case, you can simply download these data files and host time along with the application files.  The relevant code for pointing to a different path can be found in *js/main.js*:
 
 	const SPREADSHEET_URL_ARTISTS = ...
 	const SPREADSHEET_URL_WORKS = ...
