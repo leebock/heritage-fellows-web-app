@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         }
     },
     curl: {
-        "dist/resources/data/artist.csv": "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv",
+        "dist/resources/data/artists.csv": "https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv",
         "dist/resources/data/works.csv": "https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv"    
     }
   });
