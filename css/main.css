@@ -460,7 +460,6 @@ div#ovBar {
 }
 div#ovBar div.ov {
   width: 100%;
-  margin-top: 2%;
   margin-right: 2%;
   background-position: center;
   background-size: cover;
@@ -469,6 +468,9 @@ div#ovBar div.ov {
   border-color: #8aaca2;
   border-width: 1px;
   cursor: pointer;
+}
+div#ovBar div.ov:last-child {
+  margin-right: 0;
 }
 div#ovBar div.ov:before {
   content: "";
@@ -509,6 +511,8 @@ div#ovBar {
 }
 .state-bio div#ovBar {
   display: none;
+  height: 0px;
+  bottom: 0px;
 }
 @media (max-width: 750px) {
   div#ovBar {

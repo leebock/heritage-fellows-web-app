@@ -5,8 +5,10 @@ div#ovBar {
   div.ov {
     
     width: 100%;
-    margin-top: 2%;
     margin-right: 2%;
+    &:last-child {
+      margin-right: 0;
+    }
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

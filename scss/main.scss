@@ -291,6 +291,8 @@ div#ovBar {
   z-index: 1000;
   #{$GLOBAL_CLASS_BIO} & {
     display: none;
+		height: 0px;
+		bottom: 0px;
   }
   @media (max-width: $WIDTH-THRESHOLD) {
     display: none;

@@ -303,7 +303,7 @@
 		var ll = _map.containerPointToLatLng(
 			L.point({
 				x: 0,
-				y: $("div#map").height() - ($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))	
+				y: $("div#map").height() - ($("div#ovBar").height() + parseInt($("div#ovBar").css("bottom")))	
 			})							
 		);
 
@@ -374,7 +374,7 @@
 				paddingBottomRight:
 				[
 					calcRight(),
-					$("div#ov48").height() + parseInt($("div#ovBar").css("bottom"))
+					$("div#ovBar").height() + parseInt($("div#ovBar").css("bottom"))
 				]
 			};
 		}
@@ -397,7 +397,7 @@
 			offsetY = calcBottom()/2;
 		} else {
 			offsetX = calcRight()/2;
-			offsetY = ($("div#ov48").height() + parseInt($("div#ovBar").css("bottom")))/2;
+			offsetY = ($("div#ovBar").height() + parseInt($("div#ovBar").css("bottom")))/2;
 		}	
 		_map.panTo(_map.containerPointToLatLng(pixels.add([offsetX, offsetY])), {animate: true, duration: 1});
 	}	
