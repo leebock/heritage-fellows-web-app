@@ -1,12 +1,13 @@
-function OVBar(_div, BNDS)
+function OVBar(div, BNDS)
 {
-
+	
+	this._div = div;
 	var _this = this;
 
 	$.each(
 		BNDS, 
 		function(key) {
-			$(_div).append(
+			$(_this._div).append(
 				$("<div>")
 				.attr("id", key)
 				.addClass("ov")
@@ -15,7 +16,7 @@ function OVBar(_div, BNDS)
 		}
 	);
 
-	$($(_div).find("div.ov")).click(
+	$($(_this._div).find("div.ov")).click(
 		function(event) {
 			$(_this).trigger(
 				"tileClick", 
@@ -27,7 +28,7 @@ function OVBar(_div, BNDS)
 	this.update = function(visibleBounds)
 	{
 
-		$($(_div).find("div.ov")).removeClass("selected");
+		$($(_this._div).find("div.ov")).removeClass("selected");
 		
 		var keys = Object.keys(BNDS);
 
@@ -61,7 +62,7 @@ function OVBar(_div, BNDS)
 		var active = contains.length ? contains.shift() : overlaps.shift();
 
 		if (active) {
-			$($(_div).find("div.ov#"+active)).addClass("selected");
+			$($(_this._div).find("div.ov#"+active)).addClass("selected");
 		}
 
 	};
