@@ -27,48 +27,49 @@ function OVBar(div, objBounds)
 		}
 	);
 
-	this.update = function(visibleBounds)
-	{
-
-		$($(_this._div).find("div.ov")).removeClass("selected");
-		
-		var keys = Object.keys(_this._objBounds);
-
-		var overlaps = $.grep(
-			keys,
-			function(key){return L.latLngBounds(_this._objBounds[key]).overlaps(visibleBounds);}
-		).sort(
-			function(a, b) {
-				var distanceA = calcDist(a);
-				var distanceB = calcDist(b);
-				if (distanceA < distanceB) {
-					return -1;
-				}
-				if (distanceA > distanceB) {
-					return 1;
-				}
-				return 0;
-				function calcDist(key) {
-					return L.latLngBounds(_this._objBounds[key]).getCenter().distanceTo(visibleBounds.getCenter());
-				}
-			}
-		);
-
-		var contains = $.grep(
-			overlaps, 
-			function(key){
-				return L.latLngBounds(_this._objBounds[key]).contains(visibleBounds.getCenter());
-			}
-		);
-
-		var active = contains.length ? contains.shift() : overlaps.shift();
-
-		if (active) {
-			$($(_this._div).find("div.ov#"+active)).addClass("selected");
-		}
-
-	};
-
 }
 
-OVBar.foo = "foo";
+
+OVBar.prototype.update = function(visibleBounds)
+{
+	
+	var self = this;
+
+	$($(this._div).find("div.ov")).removeClass("selected");
+	
+	var keys = Object.keys(this._objBounds);
+
+	var overlaps = $.grep(
+		keys,
+		function(key){return L.latLngBounds(self._objBounds[key]).overlaps(visibleBounds);}
+	).sort(
+		function(a, b) {
+			var distanceA = calcDist(a);
+			var distanceB = calcDist(b);
+			if (distanceA < distanceB) {
+				return -1;
+			}
+			if (distanceA > distanceB) {
+				return 1;
+			}
+			return 0;
+			function calcDist(key) {
+				return L.latLngBounds(self._objBounds[key]).getCenter().distanceTo(visibleBounds.getCenter());
+			}
+		}
+	);
+
+	var contains = $.grep(
+		overlaps, 
+		function(key){
+			return L.latLngBounds(self._objBounds[key]).contains(visibleBounds.getCenter());
+		}
+	);
+
+	var active = contains.length ? contains.shift() : overlaps.shift();
+
+	if (active) {
+		$($(this._div).find("div.ov#"+active)).addClass("selected");
+	}
+
+};
