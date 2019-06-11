@@ -16,17 +16,35 @@
 		window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0 ? 
 		"resources/data/artists.csv" :
 		"https://arcgis.github.io/storymaps-heritage-fellows-data/artists.csv";
+		
 	const SPREADSHEET_URL_WORKS = 
 		window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0 ? 
 		"resources/data/works.csv" :	
 		"https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
-
-	const BNDS = {
-		ov48: [[25, -126],[49,-65]],
-		ovAK: [[54, -168],[72, -127]],
-		ovHI: [[19,-160],[22.5,-154]],
-		ovPR: [[17.5,-67.5],[19,-64.5]]
-	};
+	
+	const BNDS_48 = [[25, -126],[49,-65]];
+	const OV_MAPS = [
+		{
+			"name": "48",
+			"imageURL": "resources/images/ov-48.png",
+			"bnds": BNDS_48
+		},
+		{
+			"name": "AK",
+			"imageURL": "resources/images/ov-ak.png",
+			"bnds": [[54, -168],[72, -127]] 
+		},
+		{
+			"name": "HI",
+			"imageURL": "resources/images/ov-hi.png",
+			"bnds": [[19,-160],[22.5,-154]]
+		},
+		{
+			"name": "PR",
+			"imageURL": "resources/images/ov-pr.png",
+			"bnds": [[17.5,-67.5],[19,-64.5]]
+		}
+	];
 
 	var _filterText;
 	var _filterLocation;
@@ -75,7 +93,7 @@
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
-				function(btn, map){fitBounds(BNDS.ov48, true);}
+				function(btn, map){fitBounds(BNDS_48, true);}
 			).addTo(_map);
 		}
 
@@ -103,7 +121,7 @@
 			}
 		);
 
-		_ovBar = new OVBar($("div#ovBar"), BNDS);
+		_ovBar = new OVBar($("div#ovBar"), OV_MAPS);
 		$(_ovBar).on(
 			"tileClick", 
 			function(event, bnds){
@@ -159,7 +177,7 @@
 				return;
 			}
 
-			fitBounds(BNDS.ov48);
+			fitBounds(BNDS_48);
 			_map.loadMarkers(_recordsArtists);
 			updateFilter();
 
