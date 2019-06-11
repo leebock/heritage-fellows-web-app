@@ -1,11 +1,13 @@
-function OVBar(div, BNDS)
+function OVBar(div, objBounds)
 {
 	
 	this._div = div;
+	this._objBounds = objBounds;
+	
 	var _this = this;
 
 	$.each(
-		BNDS, 
+		_this._objBounds, 
 		function(key) {
 			$(_this._div).append(
 				$("<div>")
@@ -20,7 +22,7 @@ function OVBar(div, BNDS)
 		function(event) {
 			$(_this).trigger(
 				"tileClick", 
-				[BNDS[$(event.currentTarget).attr("id")]]
+				[_this._objBounds[$(event.currentTarget).attr("id")]]
 			);
 		}
 	);
@@ -30,11 +32,11 @@ function OVBar(div, BNDS)
 
 		$($(_this._div).find("div.ov")).removeClass("selected");
 		
-		var keys = Object.keys(BNDS);
+		var keys = Object.keys(_this._objBounds);
 
 		var overlaps = $.grep(
 			keys,
-			function(key){return L.latLngBounds(BNDS[key]).overlaps(visibleBounds);}
+			function(key){return L.latLngBounds(_this._objBounds[key]).overlaps(visibleBounds);}
 		).sort(
 			function(a, b) {
 				var distanceA = calcDist(a);
@@ -47,7 +49,7 @@ function OVBar(div, BNDS)
 				}
 				return 0;
 				function calcDist(key) {
-					return L.latLngBounds(BNDS[key]).getCenter().distanceTo(visibleBounds.getCenter());
+					return L.latLngBounds(_this._objBounds[key]).getCenter().distanceTo(visibleBounds.getCenter());
 				}
 			}
 		);
@@ -55,7 +57,7 @@ function OVBar(div, BNDS)
 		var contains = $.grep(
 			overlaps, 
 			function(key){
-				return L.latLngBounds(BNDS[key]).contains(visibleBounds.getCenter());
+				return L.latLngBounds(_this._objBounds[key]).contains(visibleBounds.getCenter());
 			}
 		);
 
