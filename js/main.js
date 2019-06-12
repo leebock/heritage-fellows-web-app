@@ -354,6 +354,7 @@
 	{
 		$("html body").removeClass(GLOBAL_CLASS_BIO);
 		_profileDisplay.empty();
+		fitBounds(BNDS_48, true);
 	}
 
 	function table_onItemActivate(event, id)
