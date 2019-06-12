@@ -404,6 +404,11 @@ a {
   padding-left: 10px;
   padding-right: 20px;
 }
+#list-container #bio div#scrollable #textarea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #list-container #bio div#scrollable #textarea img#portrait {
   width: 100%;
   height: auto;
@@ -414,6 +419,12 @@ a {
   font-weight: normal;
   font-size: 20px;
   font-style: italic;
+  margin-top: 20px;
+  margin-bottom: 2px;
+  max-width: 600px;
+}
+#list-container #bio div#scrollable #textarea p {
+  max-width: 600px;
 }
 #list-container #bio div#scrollable #gallery {
   display: flex;
