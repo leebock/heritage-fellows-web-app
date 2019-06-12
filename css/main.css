@@ -461,6 +461,8 @@ a {
 }
 #list-container #bio div#bio-social a:first-child {
   margin-right: 10px;
+  font-size: 30px;
+  color: #1DA1F2;
 }
 #list-container #foot-note {
   padding-top: 5px;
