@@ -20,7 +20,7 @@ function OVBar(div, config)
 	   is out of the way, _lookUp is a more usable version of the extent 
 	   info going forward. */
 	
-	this._div = div;
+	this._ovs = $(div).find("div.ov");
 	this._lookUp = config.reduce(
 		function(accumulator, value) {
 			accumulator[value.name] = value.bnds;
@@ -31,7 +31,7 @@ function OVBar(div, config)
 	
 	var self = this;
 	
-	$($(div).find("div.ov")).click(
+	$(this._ovs).click(
 		function(event) {
 			$(self).trigger(
 				"tileClick", 
@@ -49,7 +49,7 @@ OVBar.prototype.update = function(visibleBounds)
 {
 	
 	var lookUp = this._lookUp;
-	var ovs = $(this._div).find("div.ov");
+	var ovs = this._ovs;
 	
 	$(ovs).removeClass("selected");
 	
