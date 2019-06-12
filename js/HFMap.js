@@ -1,10 +1,12 @@
 L.HFMap = L.Map.extend({
 
 
-  initialize: function(div, options)
+  initialize: function(div, options, zoomCallBack)
   {
 
     L.Map.prototype.initialize.call(this, div, options);
+
+    this._zoomCallBack = zoomCallBack;
 
     this.MARKER_OPACITY_DEFAULT = 0.4;
 
@@ -44,6 +46,15 @@ L.HFMap = L.Map.extend({
   /******************* METHODS *********************/
   /*************************************************/
 
+  zoomIn: function(zoomDelta, options)
+  {
+    this._zoomCallBack(this.getZoom()+zoomDelta);
+  }, 
+
+  zoomOut: function(zoomDelta, options)
+  {
+    this._zoomCallBack(this.getZoom()-zoomDelta);
+  },
 
   loadMarkers: function(recs)
   {
