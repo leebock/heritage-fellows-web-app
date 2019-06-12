@@ -1,5 +1,8 @@
 function ProfileDisplay(div) 
 {
+
+	this._div = div;
+	
 	this.update = function(rec, portrait, objectPhotos, audioSamples, videos)
 	{
 		// accepts an instance of ArtistRecord
@@ -81,4 +84,6 @@ function ProfileDisplay(div)
 	};
 }
 
-ProfileDisplay.prototype.foo = "foo";
+ProfileDisplay.prototype.empty = function() {
+	$(this._div).find("#scrollable #gallery").empty();
+};

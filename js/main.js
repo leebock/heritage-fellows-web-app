@@ -52,7 +52,7 @@
 
 	var _map;
 	var _ovBar;
-	var _profileDisplay = new ProfileDisplay();
+	var _profileDisplay;
 	var _table;
 	var _textSearchWidget;
 
@@ -62,6 +62,8 @@
 	var _active;
 
 	$(document).ready(function() {
+
+		_profileDisplay = new ProfileDisplay($("div#bio"));
 
 		if (!L.Browser.mobile) {
 			$("html body").addClass(GLOBAL_CLASS_HOVER);
@@ -351,6 +353,7 @@
 	function clearBio()
 	{
 		$("html body").removeClass(GLOBAL_CLASS_BIO);
+		_profileDisplay.empty();
 	}
 
 	function table_onItemActivate(event, id)
