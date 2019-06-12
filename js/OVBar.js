@@ -1,5 +1,24 @@
 function OVBar(div, config)
 {
+
+	/* create a picture for each overview in the config */
+
+	$.each(
+		config, 
+		function(idx, val) {
+			$(div).append(
+				$("<div>")
+				.attr("name", val.name)
+				.css("background-image", "url('"+val.imageURL+"')")
+				.addClass("ov")
+				.append($("<div>").addClass("veil"))
+			);
+		}
+	);
+	
+	/* keep this info around for further use.  now that assigning images
+	   is out of the way, _lookUp is a more usable version of the extent 
+	   info going forward. */
 	
 	this._div = div;
 	this._lookUp = config.reduce(
@@ -11,20 +30,7 @@ function OVBar(div, config)
 	);
 	
 	var self = this;
-
-	$.each(
-		config, 
-		function(idx, val) {
-			$(self._div).append(
-				$("<div>")
-				.attr("name", val.name)
-				.css("background-image", "url('"+val.imageURL+"')")
-				.addClass("ov")
-				.append($("<div>").addClass("veil"))
-			);
-		}
-	);
-
+	
 	$($(div).find("div.ov")).click(
 		function(event) {
 			$(self).trigger(
