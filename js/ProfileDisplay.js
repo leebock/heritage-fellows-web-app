@@ -46,6 +46,7 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 					.append(
 						$("<audio>").addClass("player")
 						.append($("<source>").attr("src", recMedia.getLink()))
+						.on("play", onMediaPlay)
 					)
 					.append($("<p>").html("Audio Sample: "+recMedia.getTitle()))
 			);
@@ -53,20 +54,16 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 	);
 
 	videos.forEach(
-		function(recMedia) {
+		function(recMedia, idx) {
+			var div = $("<div>")
+				.addClass("video-container")
+				.attr("data-vimeo-id", recMedia.getLink());
 			$(gallery).append(
 				$("<section>")
-					.append(
-						$("<div>").addClass("video-container")
-							.append(
-								$("<iframe>")
-									.attr("src", "https://player.vimeo.com/video/"+recMedia.getLink())
-									.attr("frameborder", 0)
-									/*.attr("allowfullscreen", '')*/
-							)
-					)
+					.append(div)
 					.append($("<p>").html("Video Sample: "+recMedia.getTitle()))
 			);
+			new Vimeo.Player(div).on("play", onMediaPlay);
 		}
 	);
 
@@ -80,6 +77,16 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 		}, 
 		1000
 	);
+	
+	var self = this;
+		
+	function onMediaPlay()
+	{
+		if (self._lastPlayed && self._lastPlayed !== this) {
+			self._lastPlayed.pause();
+		}
+		self._lastPlayed = this;
+	}
 
 };
 
