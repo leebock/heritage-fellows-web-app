@@ -7,10 +7,10 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 {
 	// accepts an instance of ArtistRecord
 
-	$(this._div).find("h3#fellow-name").text(rec.getFirstName()+" "+rec.getLastName());
-	$(this._div).find("h4#bio-tradition").text(rec.getTradition() ? rec.getTradition() : "Lorem Ipsum");
-	$(this._div).find("h4#bio-awardyear").text(rec.getAwardYear()+" NEA National Heritage Fellow");
-	$(this._div).find("h4#bio-placename").text(rec.getLocationDisplayName());
+	$(this._div).find("h3#fellow-name").html(rec.getFirstName()+" "+rec.getLastName());
+	$(this._div).find("h4#bio-tradition").html(rec.getTradition() ? rec.getTradition() : "Lorem Ipsum");
+	$(this._div).find("h4#bio-awardyear").html(rec.getAwardYear()+" NEA National Heritage Fellow");
+	$(this._div).find("h4#bio-placename").html(rec.getLocationDisplayName());
 
 	var s = rec.getBio();
 	if (s.trim() === "") {
