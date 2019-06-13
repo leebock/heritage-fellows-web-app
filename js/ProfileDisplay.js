@@ -68,12 +68,13 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 	);
 
 	setTimeout(
-		function(){
-			var players = document.getElementsByClassName("player");
-			for (var i = 0; i < players.length; i++) {
-				players[i].controls = true;
-				players[i].load();
-			}
+		function() {
+			$("audio").each(
+				function(index, audio) {
+					audio.controls = true;
+					audio.load();
+				}
+			);
 		}, 
 		1000
 	);
