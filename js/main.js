@@ -74,6 +74,7 @@
 			{
 				if (event.which === 27) {
 					clearBio();
+					fitBounds(BNDS_48, true);					
 					if (_selection && _selection.length === 1 && _filterLocation) {
 						clearLocationFilter();
 					} else {
@@ -112,6 +113,7 @@
 		$(".filter-display-location .x-button").click(clearLocationFilter);
 		$("#bio .x-button").click(function(){
 			clearBio();
+			fitBounds(BNDS_48, true);
 			if (_selection && _selection.length === 1 && _filterLocation) {
 				clearLocationFilter();
 			} else {
@@ -222,6 +224,7 @@
 	{
 		_filterLocation = null;
 		updateFilter();
+		fitBounds(BNDS_48, true);
 	}
 
 	function onMarkerClick(e)
@@ -354,7 +357,6 @@
 	{
 		$("html body").removeClass(GLOBAL_CLASS_BIO);
 		_profileDisplay.empty();
-		fitBounds(BNDS_48, true);
 	}
 
 	function table_onItemActivate(event, id)
