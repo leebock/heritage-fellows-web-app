@@ -422,11 +422,14 @@ a {
   margin-top: 20px;
   margin-bottom: 2px;
   max-width: 600px;
+  line-height: 1.2;
 }
 #list-container #bio div#scrollable #textarea p {
   max-width: 600px;
+  line-height: 1.6;
 }
 #list-container #bio div#scrollable #gallery {
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
