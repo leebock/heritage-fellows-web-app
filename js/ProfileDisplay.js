@@ -7,27 +7,27 @@ function ProfileDisplay(div)
 	{
 		// accepts an instance of ArtistRecord
 
-		$("#bio h3#fellow-name").text(rec.getFirstName()+" "+rec.getLastName());
-		$("#bio h4#bio-tradition").text(rec.getTradition() ? rec.getTradition() : "Lorem Ipsum");
-		$("#bio h4#bio-awardyear").text(rec.getAwardYear()+" NEA National Heritage Fellow");
-		$("#bio h4#bio-placename").text(rec.getLocationDisplayName());
+		$(this._div).find("h3#fellow-name").text(rec.getFirstName()+" "+rec.getLastName());
+		$(this._div).find("h4#bio-tradition").text(rec.getTradition() ? rec.getTradition() : "Lorem Ipsum");
+		$(this._div).find("h4#bio-awardyear").text(rec.getAwardYear()+" NEA National Heritage Fellow");
+		$(this._div).find("h4#bio-placename").text(rec.getLocationDisplayName());
 
 		var s = rec.getBio();
 		if (s.trim() === "") {
 			s = "Lorem ipsum dolor sit amet consectetur adipiscing elit cursus, felis quis porttitor risus mattis curae ullamcorper pellentesque, malesuada ridiculus tortor vulputate porta id justo. Maecenas metus rhoncus lacinia pretium vulputate dis primis sociosqu commodo sapien, dapibus dignissim mi mus penatibus ornare nisi fringilla laoreet venenatis, senectus sed ad tempor facilisis viverra vitae habitant rutrum. Suscipit velit libero est fermentum augue iaculis rhoncus himenaeos odio nullam parturient dignissim inceptos, a risus commodo curae turpis eleifend quam neque montes fringilla primis etiam.";
 		}
 
-		$("#bio #scrollable").empty();
+		$(this._div).find("#scrollable").empty();
 
 		var textarea = $("<div>").attr("id", "textarea")
 			.append($("<img>").attr("id", "portrait").attr("src", portrait))
 			.append($("<h5>").attr("id", "quotation").html(rec.getQuotation() ? rec.getQuotation() : "Gaudeamus igitur Iuvenes dum sumus. Post iucundam iuventutem. Post molestam senectutem. Nos habebit humus."))
 			.append($("<p>").html(s));
 
-		$("#bio #scrollable").append(textarea);
+		$(this._div).find("#scrollable").append(textarea);
 
 		var gallery = $("<div>").attr("id", "gallery");
-		$("#bio #scrollable").append(gallery);
+		$(this._div).find("#scrollable").append(gallery);
 
 		objectPhotos.forEach(
 			function(recMedia) {
