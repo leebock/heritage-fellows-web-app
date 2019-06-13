@@ -41,13 +41,14 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 
 	audioSamples.forEach(
 		function(recMedia) {
+			var audio = $("<audio>").addClass("player")
+				.append($("<source>").attr("src", recMedia.getLink()))
+				.on("play", onMediaPlay);
+			audio.get(0).controls = true;
+			audio.get(0).load();
 			$(gallery).append(
 				$("<section>")
-					.append(
-						$("<audio>").addClass("player")
-						.append($("<source>").attr("src", recMedia.getLink()))
-						.on("play", onMediaPlay)
-					)
+					.append(audio)
 					.append($("<p>").html("Audio Sample: "+recMedia.getTitle()))
 			);
 		}
@@ -65,18 +66,6 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 			);
 			new Vimeo.Player(div).on("play", onMediaPlay);
 		}
-	);
-
-	setTimeout(
-		function() {
-			$("audio").each(
-				function(index, audio) {
-					audio.controls = true;
-					audio.load();
-				}
-			);
-		}, 
-		1000
 	);
 	
 	var self = this;
