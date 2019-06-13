@@ -29,8 +29,9 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 	var gallery = $("<div>").attr("id", "gallery");
 	$(this._div).find("#scrollable").append(gallery);
 
-	objectPhotos.forEach(
-		function(recMedia) {
+	$.each(
+		objectPhotos, 
+		function(index, recMedia) {
 			$(gallery).append(
 				$("<section>")
 					.append($("<img>").attr("src", recMedia.getLink()))
@@ -38,9 +39,10 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 			);
 		}
 	);
-
-	audioSamples.forEach(
-		function(recMedia) {
+	
+	$.each(
+		audioSamples,
+		function(index, recMedia) {
 			var audio = $("<audio>").addClass("player")
 				.append($("<source>").attr("src", recMedia.getLink()))
 				.on("play", onMediaPlay);
@@ -53,9 +55,10 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 			);
 		}
 	);
-
-	videos.forEach(
-		function(recMedia, idx) {
+	
+	$.each(
+		videos,
+		function(index, recMedia) {
 			var div = $("<div>")
 				.addClass("video-container")
 				.attr("data-vimeo-id", recMedia.getLink());
