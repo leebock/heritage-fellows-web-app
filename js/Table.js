@@ -19,11 +19,16 @@ function Table(ul, portraitFunc)
 				// look for an li element with focus
 				var current = $(e.currentTarget).find("li:focus").get(0);
 				$(current).attr("tabindex", "-1");
-				var idx = $.inArray(current, $(e.currentTarget).find("li"));
+				var rows = $(e.currentTarget).find("li");
+				var idx = $.inArray(current, rows);
 				if (e.keyCode === 40) {
-					idx++;
+					if (idx < (rows.length - 1)) {
+						idx++;
+					}
 				} else if (e.keyCode === 38) {
-					idx--;
+					if (idx > 0) {
+						idx--;
+					}
 				}
 				$(ul).find("li").get(idx).focus();
 			}
