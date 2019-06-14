@@ -207,6 +207,9 @@ a {
 .state-filter-location #list-container #search {
   display: none;
 }
+.state-bio #list-container #search {
+  display: none;
+}
 #list-container #search div:nth-child(1) {
   display: flex;
   height: 40px;
@@ -343,10 +346,13 @@ a {
   height: calc(100% - 20px);
   padding: 10px;
   background-color: #ded4c7;
-  display: flex;
+  display: none;
   flex-direction: column;
   left: 100%;
   /* css for bio page internals */
+}
+.state-bio #list-container #bio {
+  display: flex;
 }
 .state-bio #list-container #bio {
   left: 10px;
@@ -403,6 +409,9 @@ a {
   -webkit-overflow-scrolling: touch;
   padding-left: 10px;
   padding-right: 20px;
+}
+#list-container #bio div#scrollable:focus {
+  outline: none;
 }
 #list-container #bio div#scrollable #textarea {
   display: flex;

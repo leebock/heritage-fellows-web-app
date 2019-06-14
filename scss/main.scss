@@ -185,7 +185,11 @@ a {
     #{$GLOBAL-CLASS-FILTER_LOCATION} & {
       display: none;
     }
-  
+
+	#{$GLOBAL-CLASS-BIO} & {
+		display: none;
+  	}
+		
     @import "search";
 
   }
@@ -251,7 +255,10 @@ a {
 
     background-color: #{$COLOR-PANEL-BACKGROUND};  
 
-    display: flex;
+	display: none;
+	#{$GLOBAL-CLASS-BIO} & {
+		display: flex;
+	}
     flex-direction: column;
 
     left: 100%;

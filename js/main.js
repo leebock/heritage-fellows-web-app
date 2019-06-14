@@ -74,7 +74,8 @@
 			{
 				if (event.which === 27) {
 					clearBio();
-					fitBounds(BNDS_48, true);					
+					fitBounds(BNDS_48, true);
+					$("ul#list").children("li[tabindex='0']").focus();
 					if (_selection && _selection.length === 1 && _filterLocation) {
 						clearLocationFilter();
 					} else {
@@ -114,6 +115,7 @@
 		$("#bio .x-button").click(function(){
 			clearBio();
 			fitBounds(BNDS_48, true);
+			$("ul#list").children("li[tabindex='0']").focus();
 			if (_selection && _selection.length === 1 && _filterLocation) {
 				clearLocationFilter();
 			} else {
@@ -503,6 +505,7 @@
 		);
 
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
+		$("#bio #scrollable").get(0).focus();		
 		$("#list-container").addClass(LISTCONTAINER_CLASS_UP);
 
 		function sortByDisplayOrder(a,b){return a.getDisplayOrder() - b.getDisplayOrder();}

@@ -52,6 +52,10 @@ div#scrollable {
   -webkit-overflow-scrolling: touch;
   padding-left: 10px;
   padding-right: 20px;
+
+  &:focus {
+    outline: none;
+  }  
  
   #textarea {
     
