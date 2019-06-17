@@ -51,7 +51,11 @@
 	<link type="image/ico" rel="icon"  href="//resources.esri.com/favicon.ico">
 
 	<link href='//fonts.googleapis.com/css?family=Open+Sans:300,400' rel='stylesheet' type='text/css'/>
+	<link href='//fonts.googleapis.com/css?family=Open+Sans:300,400|Tinos:i' rel='stylesheet' type='text/css'/>
+	
 	<link rel="stylesheet" href="css/splash.css">	
+
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>	
 
 	<!--Google Analytics Start-->
 	<script type="text/javascript">
@@ -76,9 +80,9 @@
 </head>
 
 <body>
-	<h1>America's Living Treasure</h1>
+	<h1>Masters of Tradition</h1>
 	<hr></hr>
-	<h2>Celebrating our nation's living cultural treasures, or whatever you decide the subhead should be</h2>
+	<h2>A cultural journey across America</h2>
 	<ul id="pictures">
 		<li style='background-image: url("https://folklife-media.si.edu/images/folklife/nea-story-map/portraits/thumbnails/Alhaj-Rahim-Photo4207-TP.jpg")'></li>
 		<li style='background-image: url("https://folklife-media.si.edu/images/folklife/nea-story-map/portraits/thumbnails/Castillo-portrait-TP.jpg")'></li>
@@ -91,21 +95,48 @@
 		<li style='background-image: url("https://folklife-media.si.edu/images/folklife/nea-story-map/portraits/thumbnails/Doucet-Michael-Portrait-TP.jpg")'></li>
 	</ul>
 
+	<a id="enter" href="./map.html">Explore the map</a>
+
+	<p>Produced by the Smithsonian Center for Folklife and Cultural Heritage in collaboration with the National Endowment for the Arts and Esri</p>
+
 	<ul id="logos">
-		<li><a id="logoSmithsonian"></a></li>
-		<li><a id="logoNEA"></a></li>
-		<li><a id="logoEsri"></a></li>
+		<li><a></a></li>
+		<li><a href="https://folklife.si.edu/" target="_blank"></a></li>
+		<li><a></a></li>
 	</ul>
+	
+	<a id="arrow" href="javascript:void(0)"></a>
 
 	<h3>"The land flourished because it was fed from so many sources―because it was nourished by so many cultures and traditions and peoples.”</h3>
-	<h4>-- President Lyndon B. Johnson</h4>
+	<h4>-- PRESIDENT LYNDON B. JOHNSON</h4>
 
-	<a id="enter" href="./map.html">Continue</a>
+	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In dignissim gravida lorem sit amet malesuada. Suspendisse facilisis, nunc nec molestie tincidunt, tellus justo ornare ante, sit amet ultricies velit felis in neque. Nulla in orci id tortor scelerisque pulvinar nec non sapien. Proin laoreet tellus vitae tellus lacinia, a consequat ex condimentum. Etiam faucibus lorem velit. Vestibulum et lorem quam. Integer nec urna at eros malesuada suscipit. Nunc at dapibus orci. Sed odio libero, luctus in lorem quis, mattis laoreet tellus. Quisque pellentesque neque eu accumsan finibus. Praesent suscipit urna et est eleifend accumsan. Proin condimentum libero tellus, at feugiat metus malesuada nec. Morbi ut mi velit. Maecenas scelerisque porttitor ex, scelerisque tincidunt enim congue non. Duis sagittis vel neque sed vestibulum.</p>
 
 	<!-- Adobe Analytics Start -->
 	<script type="text/javascript" src="//go.pardot.com/dcjs/82202/1182/dc.js"></script>
 	<script type="text/javascript">_satellite.pageBottom();</script>	    
     <!-- Adobe Analytics End-->
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("a#arrow").click(
+				function() {
+					$(this).css({"opacity": "0", "visibility": "hidden"});
+					$("html, body").animate({"scrollTop": $("#logos").offset().top}, "slow");
+				}
+			);
+			$(window).resize(evalArrow);
+			evalArrow();
+			function evalArrow()
+			{
+				if ($(document).height() > $(window).height()) {
+					$("a#arrow").show();
+				} else {
+					$("a#arrow").hide();
+				}					
+			}
+		});
+	</script>
     
 </body>
 

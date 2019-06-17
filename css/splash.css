@@ -16,8 +16,8 @@ body {
   font-family: "Open Sans", sans-serif;
   font-weight: 300;
   margin: 0;
-  color: #7f6647;
-  background-image: url("../resources/images/splash-background.jpg");
+  color: #38342b;
+  background-color: #fdeec3;
   padding: 50px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -42,24 +42,29 @@ a {
 }
 
 h1 {
-  font-style: italic;
+  color: #287b89;
+  font-family: "Tinos", sans-serif;
+  font-weight: 300;
   font-size: 80px;
-  margin-top: auto;
   margin-bottom: 20px;
+  margin-top: 20px;
   text-align: center;
   line-height: 1.1;
-  max-width: 70%;
+}
+@media (max-width: 1000px) {
+  h1 {
+    font-size: 70px;
+  }
 }
 @media (max-width: 800px) {
   h1 {
-    font-size: 50px;
-    max-width: 100%;
+    font-size: 40px;
   }
 }
 
 hr {
   width: 400px;
-  color: #7f6647;
+  color: #287b89;
   border-top: solid;
   border-top-width: 2px;
 }
@@ -73,7 +78,7 @@ h2 {
   max-width: 650px;
   text-align: center;
   font-weight: 400;
-  font-size: 40px;
+  font-size: 32px;
   margin-top: 15px;
   line-height: 1;
 }
@@ -85,9 +90,9 @@ h2 {
 }
 
 h3 {
-  font-weight: 400;
+  font-weight: 300;
   font-size: 24px;
-  font-style: italic;
+  font-family: "Tinos", sans-serif;
   text-align: center;
   max-width: 650px;
   color: #4d4537;
@@ -104,6 +109,8 @@ h3 {
 h4 {
   margin-top: 5px;
   margin-bottom: 35px;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 ul {
@@ -124,17 +131,55 @@ ul#pictures {
   margin-left: 50px;
   flex-shrink: 0;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: center;
 }
 ul#pictures li {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   margin: 3px;
   border: solid;
   border-width: 1px;
   background-position: center;
   background-size: cover;
+}
+@media (max-width: 800px) {
+  ul#pictures li {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+a#enter {
+  padding: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  background-color: #287b89;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+a#enter:hover {
+  background-color: rgba(40, 150, 150, 0.8);
+}
+a#enter:visited {
+  color: lightgray;
+}
+
+p:nth-of-type(1) {
+  max-width: 600px;
+  text-align: center;
+  font-weight: 400;
+}
+
+p:nth-of-type(2) {
+  max-width: 700px;
+  font-weight: 400;
 }
 
 ul#logos {
@@ -145,7 +190,7 @@ ul#logos {
   margin-top: 20px;
 }
 ul#logos li {
-  margin: 20px;
+  margin: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,44 +202,40 @@ ul#logos li {
   }
 }
 ul#logos li a {
-  height: 60px;
-  width: 200px;
+  height: 100px;
+  width: 150px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
-ul#logos li a#logoSmithsonian {
-  background-image: url("../resources/images/smithsonian-logo.png");
+ul#logos li:nth-of-type(1) a {
+  background-image: url("../resources/logo-nea.jpg");
 }
-ul#logos li a#logoNEA {
-  background-image: url("../resources/images/NEAlogo.png");
+ul#logos li:nth-of-type(2) a {
+  background-image: url("../resources/logo-folklife.png");
 }
-ul#logos li a#logoEsri {
-  background-image: url("../resources/esri-logo.png");
-  background-size: auto;
+ul#logos li:nth-of-type(3) a {
+  height: 70px;
+  background-image: url("../resources/logo-esri-black.png");
 }
 
-a#enter {
-  margin-bottom: auto;
-  padding: 30px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-color: #7f6647;
-  border: solid;
-  border-width: 1px;
-  border-color: gray;
-  color: lightgray;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-decoration: none;
+a#arrow {
+  display: none;
+  /* will be shown programmatically */
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  background-color: rgba(40, 123, 137, 0.8);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 70%;
+  position: fixed;
+  bottom: 15px;
+  background-image: url("../resources/arrow-down.png");
+  transition: opacity 600ms, visibility 600ms;
 }
-a#enter:hover {
-  background-color: goldenrod;
-}
-a#enter:visited {
-  color: lightgray;
+a#arrow:hover {
+  background-color: rgba(40, 150, 150, 0.8);
 }
 
 /*# sourceMappingURL=splash.css.map */
