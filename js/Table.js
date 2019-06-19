@@ -122,13 +122,15 @@ function Table(ul, portraitFunc)
 
 	this.activateItem = function(id)
 	{
+		$(ul).children("li").attr("tabindex", "-1");
 		$(
 			$.grep(
 				$(ul).find("li"), 
 				function(value){return parseInt($(value).attr("storymaps-id")) === id;}
 			).shift()
 		)
-		.addClass(LISTITEM_CLASS_ACTIVE);
+		.addClass(LISTITEM_CLASS_ACTIVE)
+		.attr("tabindex", "0");
 	};
 
 	this.clearActive = function()

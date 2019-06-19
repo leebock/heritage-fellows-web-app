@@ -1,6 +1,17 @@
 function ProfileDisplay(div) 
 {
-	this._div = div;	
+	this._div = div;
+	var self = this;	
+	$(this._div).find("a#arrow-left").click(
+		function() {
+			$(self).trigger("goPrevious");
+		}
+	);
+	$(this._div).find("a#arrow-right").click(
+		function() {
+			$(self).trigger("goNext");
+		}
+	);
 }
 
 ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSamples, videos)

@@ -387,6 +387,21 @@ a {
   font-size: 36px;
   font-weight: normal;
 }
+#list-container #bio div#bio-header a#arrow-left, #list-container #bio div#bio-header a#arrow-right {
+  margin-right: 10px;
+  height: 30px;
+  width: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+#list-container #bio div#bio-header a#arrow-left {
+  background-position: left;
+  background-image: url("../resources/ArrowLeft.svg");
+}
+#list-container #bio div#bio-header a#arrow-right {
+  background-position: right;
+  background-image: url("../resources/ArrowRight.svg");
+}
 #list-container #bio div#bio-header a.x-button {
   margin-top: -14px;
   height: 30px;

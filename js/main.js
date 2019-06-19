@@ -63,7 +63,10 @@
 
 	$(document).ready(function() {
 
-		_profileDisplay = new ProfileDisplay($("div#bio"));
+		_profileDisplay = $(new ProfileDisplay($("div#bio")))
+			.on("goNext", function(){step();})
+			.on("goPrevious", function(){step(true);})
+			.get(0);
 
 		if (!L.Browser.mobile) {
 			$("html body").addClass(GLOBAL_CLASS_HOVER);
@@ -359,6 +362,29 @@
 	{
 		$("html body").removeClass(GLOBAL_CLASS_BIO);
 		_profileDisplay.empty();
+	}
+
+	function step(back)
+	{
+		var index = $.inArray(_active, _selection);
+		if (back) {
+			index = index === 0 ? _selection.length - 1 : index-1;
+		} else {
+			index = index === _selection.length -1 ? 0 : index+1;
+		}
+		_active = _selection[index];
+		setBio(_active);
+		_table.activateItem(_active.getID());		
+		if ($(window).width() < WIDTH_THRESHOLD) {
+			if (!_filterLocation || isListRetracted()) {
+				// todo: pass keepZoom if current zoom is less than flyTo zoom?
+				showLocation(_active.getLocationDisplayName(), _active.getLatLng());
+			} else {
+				// do nothing
+			}
+		} else {
+			showLocation(_active.getLocationDisplayName(), _active.getLatLng());
+		}
 	}
 
 	function table_onItemActivate(event, id)
