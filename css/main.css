@@ -408,6 +408,7 @@ a {
   font-size: 40px;
   color: #6c6555;
   font-weight: 400;
+  text-decoration: none;
 }
 #list-container #bio h4 {
   padding-left: 10px;
