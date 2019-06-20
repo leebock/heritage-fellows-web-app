@@ -18,12 +18,11 @@
 		"resources/data/works.csv" :	
 		"https://arcgis.github.io/storymaps-heritage-fellows-data/works.csv";
 	
-	const BNDS_48 = [[25, -126],[49,-65]];
 	const OV_MAPS = [
 		{
 			"name": "48",
 			"imageURL": "resources/images/ov-48.png",
-			"bnds": BNDS_48
+			"bnds": [[25, -126],[49,-65]]
 		},
 		{
 			"name": "AK",
@@ -73,7 +72,7 @@
 			{
 				if (event.which === 27) {
 					clearBio();
-					fitBounds(BNDS_48, true);
+					fitBounds(OV_MAPS[0].bnds, true);
 					$("ul#list").children("li[tabindex='0']").focus();
 					if (_selection && _selection.length === 1 && _filterLocation) {
 						clearLocationFilter();
@@ -100,7 +99,7 @@
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
-				function(btn, map){fitBounds(BNDS_48, true);}
+				function(btn, map){fitBounds(OV_MAPS[0].bnds, true);}
 			).addTo(_map);
 		}
 
@@ -113,7 +112,7 @@
 		$(".filter-display-location .x-button").click(clearLocationFilter);
 		$("#bio .x-button").click(function(){
 			clearBio();
-			fitBounds(BNDS_48, true);
+			fitBounds(OV_MAPS[0].bnds, true);
 			$("ul#list").children("li[tabindex='0']").focus();
 			if (_selection && _selection.length === 1 && _filterLocation) {
 				clearLocationFilter();
@@ -186,7 +185,7 @@
 				return;
 			}
 
-			fitBounds(BNDS_48);
+			fitBounds(OV_MAPS[0].bnds);
 			_map.loadMarkers(_recordsArtists);
 			updateFilter();
 
@@ -225,7 +224,7 @@
 	{
 		_filterLocation = null;
 		updateFilter();
-		fitBounds(BNDS_48, true);
+		fitBounds(OV_MAPS[0].bnds, true);
 	}
 
 	function onMarkerClick(e)
