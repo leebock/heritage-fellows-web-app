@@ -24,7 +24,16 @@ $COLOR-ITEM-CLICK: "brown";
     &#{$LISTITEM-CLASS-ACTIVE} {
       background-color: #{$COLOR-ITEM-CLICK};
     }
-
+      
+    #{$GLOBAL-CLASS-HOVER} & {
+      &:hover {
+          background-color: #{$COLOR-ITEM-MOUSEOVER};
+          &#{$LISTITEM-CLASS-ACTIVE} {
+            background-color: #{$COLOR-ITEM-CLICK};
+          }
+      }
+    }
+  
     div.thumb {
       width: 90px;
       height: 90px;
@@ -52,15 +61,6 @@ $COLOR-ITEM-CLICK: "brown";
       background-color: #{$COLOR-ITEM-MOUSEOVER};
     }
 
-  }
-
-  #{$GLOBAL-CLASS-HOVER} & {
-    li:hover {
-        background-color: #{$COLOR-ITEM-MOUSEOVER};
-        &#{$LISTITEM-CLASS-ACTIVE} {
-          background-color: #{$COLOR-ITEM-CLICK};
-        }
-    }
   }
 
 }

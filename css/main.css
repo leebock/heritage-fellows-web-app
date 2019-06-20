@@ -303,6 +303,12 @@ a {
 #list-container #list li.active {
   background-color: brown;
 }
+.hover-capable #list-container #list li:hover {
+  background-color: #c8b9a6;
+}
+.hover-capable #list-container #list li:hover.active {
+  background-color: brown;
+}
 #list-container #list li div.thumb {
   width: 90px;
   height: 90px;
@@ -326,12 +332,6 @@ a {
 #list-container #list li:focus {
   outline: none;
   background-color: #c8b9a6;
-}
-.hover-capable #list-container #list li:hover {
-  background-color: #c8b9a6;
-}
-.hover-capable #list-container #list li:hover.active {
-  background-color: brown;
 }
 #list-container #list {
   flex-grow: 1;
