@@ -439,16 +439,13 @@
 
 	function getPaddingBottomRight()
 	{
-		var paddingBottomRight;
-		if ($(window).width() < WIDTH_THRESHOLD) {
-			paddingBottomRight = [0, calcBottom()];
-		} else {
-			paddingBottomRight = [
-				calcRight(),
-				$("div#ovBar").height() + parseInt($("div#ovBar").css("bottom"))
-			];
-		}
-		return paddingBottomRight;
+		var compact = $(window).width() < WIDTH_THRESHOLD;
+		return [
+			compact ? 0 : calcRight(), 
+			compact ? 
+			calcBottom() :
+			$("div#ovBar").height() + parseInt($("div#ovBar").css("bottom"))
+		];
 
 		/* note: calcRight and calcBottom provide calculated #list-container 
 				 dimensions instead of querying the actual width/height.  this is 
