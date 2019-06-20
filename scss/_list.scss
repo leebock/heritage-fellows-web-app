@@ -1,5 +1,5 @@
 $LISTITEM-CLASS-ACTIVE: ".active";
-$COLOR-ITEM-MOUSEOVER: "#c8b9a6";
+$COLOR-ITEM-HOVER: "#c8b9a6";
 $COLOR-ITEM-CLICK: "brown";
 
 #list {
@@ -27,7 +27,7 @@ $COLOR-ITEM-CLICK: "brown";
       
     #{$GLOBAL-CLASS-HOVER} & {
       &:hover {
-          background-color: #{$COLOR-ITEM-MOUSEOVER};
+          background-color: #{$COLOR-ITEM-HOVER};
           &#{$LISTITEM-CLASS-ACTIVE} {
             background-color: #{$COLOR-ITEM-CLICK};
           }
@@ -58,7 +58,7 @@ $COLOR-ITEM-CLICK: "brown";
     
     &:focus {
       outline: none;
-      background-color: #{$COLOR-ITEM-MOUSEOVER};
+      background-color: #{$COLOR-ITEM-HOVER};
     }
 
   }
