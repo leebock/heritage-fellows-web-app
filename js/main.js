@@ -449,8 +449,29 @@
 			];
 		}
 		return paddingBottomRight;
-	}
 
+		/* note: calcRight and calcBottom provide calculated #list-container 
+				 dimensions instead of querying the actual width/height.  this is 
+				 because the getPaddingBottomRight function can fire while the 
+				 #list-container is in the process of growing/shrinking via css transition.  
+				 so the actual dimensions may be in flux. */
+				 
+		function calcRight()
+		{	
+			var maxWidth = parseInt($("div#list-container").css("max-width"));
+			var pct = $("html body").hasClass(GLOBAL_CLASS_BIO) ? 0.7 : 0.4;
+			var width = $("html body").width() * pct;
+			width = width > maxWidth ? maxWidth : width;		
+			return parseInt($("#list-container").css("right")) + width;
+		}
+	
+		function calcBottom()
+		{
+			var pct = $("#list-container").hasClass(LISTCONTAINER_CLASS_UP) ? 0.7 : 0.4;
+			return $("div#map").height() * pct;
+		}
+
+	}
 
 	function panTo(latLng)
 	{
@@ -461,27 +482,6 @@
 			{animate: true, duration: 1}
 		);
 	}	
-
-	function calcRight()
-	{
-		/* note: this function provides a theoretical #list-container width 
-				 calculation instead of querying the actual width.  this is 
-				 because the function fires while the div is in the process
-				 of growing/shrinking via css transition.  so the actual
-				 width value may be in flux. */
-
-		var maxWidth = parseInt($("div#list-container").css("max-width"));
-		var pct = $("html body").hasClass(GLOBAL_CLASS_BIO) ? 0.7 : 0.4;
-		var width = $("html body").width() * pct;
-		width = width > maxWidth ? maxWidth : width;		
-		return parseInt($("#list-container").css("right")) + width;
-	}
-
-	function calcBottom()
-	{
-		var pct = $("#list-container").hasClass(LISTCONTAINER_CLASS_UP) ? 0.7 : 0.4;
-		return $("div#map").height() * pct;
-	}
 
 	function setBio(recArtist) {
 
