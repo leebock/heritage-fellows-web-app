@@ -410,15 +410,7 @@
 	function zoomHandler(targetZoom)
 	{
 		var targetPoint = _map.project(_map.getCenter(), targetZoom);
-		var paddingBottomRight;
-		if ($(window).width() < WIDTH_THRESHOLD) {
-			paddingBottomRight = [0, calcBottom()];
-		} else {
-			paddingBottomRight = [
-				calcRight(),
-				$("div#ovBar").height() + parseInt($("div#ovBar").css("bottom"))
-			];
-		}
+		var paddingBottomRight = getPaddingBottomRight();
 		var offset;
 		if (targetZoom < _map.getZoom()) {
 			offset = [paddingBottomRight[0]/4, paddingBottomRight[1]/4];
@@ -437,23 +429,7 @@
 
 	function fitBounds(bnds, flyTo)
 	{
-
-		var options;
-
-		if ($(window).width() < WIDTH_THRESHOLD) {
-			options = {
-				paddingBottomRight:[0, calcBottom()]
-			};
-		} else {
-			options = {
-				paddingBottomRight:
-				[
-					calcRight(),
-					$("div#ovBar").height() + parseInt($("div#ovBar").css("bottom"))
-				]
-			};
-		}
-
+		var options = {paddingBottomRight: getPaddingBottomRight()};
 		if (flyTo) {
 			_map.flyToBounds(bnds, options);
 		} else {
@@ -461,20 +437,29 @@
 		}
 	}
 
+	function getPaddingBottomRight()
+	{
+		var paddingBottomRight;
+		if ($(window).width() < WIDTH_THRESHOLD) {
+			paddingBottomRight = [0, calcBottom()];
+		} else {
+			paddingBottomRight = [
+				calcRight(),
+				$("div#ovBar").height() + parseInt($("div#ovBar").css("bottom"))
+			];
+		}
+		return paddingBottomRight;
+	}
+
+
 	function panTo(latLng)
 	{
 		var pixels = _map.latLngToContainerPoint(latLng);
-
-		var offsetX = 0;
-		var offsetY = 0;
-
-		if ($(window).width() < WIDTH_THRESHOLD) {
-			offsetY = calcBottom()/2;
-		} else {
-			offsetX = calcRight()/2;
-			offsetY = ($("div#ovBar").height() + parseInt($("div#ovBar").css("bottom")))/2;
-		}	
-		_map.panTo(_map.containerPointToLatLng(pixels.add([offsetX, offsetY])), {animate: true, duration: 1});
+		var pBR = getPaddingBottomRight();
+		_map.panTo(
+			_map.containerPointToLatLng(pixels.add([pBR[0]/2, pBR[1]/2])), 
+			{animate: true, duration: 1}
+		);
 	}	
 
 	function calcRight()
