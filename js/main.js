@@ -3,13 +3,9 @@
 	"use strict";
 
 	const WIDTH_THRESHOLD = 750;
-
 	const GLOBAL_CLASS_HOVER = "hover-capable";
-
 	const LISTCONTAINER_CLASS_UP = "table-up";
-
 	const GLOBAL_CLASS_FILTER$LOCATION = "state-filter-location";
-
 	const GLOBAL_CLASS_BIO = "state-bio";
 
 	const SPREADSHEET_URL_ARTISTS = 
