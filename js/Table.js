@@ -89,7 +89,10 @@ function Table(ul, portraitFunc)
 		$(ul).find("li").click(
 			function(e) {
 				_self.clearActive();
-				$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
+				$(ul).children("li").attr("tabindex", "-1");
+				$(e.currentTarget)
+					.attr("tabindex", "0")
+					.addClass(LISTITEM_CLASS_ACTIVE);
 				$(_self).trigger(
 					"itemActivate", 
 					[parseInt($(e.currentTarget).attr("storymaps-id"))]
@@ -101,7 +104,10 @@ function Table(ul, portraitFunc)
 			function(e) {
 				if (e.keyCode === 13) {
 					_self.clearActive();
-					$(e.currentTarget).addClass(LISTITEM_CLASS_ACTIVE);
+					$(ul).children("li").attr("tabindex", "-1");
+					$(e.currentTarget)
+						.attr("tabindex", "0")
+						.addClass(LISTITEM_CLASS_ACTIVE);
 					$(_self).trigger(
 						"itemActivate", 
 						[parseInt($(e.currentTarget).attr("storymaps-id"))]
