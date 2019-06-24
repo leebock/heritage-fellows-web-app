@@ -86,6 +86,8 @@
 
 		new SocialButtonBar();
 
+		$("div.banner a#title").attr("href", window.location.href.replace("map.html", "")); 
+
 		_map = new L.HFMap(
 			"map", 
 			{zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2, worldCopyJump: true},

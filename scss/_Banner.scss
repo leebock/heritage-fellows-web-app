@@ -29,19 +29,24 @@
 
   }
 
-  h1#title {
-
+  a#title {
+    
     flex-grow: 1;
-    margin-right: 10px;
-    font-size: 22px;
-    font-weight: 400;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     text-decoration: none;
+    color: white;
+    
+    h1 {
 
-    @media (max-width: $WIDTH-THRESHOLD) {
-      font-size: 16px;
+      margin-right: 10px;
+      font-size: 22px;
+      font-weight: 400;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  
+      @media (max-width: $WIDTH-THRESHOLD) {
+        font-size: 16px;
+      }
     }
 
   }

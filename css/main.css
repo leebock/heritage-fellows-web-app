@@ -67,18 +67,21 @@ a {
     max-height: 30px;
   }
 }
-.banner h1#title {
+.banner a#title {
   flex-grow: 1;
+  text-decoration: none;
+  color: white;
+}
+.banner a#title h1 {
   margin-right: 10px;
   font-size: 22px;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-decoration: none;
 }
 @media (max-width: 750px) {
-  .banner h1#title {
+  .banner a#title h1 {
     font-size: 16px;
   }
 }
