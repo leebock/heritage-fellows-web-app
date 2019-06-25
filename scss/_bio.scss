@@ -40,12 +40,13 @@ div#bio-header {
   }
 
   a.x-button {
-    margin-top: -14px;
     height: 30px;
-    font-size: 40px;
+    font-size: 50px;
+    line-height: 0.5;
     color: #6c6555;
     font-weight: 400;
     text-decoration: none;
+    overflow: hidden;
   }
 
 }
