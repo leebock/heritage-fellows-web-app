@@ -10,11 +10,8 @@ html {
   width: 100%;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 body {
+  overflow-x: hidden; /*eliminates ios horizontal wiggle */
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   margin: 0;
@@ -23,6 +20,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 /* hides adobe analytics white stripe */
