@@ -304,7 +304,11 @@ a {
   display: flex;
 }
 .hover-capable #list-container #list li:hover {
-  background-color: #f3e9d8;
+  background-color: #e0cbb1;
+}
+#list-container #list li:focus {
+  outline: none;
+  background-color: #c8b9a6 !important;
 }
 #list-container #list li div.thumb {
   width: 90px;
@@ -325,10 +329,6 @@ a {
 }
 #list-container #list li div.info div:nth-child(3) {
   font-weight: bold;
-}
-#list-container #list li:focus {
-  outline: none;
-  background-color: #c8b9a6;
 }
 #list-container #list {
   flex-grow: 1;

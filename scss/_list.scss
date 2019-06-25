@@ -1,4 +1,4 @@
-$COLOR-ITEM-HOVER: "#f3e9d8";
+$COLOR-ITEM-HOVER: "#e0cbb1";
 $COLOR-ITEM-FOCUS: "#c8b9a6";
 
 #list {
@@ -26,7 +26,12 @@ $COLOR-ITEM-FOCUS: "#c8b9a6";
           background-color: #{$COLOR-ITEM-HOVER};
       }
     }
-  
+    
+    &:focus {
+      outline: none;
+      background-color: #{$COLOR-ITEM-FOCUS}!important;
+    }
+
     div.thumb {
       width: 90px;
       height: 90px;
@@ -47,11 +52,6 @@ $COLOR-ITEM-FOCUS: "#c8b9a6";
       div:nth-child(3) {
         font-weight: bold;
       }        
-    }
-    
-    &:focus {
-      outline: none;
-      background-color: #{$COLOR-ITEM-FOCUS};
     }
 
   }
