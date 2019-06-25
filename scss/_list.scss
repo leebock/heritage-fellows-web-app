@@ -1,6 +1,5 @@
-$LISTITEM-CLASS-ACTIVE: ".active";
-$COLOR-ITEM-HOVER: "#c8b9a6";
-$COLOR-ITEM-CLICK: "brown";
+$COLOR-ITEM-HOVER: "#f3e9d8";
+$COLOR-ITEM-FOCUS: "#c8b9a6";
 
 #list {
 
@@ -21,16 +20,10 @@ $COLOR-ITEM-CLICK: "brown";
     cursor: pointer;
     display: flex;
 
-    &#{$LISTITEM-CLASS-ACTIVE} {
-      background-color: #{$COLOR-ITEM-CLICK};
-    }
       
     #{$GLOBAL-CLASS-HOVER} & {
       &:hover {
           background-color: #{$COLOR-ITEM-HOVER};
-          &#{$LISTITEM-CLASS-ACTIVE} {
-            background-color: #{$COLOR-ITEM-CLICK};
-          }
       }
     }
   
@@ -58,7 +51,7 @@ $COLOR-ITEM-CLICK: "brown";
     
     &:focus {
       outline: none;
-      background-color: #{$COLOR-ITEM-HOVER};
+      background-color: #{$COLOR-ITEM-FOCUS};
     }
 
   }

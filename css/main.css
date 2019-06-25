@@ -303,14 +303,8 @@ a {
   cursor: pointer;
   display: flex;
 }
-#list-container #list li.active {
-  background-color: brown;
-}
 .hover-capable #list-container #list li:hover {
-  background-color: #c8b9a6;
-}
-.hover-capable #list-container #list li:hover.active {
-  background-color: brown;
+  background-color: #f3e9d8;
 }
 #list-container #list li div.thumb {
   width: 90px;

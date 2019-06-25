@@ -349,7 +349,6 @@
 
 	function clearActive()
 	{
-		_table.clearActive();
 		if (!_filterLocation) {
 			_map.closePopup();	
 		}

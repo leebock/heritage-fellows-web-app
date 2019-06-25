@@ -1,8 +1,6 @@
 function Table(ul, portraitFunc)
 {
 
-	const LISTITEM_CLASS_ACTIVE = "active";
-
 	var _self = this;
 		
 	$(ul).focus(
@@ -88,11 +86,8 @@ function Table(ul, portraitFunc)
 
 		$(ul).find("li").click(
 			function(e) {
-				_self.clearActive();
 				$(ul).children("li").attr("tabindex", "-1");
-				$(e.currentTarget)
-					.attr("tabindex", "0")
-					.addClass(LISTITEM_CLASS_ACTIVE);
+				$(e.currentTarget).attr("tabindex", "0");
 				$(_self).trigger(
 					"itemActivate", 
 					[parseInt($(e.currentTarget).attr("storymaps-id"))]
@@ -103,11 +98,8 @@ function Table(ul, portraitFunc)
 		$(ul).find("li").keydown(
 			function(e) {
 				if (e.keyCode === 13) {
-					_self.clearActive();
 					$(ul).children("li").attr("tabindex", "-1");
-					$(e.currentTarget)
-						.attr("tabindex", "0")
-						.addClass(LISTITEM_CLASS_ACTIVE);
+					$(e.currentTarget).attr("tabindex", "0");
 					$(_self).trigger(
 						"itemActivate", 
 						[parseInt($(e.currentTarget).attr("storymaps-id"))]
@@ -134,15 +126,9 @@ function Table(ul, portraitFunc)
 				$(ul).find("li"), 
 				function(value){return parseInt($(value).attr("storymaps-id")) === id;}
 			).shift()
-		)
-		.addClass(LISTITEM_CLASS_ACTIVE)
-		.attr("tabindex", "0");
+		).attr("tabindex", "0");
 	};
 
-	this.clearActive = function()
-	{
-		$(ul).find("li").removeClass(LISTITEM_CLASS_ACTIVE);	 			
-	};
 
 }
 
