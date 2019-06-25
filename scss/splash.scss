@@ -44,23 +44,30 @@ div#banner {
   height: 60px;
   background-color: #287b89;
   width: 100%;
-  
-  h1 {
-    text-align: left;
-    flex-grow: 1;
-    font-size: 34px;
-    margin: 10px;
-    margin-left: 15px;
-    color: rgba(253, 238, 195, 1);
-    @media (max-width: #{$threshold-width-small})  {
-      font-size: 22px;
-      margin: 17px;
-    }
+
+  a {
+    text-decoration: none;    
   }
   
-  a {
+  a:nth-of-type(1) {
+    flex-grow: 1;
+    h1 {
+      text-align: left;
+      flex-grow: 1;
+      font-size: 34px;
+      margin: 10px;
+      margin-left: 15px;
+      color: rgba(253, 238, 195, 1);
+      @media (max-width: #{$threshold-width-small})  {
+        font-size: 22px;
+        margin: 17px;
+      }
+    }
+    
+  }
+  
+  a:nth-of-type(2) {
     color: rgba(253, 238, 195, 1);
-    text-decoration: none;
     margin: 10px;
     border: solid;
     border-width: thin;
