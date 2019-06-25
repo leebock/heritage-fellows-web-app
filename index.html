@@ -80,6 +80,10 @@
 </head>
 
 <body>
+	<div id="banner">
+		<h1>Masters of Tradition</h1>
+		<a href="./map.html">Explore</a>
+	</div>
 	<h1>Masters of Tradition</h1>
 	<hr></hr>
 	<h2>A cultural journey across America</h2>
@@ -119,21 +123,50 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			$("html, body").animate({ scrollTop: 0 }, "slow");
 			$("a#arrow").click(
 				function() {
 					$(this).css({"opacity": "0", "visibility": "hidden"});
-					$("html, body").animate({"scrollTop": $("#logos").offset().top}, "slow");
+					$("html, body").animate(
+						{"scrollTop": $("#logos").offset().top-$("#banner").outerHeight()}, 
+						"slow"
+					);
 				}
 			);
-			$(window).resize(evalArrow);
-			evalArrow();
-			function evalArrow()
-			{
-				if ($(document).height() > $(window).height()) {
-					$("a#arrow").show();
-				} else {
+			if (hasScroll()) {
+				if (isScrollNearBottom()) {
 					$("a#arrow").hide();
-				}					
+				} else {
+					$("a#arrow").show();
+				}
+			} else {
+				$("a#arrow").hide();
+			}
+			$(window).scroll(
+				function() {
+					if(isExploreButtonAboveScroll()) {
+						$("div#banner").css("display","flex");
+					} else {
+						$("div#banner").hide();
+					}
+					if (isScrollNearBottom()) {
+						$("a#arrow").hide();
+					} else {
+						$("a#arrow").show();
+					}
+				}
+			);
+			function hasScroll()
+			{
+				return $(document).height() > $(window).height();
+			}
+			function isExploreButtonAboveScroll()
+			{
+				return $(window).scrollTop()>$("a#enter").position().top;
+			}
+			function isScrollNearBottom()
+			{
+				return $(window).scrollTop()+$(window).height() + 50 > $(document).height();
 			}
 		});
 	</script>

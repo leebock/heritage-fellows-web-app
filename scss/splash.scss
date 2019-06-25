@@ -2,34 +2,27 @@ $threshold-width-medium: 1000px;
 $threshold-width-small: 800px;
 
 html {
-  overflow: hidden;
 	box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 100%;
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
 }
 
-html, body {
-  width: 100%;
-  height: 100%;
-}
-
 body {
-  
   font-family: 'Open Sans', sans-serif;
   font-weight: 300;
   margin: 0;
   color: rgba(56, 52, 43, 1);
   background-color: rgba(253, 238, 195, 1);
-  overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
- -webkit-overflow-scrolling: touch;
-
-
 }
 
 /* hides adobe analytics white stripe */
@@ -42,7 +35,44 @@ a {
   cursor: pointer;
 }
 
+div#banner {
+  
+  position: fixed;
+  display: none;
+  top: 0px;
+  flex-shrink: 0;
+  height: 60px;
+  background-color: #287b89;
+  width: 100%;
+  
+  h1 {
+    text-align: left;
+    flex-grow: 1;
+    font-size: 34px;
+    margin: 10px;
+    margin-left: 15px;
+    color: rgba(253, 238, 195, 1);
+    @media (max-width: #{$threshold-width-small})  {
+      font-size: 22px;
+      margin: 17px;
+    }
+  }
+  
+  a {
+    color: rgba(253, 238, 195, 1);
+    text-decoration: none;
+    margin: 10px;
+    border: solid;
+    border-width: thin;
+    font-weight: 400;
+    padding: 10px;
+    padding-top: 7px;
+  }
+  
+}
+
 h1 {
+  
   color: rgba(40, 123, 137, 1);
   font-family: 'Tinos', sans-serif;
   font-weight: 300;

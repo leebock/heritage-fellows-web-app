@@ -1,15 +1,14 @@
 html {
-  overflow: hidden;
   box-sizing: border-box;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  width: 100%;
 }
 
 *, *:before, *:after {
   box-sizing: inherit;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
 }
 
 body {
@@ -18,12 +17,9 @@ body {
   margin: 0;
   color: #38342b;
   background-color: #fdeec3;
-  overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
-  -webkit-overflow-scrolling: touch;
 }
 
 /* hides adobe analytics white stripe */
@@ -33,6 +29,40 @@ div.adsbox {
 
 a {
   cursor: pointer;
+}
+
+div#banner {
+  position: fixed;
+  display: none;
+  top: 0px;
+  flex-shrink: 0;
+  height: 60px;
+  background-color: #287b89;
+  width: 100%;
+}
+div#banner h1 {
+  text-align: left;
+  flex-grow: 1;
+  font-size: 34px;
+  margin: 10px;
+  margin-left: 15px;
+  color: #fdeec3;
+}
+@media (max-width: 800px) {
+  div#banner h1 {
+    font-size: 22px;
+    margin: 17px;
+  }
+}
+div#banner a {
+  color: #fdeec3;
+  text-decoration: none;
+  margin: 10px;
+  border: solid;
+  border-width: thin;
+  font-weight: 400;
+  padding: 10px;
+  padding-top: 7px;
 }
 
 h1 {
