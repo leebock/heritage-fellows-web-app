@@ -47,7 +47,7 @@
 
 	var _map;
 	var _ovBar;
-	var _profileDisplay;
+	var _bio;
 	var _table;
 	var _textSearchWidget;
 
@@ -58,7 +58,7 @@
 
 	$(document).ready(function() {
 
-		_profileDisplay = $(new ProfileDisplay($("div#bio")))
+		_bio = $(new Bio($("div#bio")))
 			.on("goNext", function(){step();})
 			.on("goPrevious", function(){step(true);})
 			.get(0);
@@ -357,7 +357,7 @@
 	function clearBio()
 	{
 		$("html body").removeClass(GLOBAL_CLASS_BIO);
-		_profileDisplay.empty();
+		_bio.empty();
 	}
 
 	function step(back)
@@ -485,7 +485,7 @@
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
 
-		_profileDisplay.update(
+		_bio.update(
 			recArtist, 
 			getPortrait(recArtist.getFullName()),
 			$.grep(

@@ -1,4 +1,4 @@
-function ProfileDisplay(div) 
+function Bio(div) 
 {
 	this._div = div;
 	var self = this;	
@@ -14,7 +14,7 @@ function ProfileDisplay(div)
 	);
 }
 
-ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSamples, videos)
+Bio.prototype.update = function(rec, portrait, objectPhotos, audioSamples, videos)
 {
 	// accepts an instance of ArtistRecord
 
@@ -94,6 +94,6 @@ ProfileDisplay.prototype.update = function(rec, portrait, objectPhotos, audioSam
 
 };
 
-ProfileDisplay.prototype.empty = function() {
+Bio.prototype.empty = function() {
 	$(this._div).find("#scrollable #gallery").empty();
 };
