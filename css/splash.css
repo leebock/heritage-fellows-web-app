@@ -71,6 +71,9 @@ div#banner a:nth-of-type(2) {
   padding: 10px;
   padding-top: 7px;
 }
+div#banner a:nth-of-type(2):hover {
+  background-color: rgba(40, 150, 150, 0.8);
+}
 
 h1 {
   color: #287b89;

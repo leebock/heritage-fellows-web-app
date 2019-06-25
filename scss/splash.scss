@@ -75,6 +75,7 @@ div#banner {
     font-weight: 400;
     padding: 10px;
     padding-top: 7px;
+    &:hover {background-color: rgba(40, 150, 150, 0.8);}    
   }
   
 }
