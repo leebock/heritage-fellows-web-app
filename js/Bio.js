@@ -14,7 +14,7 @@ function Bio(div)
 	);
 }
 
-Bio.prototype.update = function(rec, portrait, objectPhotos, audioSamples, videos)
+Bio.prototype.update = function(rec, portrait, objectPhotos, audioSamples, videos, showArrows)
 {
 	// accepts an instance of ArtistRecord
 
@@ -22,6 +22,8 @@ Bio.prototype.update = function(rec, portrait, objectPhotos, audioSamples, video
 	$(this._div).find("h4#bio-tradition").html(rec.getTradition() ? rec.getTradition() : "Lorem Ipsum");
 	$(this._div).find("h4#bio-awardyear").html(rec.getAwardYear()+" NEA National Heritage Fellow");
 	$(this._div).find("h4#bio-placename").html(rec.getLocationDisplayName());
+	
+	$("#arrow-left, #arrow-right").css("display", showArrows ? "block" : "none");
 
 	var s = rec.getBio();
 	if (s.trim() === "") {

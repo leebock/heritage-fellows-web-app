@@ -505,7 +505,8 @@
 				function(recMedia) {
 					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isVideo();	
 				}
-			).sort(sortByDisplayOrder)			
+			).sort(sortByDisplayOrder),
+			_selection.length > 1
 		);
 
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
