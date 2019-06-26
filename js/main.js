@@ -93,7 +93,7 @@
 			{zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2, worldCopyJump: true},
 			zoomHandler
 		)
-			.addLayer(L.esri.Vector.basemap("ModernAntique"))
+			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.on("click", onMapClick)
 			.on("markerClick", onMarkerClick)
 			.on("moveend", onExtentChange);
