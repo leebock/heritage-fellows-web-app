@@ -9,7 +9,7 @@ function OVBar(div, config)
 			$(div).append(
 				$("<a>")
 				.attr("name", val.name)
-				.attr("href", "javascript:void()")
+				.attr("href", "#")
 				.css("background-image", "url('"+val.imageURL+"')")
 				.addClass("ov")
 				.append($("<div>").addClass("veil"))
