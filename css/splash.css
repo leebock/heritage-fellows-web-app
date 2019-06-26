@@ -79,7 +79,8 @@ h1 {
   color: #287b89;
   font-family: "Tinos", sans-serif;
   font-weight: 300;
-  font-size: 80px;
+  font-size: 100px;
+  letter-spacing: -0.01em;
   margin-bottom: 20px;
   margin-top: 70px;
   text-align: center;
