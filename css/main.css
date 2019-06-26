@@ -498,7 +498,7 @@ a {
 div#ovBar {
   display: flex;
 }
-div#ovBar div.ov {
+div#ovBar a.ov {
   width: 100%;
   margin-right: 2%;
   background-position: center;
@@ -509,35 +509,35 @@ div#ovBar div.ov {
   border-width: 1px;
   cursor: pointer;
 }
-div#ovBar div.ov:last-child {
+div#ovBar a.ov:last-child {
   margin-right: 0;
 }
-div#ovBar div.ov:before {
+div#ovBar a.ov:before {
   content: "";
   float: left;
   padding-top: 100%;
 }
-div#ovBar div.ov#ov48 {
+div#ovBar a.ov#ov48 {
   background-image: url("../resources/images/ov-48.png");
 }
-div#ovBar div.ov#ovAK {
+div#ovBar a.ov#ovAK {
   background-image: url("../resources/images/ov-ak.png");
 }
-div#ovBar div.ov#ovHI {
+div#ovBar a.ov#ovHI {
   background-image: url("../resources/images/ov-hi.png");
 }
-div#ovBar div.ov#ovPR {
+div#ovBar a.ov#ovPR {
   background-image: url("../resources/images/ov-pr.png");
 }
-div#ovBar div.ov div.veil {
+div#ovBar a.ov div.veil {
   width: 100%;
   height: 100%;
   background-color: rgba(128, 128, 128, 0.5);
 }
-div#ovBar div.ov:hover div.veil {
+div#ovBar a.ov:hover div.veil {
   background-color: rgba(128, 128, 128, 0.2);
 }
-div#ovBar div.ov.selected div.veil {
+div#ovBar a.ov.selected div.veil {
   background-color: rgba(128, 128, 128, 0);
 }
 

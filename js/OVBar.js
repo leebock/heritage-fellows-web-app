@@ -7,8 +7,9 @@ function OVBar(div, config)
 		config, 
 		function(idx, val) {
 			$(div).append(
-				$("<div>")
+				$("<a>")
 				.attr("name", val.name)
+				.attr("href", "javascript:void()")
 				.css("background-image", "url('"+val.imageURL+"')")
 				.addClass("ov")
 				.append($("<div>").addClass("veil"))
@@ -20,7 +21,7 @@ function OVBar(div, config)
 	   is out of the way, _lookUp is a more usable version of the extent 
 	   info going forward. */
 	
-	this._ovs = $(div).find("div.ov");
+	this._ovs = $(div).children("a.ov");
 	this._lookUp = config.reduce(
 		function(accumulator, value) {
 			accumulator[value.name] = value.bnds;
