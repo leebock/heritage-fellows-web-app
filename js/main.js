@@ -226,7 +226,6 @@
 	{
 		_filterLocation = null;
 		updateFilter();
-		fitBounds(OV_MAPS[0].bnds, true);
 	}
 
 	function onMarkerClick(e)
