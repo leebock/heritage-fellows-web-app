@@ -5,7 +5,11 @@ function Table(ul, portraitFunc)
 		
 	$(ul).focus(
 		function() {
-			$(ul).find("li").get(0).focus();
+			var current = $(ul).children("li[tabindex='0']");
+			if (!current.length) {
+				current = $(ul).children("li:nth-of-type(1)").attr("tabindex", "0");
+			}
+			current.focus();
 			$(ul).attr("tabindex", "-1");
 		}
 	);
@@ -15,20 +19,15 @@ function Table(ul, portraitFunc)
 			if (e.keyCode === 40 || e.keyCode === 38) {
 				e.preventDefault();
 				// look for an li element with focus
-				var current = $(e.currentTarget).find("li:focus").get(0);
-				$(current).attr("tabindex", "-1");
-				var rows = $(e.currentTarget).find("li");
+				var current = $(ul).children("li:focus").attr("tabindex", "-1").get(0);
+				var rows = $(ul).children("li");
 				var idx = $.inArray(current, rows);
-				if (e.keyCode === 40) {
-					if (idx < (rows.length - 1)) {
-						idx++;
-					}
-				} else if (e.keyCode === 38) {
-					if (idx > 0) {
-						idx--;
-					}
-				}
-				$(ul).find("li").get(idx).focus();
+				idx = e.keyCode === 40 ? 
+					(idx < rows.length - 1 ? idx+1 : idx) : 
+					(idx > 0 ? idx-1 : idx);
+				$(ul).children("li:nth-of-type("+(idx+1)+")")
+					.attr("tabindex", "0")
+					.focus();
 			}
 		}
 	);
@@ -105,12 +104,6 @@ function Table(ul, portraitFunc)
 						[parseInt($(e.currentTarget).attr("storymaps-id"))]
 					);
 				}
-			}
-		);
-		
-		$(ul).find("li").focus(
-			function(e) {
-				$(e.currentTarget).attr("tabindex", "0");
 			}
 		);
 
