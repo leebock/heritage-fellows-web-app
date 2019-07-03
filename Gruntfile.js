@@ -9,7 +9,7 @@ module.exports = function (grunt) {
     },
     watch: {
       scripts: {
-        files: ['*.html','js/*.js','css/*.css','lib/**/*.js','lib/**/*.css'],
+        files: ['*.html','js/*.js','css/*.css'],
         tasks: ['jshint'],
         options: {
           debounceDelay: 250,
@@ -22,7 +22,6 @@ module.exports = function (grunt) {
         main: {
             files: [
                 {expand: true, src: "index.html", dest: "dist/"},
-                {expand: true, src: "map.html", dest: "dist/"},
                 {expand: true, src: "js/*", dest: "dist/"},
                 {expand: true, src: "css/*", dest: "dist/"},
                 {expand: true, src: "resources/**", dest: "dist/"}
