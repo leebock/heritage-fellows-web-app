@@ -397,18 +397,22 @@
 			}
 		)[0];
 
-		setBio(_active);
-
-		if ($(window).width() < WIDTH_THRESHOLD) {
-			if (!_filterLocation || isListRetracted()) {
-				// todo: pass keepZoom if current zoom is less than flyTo zoom?
-				showLocation(_active.getLocationDisplayName(), _active.getLatLng());
-			} else {
-				// do nothing
-			}
-		} else {
-			showLocation(_active.getLocationDisplayName(), _active.getLatLng());
-		}
+		setTimeout(
+			function(){
+				setBio(_active);
+				if ($(window).width() < WIDTH_THRESHOLD) {
+					if (!_filterLocation || isListRetracted()) {
+						// todo: pass keepZoom if current zoom is less than flyTo zoom?
+						showLocation(_active.getLocationDisplayName(), _active.getLatLng());
+					} else {
+						// do nothing
+					}
+				} else {
+					showLocation(_active.getLocationDisplayName(), _active.getLatLng());
+				}
+			}, 
+			L.Browser.mobile ? 300 : 1
+		);
 
 	}
 	
