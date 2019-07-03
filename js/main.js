@@ -86,7 +86,12 @@
 
 		new SocialButtonBar();
 
-		$("div.banner a#title").attr("href", window.location.href.replace("map.html", "")); 
+		$("div.banner a#title").attr(
+			"href", 
+			window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0 ?
+				"../" :
+				"../app-landing"
+		); 
 
 		_map = new L.HFMap(
 			"map", 
