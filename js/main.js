@@ -499,6 +499,12 @@
 			$.grep(
 				_recordsWorks, 
 				function(recMedia) {
+					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isSupplementalPhoto();
+				}
+			).sort(sortByDisplayOrder),
+			$.grep(
+				_recordsWorks, 
+				function(recMedia) {
 					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isObjectPhoto();
 				}
 			).sort(sortByDisplayOrder),

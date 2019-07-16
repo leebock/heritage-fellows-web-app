@@ -14,7 +14,7 @@ function Bio(div)
 	);
 }
 
-Bio.prototype.update = function(rec, portrait, objectPhotos, audioSamples, videos, showArrows)
+Bio.prototype.update = function(rec, portrait, supplementalPhotos, objectPhotos, audioSamples, videos, showArrows)
 {
 	// accepts an instance of ArtistRecord
 
@@ -41,6 +41,17 @@ Bio.prototype.update = function(rec, portrait, objectPhotos, audioSamples, video
 
 	var gallery = $("<div>").attr("id", "gallery");
 	$(this._div).find("#scrollable").append(gallery);
+
+	$.each(
+		supplementalPhotos, 
+		function(index, recMedia) {
+			$(gallery).append(
+				$("<section>")
+					.append($("<img>").attr("src", recMedia.getLink()))
+					.append($("<p>").html(recMedia.getTitle()))
+			);
+		}
+	);
 
 	$.each(
 		objectPhotos, 

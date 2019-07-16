@@ -54,3 +54,8 @@ MediaRecord.prototype.isVideo = function()
 {
 	return this._obj[MediaRecord.FIELDNAME_WORKS$MEDIA_TYPE] === "Video";	
 };
+
+MediaRecord.prototype.isSupplementalPhoto = function()
+{
+	return this._obj[MediaRecord.FIELDNAME_WORKS$MEDIA_TYPE] === "Supplemental";
+};
