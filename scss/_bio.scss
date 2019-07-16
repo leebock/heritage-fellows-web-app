@@ -97,6 +97,9 @@ div#scrollable {
       margin-bottom: 2px;
       max-width: 600px;
       line-height: 1.2;
+      i {
+        font-style: normal;
+      }
     }
     
     p {
@@ -116,7 +119,6 @@ div#scrollable {
       height: auto;
     }
     p {
-      font-style: italic;
       font-size: 15px;
       width: 100%; 
       margin-top: 5px;

@@ -447,6 +447,9 @@ a {
   max-width: 600px;
   line-height: 1.2;
 }
+#list-container #bio div#scrollable #textarea h5#quotation i {
+  font-style: normal;
+}
 #list-container #bio div#scrollable #textarea p {
   max-width: 600px;
   line-height: 1.6;
@@ -462,7 +465,6 @@ a {
   height: auto;
 }
 #list-container #bio div#scrollable #gallery p {
-  font-style: italic;
   font-size: 15px;
   width: 100%;
   margin-top: 5px;
