@@ -1,4 +1,4 @@
-function Table(ul, portraitFunc)
+function Table(ul)
 {
 
 	var _self = this;
@@ -71,7 +71,7 @@ function Table(ul, portraitFunc)
 						.attr("tabindex", "-1")
 						.append($("<div>").addClass("thumb").css(
 							"background-image", 
-							"url('"+portraitFunc(value.getFullName(), true)+"')")
+							"url('"+value.getPortrait().getLink()+"')")
 						)
 						.append($("<div>").addClass("info")
 							.append($("<div>").html(firstName+" "+lastName))

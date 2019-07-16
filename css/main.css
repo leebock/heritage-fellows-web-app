@@ -436,6 +436,11 @@ a {
   width: 100%;
   height: auto;
 }
+#list-container #bio div#scrollable #textarea p:nth-of-type(1) {
+  align-self: flex-start;
+  font-size: 15px;
+  margin-top: 5px;
+}
 #list-container #bio div#scrollable #textarea h5#quotation {
   color: #4a4339;
   font-family: "Tinos", sans-serif;

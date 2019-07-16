@@ -70,3 +70,62 @@ ArtistRecord.prototype.getTradition = function()
 {
 	return this._obj[ArtistRecord.FIELDNAME$TRADITION];
 };
+
+ArtistRecord.prototype.setMedia = function(arrMediaRecords)
+{
+	this._media = arrMediaRecords;
+};
+
+ArtistRecord.prototype.getPortrait = function()
+{
+	return $.grep(
+		this._media, 
+		function(value) {
+			return value.isPortrait();
+		}
+	).shift();
+};
+
+ArtistRecord.prototype.getSupplementalPhotos = function()
+{
+	return $.grep(
+		this._media, 
+		function(value) {
+			return value.isSupplementalPhoto();
+		}
+	).sort(ArtistRecord.sortByDisplayOrder);
+};
+
+ArtistRecord.prototype.getObjectPhotos = function()
+{
+	return $.grep(
+		this._media, 
+		function(value) {
+			return value.isObjectPhoto();
+		}
+	).sort(ArtistRecord.sortByDisplayOrder);
+};
+
+ArtistRecord.prototype.getAudios = function()
+{
+	return $.grep(
+		this._media, 
+		function(value) {
+			return value.isAudio();
+		}
+	).sort(ArtistRecord.sortByDisplayOrder);
+};
+
+ArtistRecord.prototype.getVideos = function()
+{
+	return $.grep(
+		this._media, 
+		function(value) {
+			return value.isVideo();
+		}
+	).sort(ArtistRecord.sortByDisplayOrder);
+};
+
+ArtistRecord.prototype.sortByDisplayOrder = function(a,b){
+	return a.getDisplayOrder() - b.getDisplayOrder();
+};

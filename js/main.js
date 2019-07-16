@@ -114,7 +114,7 @@
 		.on("change", onTextSearchChange)
 		.on("clear", onTextSearchClear).get(0);
 
- 		_table = $(new Table($("ul#list").get(0), getPortrait)).on("itemActivate", table_onItemActivate).get(0);
+ 		_table = $(new Table($("ul#list").get(0))).on("itemActivate", table_onItemActivate).get(0);
 
 		$(".filter-display-location .x-button").click(clearLocationFilter);
 		$("#bio .x-button").click(function(){
@@ -191,6 +191,20 @@
 			if (!_recordsArtists || !_recordsWorks) {
 				return;
 			}
+			
+			$.each(
+				_recordsArtists, 
+				function(index, artist) {
+					artist.setMedia(
+						$.grep(
+							_recordsWorks, 
+							function(media) {
+								return media.getArtistID() === artist.getFullName();
+							}
+						)					
+					);
+				}
+			);
 
 			fitBounds(OV_MAPS[0].bnds);
 			_map.loadMarkers(_recordsArtists);
@@ -495,56 +509,13 @@
 
 		_bio.update(
 			recArtist, 
-			getPortrait(recArtist.getFullName()),
-			$.grep(
-				_recordsWorks, 
-				function(recMedia) {
-					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isSupplementalPhoto();
-				}
-			).sort(sortByDisplayOrder),
-			$.grep(
-				_recordsWorks, 
-				function(recMedia) {
-					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isObjectPhoto();
-				}
-			).sort(sortByDisplayOrder),
-			$.grep(
-				_recordsWorks,
-				function(recMedia) {
-					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isAudio();	
-				}
-			).sort(sortByDisplayOrder),
-			$.grep(
-				_recordsWorks,
-				function(recMedia) {
-					return recMedia.getArtistID() === recArtist.getFullName() && recMedia.isVideo();	
-				}
-			).sort(sortByDisplayOrder),
 			_selection.length > 1
 		);
 
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
 		$("#bio #scrollable").get(0).focus();		
 		$("#list-container").addClass(LISTCONTAINER_CLASS_UP);
-
-		function sortByDisplayOrder(a,b){return a.getDisplayOrder() - b.getDisplayOrder();}
 		
-	}
-
-	function getPortrait(artistName, bThumbNail)
-	{
-
-		const PLACEHOLDER_PORTRAIT = "resources/no-image.gif";	
-
-		var match = $.grep(
-			_recordsWorks, 
-			function(value) {
-				return value.getArtistID() === artistName && value.isPortrait();
-			}
-		).shift();
-
-		return match ? (bThumbNail ? match.getThumbnail() : match.getLink()) : PLACEHOLDER_PORTRAIT;
-
 	}
 
 	function showLocation(label, ll, keepZoom)

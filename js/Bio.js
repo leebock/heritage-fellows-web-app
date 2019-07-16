@@ -14,7 +14,7 @@ function Bio(div)
 	);
 }
 
-Bio.prototype.update = function(rec, portrait, supplementalPhotos, objectPhotos, audioSamples, videos, showArrows)
+Bio.prototype.update = function(rec, showArrows)
 {
 	// accepts an instance of ArtistRecord
 
@@ -33,7 +33,8 @@ Bio.prototype.update = function(rec, portrait, supplementalPhotos, objectPhotos,
 	$(this._div).find("#scrollable").empty();
 
 	var textarea = $("<div>").attr("id", "textarea")
-		.append($("<img>").attr("id", "portrait").attr("src", portrait))
+		.append($("<img>").attr("id", "portrait").attr("src", rec.getPortrait().getLink()))
+		.append($("<p>").html(rec.getPortrait().getTitle()))
 		.append($("<h5>").attr("id", "quotation").html(rec.getQuotation() ? rec.getQuotation() : "Gaudeamus igitur Iuvenes dum sumus. Post iucundam iuventutem. Post molestam senectutem. Nos habebit humus."))
 		.append($("<p>").html(s));
 
@@ -43,7 +44,7 @@ Bio.prototype.update = function(rec, portrait, supplementalPhotos, objectPhotos,
 	$(this._div).find("#scrollable").append(gallery);
 
 	$.each(
-		supplementalPhotos, 
+		rec.getSupplementalPhotos(), 
 		function(index, recMedia) {
 			$(gallery).append(
 				$("<section>")
@@ -54,7 +55,7 @@ Bio.prototype.update = function(rec, portrait, supplementalPhotos, objectPhotos,
 	);
 
 	$.each(
-		objectPhotos, 
+		rec.getObjectPhotos(), 
 		function(index, recMedia) {
 			$(gallery).append(
 				$("<section>")
@@ -65,7 +66,7 @@ Bio.prototype.update = function(rec, portrait, supplementalPhotos, objectPhotos,
 	);
 	
 	$.each(
-		audioSamples,
+		rec.getAudios(),
 		function(index, recMedia) {
 			var audio = $("<audio>").addClass("player")
 				.append($("<source>").attr("src", recMedia.getLink()))
@@ -81,7 +82,7 @@ Bio.prototype.update = function(rec, portrait, supplementalPhotos, objectPhotos,
 	);
 	
 	$.each(
-		videos,
+		rec.getVideos(),
 		function(index, recMedia) {
 			var div = $("<div>")
 				.addClass("video-container")

@@ -86,6 +86,12 @@ div#scrollable {
       width: 100%;
       height: auto;
     }
+    
+    p:nth-of-type(1) {
+      align-self: flex-start;
+      font-size: 15px;
+      margin-top: 5px;
+    }
 
     h5#quotation {
       color: #4a4339;
