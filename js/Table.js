@@ -71,7 +71,7 @@ function Table(ul)
 						.attr("tabindex", "-1")
 						.append($("<div>").addClass("thumb").css(
 							"background-image", 
-							"url('"+value.getPortrait().getLink()+"')")
+							"url('"+value.getPortrait().getThumbnail()+"')")
 						)
 						.append($("<div>").addClass("info")
 							.append($("<div>").html(firstName+" "+lastName))
