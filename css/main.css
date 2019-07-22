@@ -95,8 +95,13 @@ a {
   margin-right: 15px;
   text-decoration: none;
 }
-@media (max-width: 750px) {
-  .banner .social-button-bar a.story-map-link {
+.banner .social-button-bar a.esri-link img {
+  width: auto;
+  max-height: 25px;
+  margin-bottom: -6px;
+}
+@media (max-width: 375px) {
+  .banner .social-button-bar a.esri-link {
     display: none;
   }
 }

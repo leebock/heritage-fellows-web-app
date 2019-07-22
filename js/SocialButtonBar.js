@@ -10,10 +10,10 @@ function SocialButtonBar()
 	$(".social-button-bar")
 		.append(
 			$("<a>")
-				.addClass("story-map-link")
-				.attr("href", "https://storymaps.arcgis.com/en/gallery/#s=0&md=storymaps-apps:custom")
+				.addClass("esri-link")
+				.attr("href", "https://www.esri.com")
 				.attr("target", "_blank")
-				.text("A Story Maps Labs Project")
+				.append($("<img>").attr("src", "resources/logo-esri.png"))
 		)
 		.append(
 			$("<a>")

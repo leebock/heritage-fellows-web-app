@@ -63,8 +63,13 @@
       text-decoration: none;
     }
 
-    a.story-map-link {
-      @media (max-width: $WIDTH-THRESHOLD) {
+    a.esri-link {
+      img {
+        width: auto;
+        max-height: 25px;
+        margin-bottom: -6px;
+      }
+      @media (max-width: 375px) {
         display: none;
       }
     }
