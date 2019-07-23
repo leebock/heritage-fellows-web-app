@@ -15,6 +15,7 @@ ArtistRecord.FIELDNAME$STANDARDIZED_LOCATION = "Standardized-Location";
 ArtistRecord.FIELDNAME$DISPLAY_NAME = "Location";
 ArtistRecord.FIELDNAME$QUOTATION = "quotation";
 ArtistRecord.FIELDNAME$BIO = "bio";
+ArtistRecord.FIELDNAME$STATUS = "status";
 
 ArtistRecord.prototype.getAwardYear = function()
 {
@@ -24,6 +25,11 @@ ArtistRecord.prototype.getAwardYear = function()
 ArtistRecord.prototype.getBio = function()
 {
 	return this._obj[ArtistRecord.FIELDNAME$BIO];
+};
+
+ArtistRecord.prototype.getLivingStatus = function()
+{
+	return this._obj[ArtistRecord.FIELDNAME$STATUS].toLowerCase() === "living";
 };
 
 ArtistRecord.prototype.getFirstName = function()

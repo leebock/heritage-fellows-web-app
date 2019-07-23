@@ -74,7 +74,13 @@ function Table(ul)
 							"url('"+value.getPortrait().getThumbnail()+"')")
 						)
 						.append($("<div>").addClass("info")
-							.append($("<div>").html(firstName+" "+lastName))
+							.append(
+								$("<div>").html(
+									firstName+" "+
+									lastName+
+									(value.getLivingStatus() ? "" : " *")
+								)
+							)
 							.append($("<div>").html(tradition))								
 							.append($("<div>").html(year+" | "+location))
 						)
