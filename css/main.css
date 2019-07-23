@@ -456,6 +456,7 @@ a {
   align-self: flex-start;
   font-size: 15px;
   margin-top: 5px;
+  max-width: none;
 }
 #list-container #bio div#scrollable #textarea h5#quotation {
   color: #4a4339;
