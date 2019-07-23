@@ -32,8 +32,11 @@
   a#title {
     
     flex-grow: 1;
+    flex-shrink: 1;
     text-decoration: none;
     color: white;
+    position: relative;
+    overflow: hidden;
     
     h1 {
 
@@ -41,12 +44,21 @@
       font-size: 22px;
       font-weight: 400;
       overflow: hidden;
-      text-overflow: ellipsis;
       white-space: nowrap;
-  
+      text-overflow: ellipsis;
+      &:before {
+        content: "Masters of Tradition: A Cultural Journey Across America";
+      }
       @media (max-width: $WIDTH-THRESHOLD) {
         font-size: 16px;
       }
+      @media (max-width: 600px)
+      {
+        &:before {
+          content: "Masters of Tradition";
+        }        
+      }
+      
     }
 
   }
