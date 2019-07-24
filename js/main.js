@@ -90,7 +90,7 @@
 			"href", 
 			window.location.href.toLowerCase().indexOf("storymaps.esri.com") >= 0 ?
 				"../" :
-				"../app-landing"
+				"../app-landing-2"
 		); 
 
 		_map = new L.HFMap(
