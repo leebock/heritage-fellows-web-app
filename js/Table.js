@@ -9,7 +9,8 @@ function Table(ul)
 			if (!current.length) {
 				current = $(ul).children("li:nth-of-type(1)").attr("tabindex", "0");
 			}
-			current.focus();
+			// removed call current.focus() because it was interfering with 
+			// scrollbar mechanics.
 			$(ul).attr("tabindex", "-1");
 		}
 	);
