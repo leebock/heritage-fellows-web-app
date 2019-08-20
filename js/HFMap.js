@@ -45,6 +45,17 @@ L.HFMap = L.Map.extend({
   /******************* METHODS *********************/
   /*************************************************/
 
+  panTo: function(latLng, options)
+  {
+    var pixels = this.latLngToContainerPoint(latLng);
+    var pBR = this._paddingQueryFunction();
+    L.Map.prototype.panTo.call(
+        this, 
+        this.containerPointToLatLng(pixels.add([pBR[0]/2, pBR[1]/2])), 
+        options
+    );
+},
+
   zoomIn: function(zoomDelta, options)
   {
     this.setView(

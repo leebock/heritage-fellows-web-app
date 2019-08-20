@@ -477,16 +477,6 @@
 
 	}
 
-	function panTo(latLng)
-	{
-		var pixels = _map.latLngToContainerPoint(latLng);
-		var pBR = getPaddingBottomRight();
-		_map.panTo(
-			_map.containerPointToLatLng(pixels.add([pBR[0]/2, pBR[1]/2])), 
-			{animate: true, duration: 1}
-		);
-	}	
-
 	function setBio(recArtist) {
 
 		$("html body").addClass(GLOBAL_CLASS_BIO);
@@ -506,7 +496,7 @@
 	{
 
 		if (keepZoom) {
-			panTo(ll);
+			_map.panTo(ll, {animate: true, duration: 1});
 		} else {
 			fitBounds(ll.toBounds(500000), true);
 		}
