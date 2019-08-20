@@ -346,23 +346,7 @@
 
 	function onExtentChange(event)
 	{
-
-		var ll = _map.containerPointToLatLng(
-			L.point({
-				x: 0,
-				y: $("div#map").height() - ($("div#ovBar").height() + parseInt($("div#ovBar").css("bottom")))	
-			})							
-		);
-
-		var ur = _map.containerPointToLatLng(
-			L.point({
-				x: $("div#map").width() - ($("div#list-container").outerWidth()+20),
-				y: 0	
-			})							
-		);
-
-		_ovBar.update(L.latLngBounds(ll,ur)); // pass visible bounds
-
+		_ovBar.update(_map.getUsableBounds()); // pass visible bounds
 	}
 
 	function clearActive()

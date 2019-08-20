@@ -44,6 +44,26 @@ L.HFMap = L.Map.extend({
   /*************************************************/
   /******************* METHODS *********************/
   /*************************************************/
+  
+  getUsableBounds: function()
+  {
+    var pBR = this._paddingQueryFunction();
+	var ll = this.containerPointToLatLng(
+		L.point({
+			x: 0,
+			y: this.getSize().y - pBR[0]	
+		})							
+	);
+
+	var ur = this.containerPointToLatLng(
+		L.point({
+			x: this.getSize().x - pBR[1],
+			y: 0	
+		})							
+	);
+
+	return L.latLngBounds(ll,ur);
+},
 
   panTo: function(latLng, options)
   {
