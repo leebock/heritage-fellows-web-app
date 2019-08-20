@@ -72,7 +72,7 @@
 			{
 				if (event.which === 27) {
 					clearBio();
-					fitBounds(OV_MAPS[0].bnds, true);
+					_map.flyToBounds(OV_MAPS[0].bnds);
 					$("ul#list").children("li[tabindex='0']").focus();
 					if (_selection && _selection.length === 1 && _filterLocation) {
 						clearLocationFilter();
@@ -106,7 +106,7 @@
 		if (!L.Browser.mobile) {
 			L.easyButton(
 				"fa fa-home", 
-				function(btn, map){fitBounds(OV_MAPS[0].bnds, true);}
+				function(btn, map){_map.flyToBounds(OV_MAPS[0].bnds);}
 			).addTo(_map);
 		}
 
@@ -119,7 +119,7 @@
 		$(".filter-display-location .x-button").click(clearLocationFilter);
 		$("#bio .x-button").click(function(){
 			clearBio();
-			fitBounds(OV_MAPS[0].bnds, true);
+			_map.flyToBounds(OV_MAPS[0].bnds);
 			$("ul#list").children("li[tabindex='0']").focus();
 			if (_selection && _selection.length === 1 && _filterLocation) {
 				clearLocationFilter();
@@ -140,7 +140,7 @@
 		$(_ovBar).on(
 			"tileClick", 
 			function(event, bnds){
-				fitBounds(bnds, true);
+				_map.flyToBounds(bnds);
 			}
 		);
 
@@ -206,7 +206,7 @@
 				}
 			);
 
-			fitBounds(OV_MAPS[0].bnds);
+			_map.fitBounds(OV_MAPS[0].bnds);
 			_map.loadMarkers(_recordsArtists);
 			updateFilter();
 
@@ -418,15 +418,6 @@
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/
 
-	function fitBounds(bnds, flyTo)
-	{
-		if (flyTo) {
-			_map.flyToBounds(bnds);
-		} else {
-			_map.fitBounds(bnds);
-		}
-	}
-
 	function getPaddingBottomRight()
 	{
 		var compact = $(window).width() < WIDTH_THRESHOLD;
@@ -481,7 +472,7 @@
 		if (keepZoom) {
 			_map.panTo(ll, {animate: true, duration: 1});
 		} else {
-			fitBounds(ll.toBounds(500000), true);
+			_map.flyToBounds(ll.toBounds(500000));
 		}
 
 		_map.openPopup(
