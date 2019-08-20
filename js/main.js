@@ -420,11 +420,10 @@
 
 	function fitBounds(bnds, flyTo)
 	{
-		var options = {paddingBottomRight: getPaddingBottomRight()};
 		if (flyTo) {
-			_map.flyToBounds(bnds, options);
+			_map.flyToBounds(bnds);
 		} else {
-			_map.fitBounds(bnds, options);
+			_map.fitBounds(bnds);
 		}
 	}
 

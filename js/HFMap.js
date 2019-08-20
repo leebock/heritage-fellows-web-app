@@ -65,6 +65,24 @@ L.HFMap = L.Map.extend({
 	return L.latLngBounds(ll,ur);
 },
 
+    fitBounds: function(bnds)
+    {
+        L.Map.prototype.fitBounds.call(
+            this, 
+            bnds, 
+            {paddingBottomRight: this._paddingQueryFunction()}
+        );
+    },
+    
+    flyToBounds: function(bnds)
+    {
+        L.Map.prototype.flyToBounds.call(
+            this, 
+            bnds,
+            {paddingBottomRight: this._paddingQueryFunction()}
+        );
+    },
+
   panTo: function(latLng, options)
   {
     var pixels = this.latLngToContainerPoint(latLng);
