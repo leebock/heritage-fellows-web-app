@@ -137,12 +137,7 @@
 		);
 
 		_ovBar = new OVBar($("div#ovBar"), OV_MAPS);
-		$(_ovBar).on(
-			"tileClick", 
-			function(event, bnds){
-				_map.flyToBounds(bnds);
-			}
-		);
+		$(_ovBar).on("tileClick", function(event, bnds){_map.flyToBounds(bnds);});
 
 		Papa.parse(
 			SPREADSHEET_URL_ARTISTS, 
@@ -452,35 +447,21 @@
 	}
 
 	function setBio(recArtist) {
-
 		$("html body").addClass(GLOBAL_CLASS_BIO);
-
-		_bio.update(
-			recArtist, 
-			_selection.length > 1
-		);
-
+		_bio.update(recArtist, _selection.length > 1);
 		$("#bio #scrollable").animate({scrollTop: 0}, 'slow');
 		$("#bio #scrollable").get(0).focus();		
 		$("#list-container").addClass(LISTCONTAINER_CLASS_UP);
-		
 	}
 
 	function showLocation(label, ll, keepZoom)
 	{
-
 		if (keepZoom) {
 			_map.panTo(ll, {animate: true, duration: 1});
 		} else {
 			_map.flyToBounds(ll.toBounds(500000));
 		}
-
-		_map.openPopup(
-			label,
-			ll,
-			{closeButton: false}
-		);
-
+		_map.openPopup(label, ll, {closeButton: false});
 	}
 
 	function tweetBio()
