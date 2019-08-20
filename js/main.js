@@ -96,7 +96,7 @@
 		_map = new L.HFMap(
 			"map", 
 			{zoomControl: !L.Browser.mobile, maxZoom: 12, minZoom: 2, worldCopyJump: true},
-			zoomHandler
+			getPaddingBottomRight
 		)
 			.addLayer(L.esri.basemapLayer("NationalGeographic"))
 			.on("click", onMapClick)
@@ -430,22 +430,6 @@
 
 	}
 	
-	function zoomHandler(targetZoom)
-	{
-		var targetPoint = _map.project(_map.getCenter(), targetZoom);
-		var paddingBottomRight = getPaddingBottomRight();
-		var offset;
-		if (targetZoom < _map.getZoom()) {
-			offset = [paddingBottomRight[0]/4, paddingBottomRight[1]/4];
-		    targetPoint = targetPoint.add(offset);			
-		} else {
-			offset = [paddingBottomRight[0]/2, paddingBottomRight[1]/2];
-		    targetPoint = targetPoint.subtract(offset);
-		}
-	    var targetLatLng = _map.unproject(targetPoint, targetZoom);
-	    _map.setView(targetLatLng, targetZoom);      
-	}
-
 	/***************************************************************************
 	******************************** FUNCTIONS *********************************
 	***************************************************************************/

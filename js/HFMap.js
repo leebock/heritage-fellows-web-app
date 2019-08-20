@@ -1,13 +1,12 @@
 L.HFMap = L.Map.extend({
 
 
-  initialize: function(div, options, zoomCallBack)
+  initialize: function(div, options, paddingQueryFunction)
   {
 
     L.Map.prototype.initialize.call(this, div, options);
 
-    this._zoomCallBack = zoomCallBack;
-
+    this._paddingQueryFunction = paddingQueryFunction;
     this.MARKER_OPACITY_DEFAULT = 0.4;
 
     this._featureGroup = L.featureGroup()
@@ -48,12 +47,28 @@ L.HFMap = L.Map.extend({
 
   zoomIn: function(zoomDelta, options)
   {
-    this._zoomCallBack(this.getZoom()+zoomDelta);
+    this.setView(
+        this._calcNewCenter(
+            this.getCenter(), 
+            this.getZoom()+zoomDelta, 
+            this._paddingQueryFunction()
+        ),
+        this.getZoom()+zoomDelta,
+        options
+    );
   }, 
 
   zoomOut: function(zoomDelta, options)
   {
-    this._zoomCallBack(this.getZoom()-zoomDelta);
+      this.setView(
+          this._calcNewCenter(
+              this.getCenter(), 
+              this.getZoom()-zoomDelta, 
+              this._paddingQueryFunction()
+          ),
+          this.getZoom()-zoomDelta,
+          options
+      );
   },
 
   loadMarkers: function(recs)
@@ -124,6 +139,20 @@ L.HFMap = L.Map.extend({
   /************* "PRIVATE" FUNCTIONS ***************/
   /*************************************************/
 
+  _calcNewCenter: function(center, targetZoom, paddingBottomRight)
+  {
+      var targetPoint = this.project(center, targetZoom);
+      var offset;
+      if (targetZoom < this.getZoom()) {
+          offset = [paddingBottomRight[0]/4, paddingBottomRight[1]/4];
+          targetPoint = targetPoint.add(offset);			
+      } else {
+          offset = [paddingBottomRight[0]/2, paddingBottomRight[1]/2];
+          targetPoint = targetPoint.subtract(offset);
+      }
+      return this.unproject(targetPoint, targetZoom);
+  },
+  
   _createSummary: function(recs)
   {
 
