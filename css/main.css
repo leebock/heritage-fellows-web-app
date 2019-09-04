@@ -172,6 +172,10 @@ a {
     min-height: inherit;
     overflow: visible;
   }
+  .state-bio #list-container {
+    width: 100%;
+    max-width: none;
+  }
   #list-container.table-up {
     height: 70%;
     width: 100%;
