@@ -512,10 +512,16 @@ a {
   display: flex;
   justify-content: flex-end;
 }
-#list-container #bio div#bio-social a:first-child {
+#list-container #bio div#bio-social a {
   margin-right: 10px;
-  font-size: 30px;
-  color: #1DA1F2;
+  margin-bottom: -10px;
+  font-size: 26px;
+}
+#list-container #bio div#bio-social a:first-of-type {
+  color: #3b5999;
+}
+#list-container #bio div#bio-social a:nth-of-type(2) {
+  color: #55acee;
 }
 #list-container #foot-note {
   padding-top: 5px;

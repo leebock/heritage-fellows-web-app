@@ -128,6 +128,7 @@
 			}
 		});
 
+		$("#bio a.fa.fa-facebook").click(facebookBio);
 		$("#bio a.fa.fa-twitter").click(tweetBio);
 
 		$("#button-show").click(
@@ -462,6 +463,25 @@
 			_map.flyToBounds(ll.toBounds(500000));
 		}
 		_map.openPopup(label, ll, {closeButton: false});
+	}
+	
+	function facebookBio()
+	{
+
+		var text = "Celebrating the work of "+
+					_active.getFirstName()+" "+_active.getLastName()+
+					" and all of our other amazing NEA National Heritage Fellows.";
+		FB.ui(
+            {
+                method: "share",
+                href: window.location.href.split("?")[0]+"?id="+_active.getID().toString(),
+                quote: text
+            }, 
+            function(response) {
+                console.log(response);
+            }
+        );
+		
 	}
 
 	function tweetBio()

@@ -152,10 +152,16 @@ div#bio-social {
   display: flex;
   justify-content: flex-end;
 
-  a:first-child {
+  a {
     margin-right: 10px;
-    font-size: 30px;
-    color: #1DA1F2;
+    margin-bottom: -10px;
+    font-size: 26px;
+    &:first-of-type {
+      color: #3b5999;
+    }
+    &:nth-of-type(2) {
+      color: #55acee;
+    }
   }
 
 }
