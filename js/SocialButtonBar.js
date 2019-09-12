@@ -2,10 +2,7 @@ function SocialButtonBar()
 {
 	"use strict";
 
-	var URL = encodeURIComponent(window.location);
-	var TITLE = encodeURIComponent($('meta[property="og:title"]').attr('content'));
-	var TWITTER_HANDLE = encodeURIComponent($('meta[name="twitter:site"]').attr('content').replace('@',''));
-	var HASHTAGS = "StoryMaps";
+	var URL = encodeURIComponent("http://bit.ly/HeritageStoryMap");
 
 	$(".social-button-bar")
 		.append(
@@ -55,10 +52,10 @@ function SocialButtonBar()
 
 	function shareTwitter()
 	{
-		var twitterOptions = 'text=' + TITLE + 
+		var text = "Masters of Tradition: #NEAHeritage Fellows #StoryMap";
+		var twitterOptions = 'text=' + encodeURIComponent(text) + 
 		    '&url=' + URL	+ 
-		    '&via=' + TWITTER_HANDLE + 
-		    '&hashtags=' + HASHTAGS;
+		    '&via=' + encodeURIComponent("SmithsonianFolk @NEAarts");
 		window.open(
 			'https://twitter.com/intent/tweet?' + twitterOptions,
 			'Tweet',

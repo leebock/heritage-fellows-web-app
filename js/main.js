@@ -470,7 +470,7 @@
 
 		var text = "Celebrating the work of "+
 					_active.getFirstName()+" "+_active.getLastName()+
-					" and all of our other amazing NEA National Heritage Fellows.";
+					" and other amazing NEA Heritage Fellows:";
 		FB.ui(
             {
                 method: "share",
@@ -489,14 +489,14 @@
 
 		var text = "Celebrating the work of "+
 					_active.getFirstName()+" "+_active.getLastName()+
-					" and all of our other amazing NEA National Heritage Fellows.";
+					" and other amazing #NEAHeritage Fellows:";
 
 		var url = window.location.href.split("?")[0]+"?id="+_active.getID().toString();
 
 		var twitterOptions = 'text=' + encodeURIComponent(text) + 
 		    '&url=' + encodeURIComponent(url)+ 
-		    '&via=' + encodeURIComponent($('meta[name="twitter:site"]').attr('content').replace('@','')) + 
-		    "&hashtags=storymap";
+		    '&via=' + encodeURIComponent("SmithsonianFolk @NEAarts") + 
+		    "&hashtags=StoryMap";
 
 		window.open(
 			'https://twitter.com/intent/tweet?' + twitterOptions,
