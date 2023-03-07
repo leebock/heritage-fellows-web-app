@@ -128,6 +128,7 @@
 			}
 		});
 
+		$("#bio a.fa.fa-link").click(copyLink);
 		$("#bio a.fa.fa-facebook").click(facebookBio);
 		$("#bio a.fa.fa-twitter").click(tweetBio);
 
@@ -463,6 +464,13 @@
 			_map.flyToBounds(ll.toBounds(500000));
 		}
 		_map.openPopup(label, ll, {closeButton: false});
+	}
+
+	function copyLink()
+	{
+		var url = window.location.href.split("?")[0]+"?id="+_active.getID().toString();
+		navigator.clipboard.writeText(url);
+		alert("Copied to clipboard!");
 	}
 	
 	function facebookBio()
